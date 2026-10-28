@@ -1,0 +1,31 @@
+# Tupitoons
+
+Premium urban sleepwear storefront for Tupitoons.
+
+## Current version
+
+The first static storefront includes:
+
+- Editorial hero and campaign image.
+- Featured product drop with prototype prices.
+- Collection filters and size selection.
+- Local shopping bag with subtotal.
+- Print library and collection storytelling.
+- Newsletter interaction.
+- Responsive layouts for desktop and mobile.
+
+## Run locally
+
+Serve the repository root with any static HTTP server and open the local URL.
+For example:
+
+```powershell
+python -m http.server 4175
+```
+
+Open `http://127.0.0.1:4175/` in a browser.
+
+## Next commerce work
+
+Replace prototype products and prices with the approved catalog, then connect
+inventory, WhatsApp support, payments, shipping rules and checkout.
