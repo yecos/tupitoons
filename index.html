@@ -135,11 +135,25 @@
     .cart-close { border: 0; background: transparent; color: var(--store-ink); font-size: 23px; }
     .cart-items { display: grid; gap: 10px; overflow: auto; padding: 18px 0; }
     .cart-empty { padding: 35px 0; color: #5e5664; font-size: 16px; line-height: 1.4; }
-    .cart-item { display: grid; grid-template-columns: 72px 1fr auto; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid #1010151c; }
+    .cart-item { display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid #1010151c; }
     .cart-item img { width: 72px; height: 88px; object-fit: cover; }
     .cart-item strong { display: block; font-size: 14px; line-height: 1.1; }
     .cart-item span { display: block; margin-top: 5px; color: #756d7a; font: 700 10px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .06em; text-transform: uppercase; }
-    .cart-item-price { font: 800 12px/1 ui-monospace, SFMono-Regular, Consolas, monospace; white-space: nowrap; }
+    .cart-item-main { min-width: 0; }
+    .cart-item-side { display: grid; justify-items: end; gap: 12px; align-self: stretch; }
+    .cart-item-price { margin-top: 0 !important; color: var(--store-ink) !important; font: 800 12px/1 ui-monospace, SFMono-Regular, Consolas, monospace !important; white-space: nowrap; }
+    .cart-controls { display: flex; align-items: center; gap: 7px; margin-top: 12px; }
+    .cart-qty { display: inline-flex; align-items: center; border: 1px solid #10101526; }
+    .cart-qty button { width: 24px; height: 24px; border: 0; background: transparent; color: var(--store-ink); }
+    .cart-qty button:hover { background: var(--store-lime); }
+    .cart-qty span { min-width: 22px; margin: 0; color: var(--store-ink); font-size: 10px; text-align: center; }
+    .cart-remove { padding: 0; border: 0; background: transparent; color: #817987; font-size: 18px; line-height: 1; }
+    .cart-remove:hover { color: var(--store-coral); }
+    .shipping-progress { margin-bottom: 18px; }
+    .shipping-progress-head { display: flex; justify-content: space-between; gap: 12px; color: #756d7a; font: 700 10px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .05em; text-transform: uppercase; }
+    .shipping-progress-head strong { color: var(--store-ink); font: inherit; }
+    .shipping-track { height: 5px; margin-top: 9px; overflow: hidden; background: #1010151c; }
+    .shipping-track span { display: block; width: 0; height: 100%; background: var(--store-lime); transition: width .25s ease; }
     .cart-footer { margin-top: auto; padding-top: 18px; border-top: 1px solid #10101526; }
     .cart-subtotal { display: flex; justify-content: space-between; margin-bottom: 14px; font: 900 16px/1 ui-monospace, SFMono-Regular, Consolas, monospace; text-transform: uppercase; }
     .checkout-button { width: 100%; padding: 16px; border: 0; background: var(--store-ink); color: var(--store-paper); font: 900 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; text-transform: uppercase; }
@@ -326,7 +340,7 @@
   <aside class="cart-drawer" aria-label="Shopping bag" aria-hidden="true" data-cart-drawer>
     <div class="cart-head"><h2>Your bag</h2><button class="cart-close" type="button" aria-label="Close bag" data-cart-close>×</button></div>
     <div class="cart-items" data-cart-items><p class="cart-empty">Your bag is empty.<br>Pick a print and make it yours.</p></div>
-    <div class="cart-footer"><div class="cart-subtotal"><span>Subtotal</span><span data-cart-subtotal>COP 0</span></div><button class="checkout-button" type="button" data-checkout>Continue to checkout</button></div>
+    <div class="cart-footer"><div class="shipping-progress" aria-live="polite"><div class="shipping-progress-head"><span data-shipping-message>Add pieces to unlock free shipping.</span><strong data-shipping-percent>0%</strong></div><div class="shipping-track"><span data-shipping-bar></span></div></div><div class="cart-subtotal"><span>Subtotal</span><span data-cart-subtotal>COP 0</span></div><button class="checkout-button" type="button" data-checkout>Continue to checkout</button></div>
   </aside>
 
   <section class="product-modal" data-product-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-product-title">
@@ -354,7 +368,9 @@
   <script>
     (() => {
       const money = value => `COP ${new Intl.NumberFormat('es-CO').format(value)}`;
-      const state = { cart: [] };
+      const storageKey = 'tupitoons-bag-v1';
+      const readStoredCart = () => { try { return JSON.parse(localStorage.getItem(storageKey) || '[]'); } catch { return []; } };
+      const state = { cart: readStoredCart() };
       const select = selector => [...document.querySelectorAll(selector)];
       const bagCount = document.querySelector('[data-bag-count]');
       const drawer = document.querySelector('[data-cart-drawer]');
@@ -370,6 +386,9 @@
       const modalFit = document.querySelector('[data-modal-fit]');
       const modalMaterial = document.querySelector('[data-modal-material]');
       const modalCare = document.querySelector('[data-modal-care]');
+      const shippingMessage = document.querySelector('[data-shipping-message]');
+      const shippingPercent = document.querySelector('[data-shipping-percent]');
+      const shippingBar = document.querySelector('[data-shipping-bar]');
       let activeProduct = null;
       const productDetails = {
         'Bottle Label Wide Leg': { tag: 'Afterhours / wide leg', copy: 'A statement wide-leg silhouette with a soft handfeel and a bottle-label print designed to be seen from across the room.', fit: 'Relaxed wide leg', material: 'Soft cotton blend', care: 'Cold wash / inside out' },
@@ -379,17 +398,33 @@
         'Red Comic Lounge Shorts': { tag: 'Comic Club / shorts', copy: 'A graphic short with panel energy, easy movement and a print that does the talking.', fit: 'Relaxed short', material: 'Lightweight cotton', care: 'Cold wash / hang dry' },
         'Green Street Pant': { tag: 'Street Sleep / wide leg', copy: 'A street-ready statement pant where saturated cartoon color meets a clean, relaxed silhouette.', fit: 'Relaxed wide leg', material: 'Soft cotton blend', care: 'Cold wash / inside out' }
       };
+      const persistCart = () => { try { localStorage.setItem(storageKey, JSON.stringify(state.cart)); } catch { /* Local persistence is optional in preview mode. */ } };
 
       const renderCart = () => {
+        const shippingThreshold = 250000;
         const count = state.cart.reduce((sum, item) => sum + item.quantity, 0);
         const total = state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        const progress = Math.min(100, Math.round((total / shippingThreshold) * 100));
+        const remaining = Math.max(0, shippingThreshold - total);
         bagCount.textContent = count;
         subtotal.textContent = money(total);
+        shippingPercent.textContent = `${progress}%`;
+        shippingBar.style.width = `${progress}%`;
+        shippingMessage.textContent = remaining ? `Add ${money(remaining)} for free shipping.` : 'Free shipping unlocked.';
         if (!state.cart.length) {
           cartItems.innerHTML = '<p class="cart-empty">Your bag is empty.<br>Pick a print and make it yours.</p>';
           return;
         }
-        cartItems.innerHTML = state.cart.map(item => `<div class="cart-item"><img src="${item.image}" alt="${item.name}" loading="lazy"><div><strong>${item.name}</strong><span>Size ${item.size} · Qty ${item.quantity}</span></div><span class="cart-item-price">${money(item.price * item.quantity)}</span></div>`).join('');
+        cartItems.innerHTML = state.cart.map((item, index) => `<div class="cart-item"><img src="${item.image}" alt="${item.name}" loading="lazy"><div class="cart-item-main"><strong>${item.name}</strong><span>Size ${item.size}</span><div class="cart-controls"><div class="cart-qty"><button type="button" data-cart-action="decrease" data-cart-index="${index}" aria-label="Decrease quantity">−</button><span>${item.quantity}</span><button type="button" data-cart-action="increase" data-cart-index="${index}" aria-label="Increase quantity">+</button></div></div></div><div class="cart-item-side"><span class="cart-item-price">${money(item.price * item.quantity)}</span><button class="cart-remove" type="button" data-cart-action="remove" data-cart-index="${index}" aria-label="Remove ${item.name}">×</button></div></div>`).join('');
+        cartItems.querySelectorAll('[data-cart-action]').forEach(button => button.addEventListener('click', () => {
+          const index = Number(button.dataset.cartIndex);
+          const action = button.dataset.cartAction;
+          if (action === 'increase') state.cart[index].quantity += 1;
+          if (action === 'decrease') state.cart[index].quantity -= 1;
+          if (action === 'remove' || state.cart[index]?.quantity < 1) state.cart.splice(index, 1);
+          persistCart();
+          renderCart();
+        }));
       };
       const setCartOpen = open => {
         drawer.classList.toggle('is-open', open);
@@ -406,6 +441,7 @@
         const existing = state.cart.find(item => item.name === product.name && item.size === product.size);
         if (existing) existing.quantity += 1;
         else state.cart.push({ ...product, quantity: 1 });
+        persistCart();
         renderCart();
       };
       const openProduct = card => {

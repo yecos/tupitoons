@@ -10,7 +10,8 @@ The first static storefront includes:
 - Featured product drop with prototype prices.
 - Collection filters and size selection.
 - Editorial product detail modal with fit, material and care information.
-- Local shopping bag with subtotal.
+- Local shopping bag with subtotal, quantity controls, removal and persistence.
+- Free-shipping progress toward the prototype COP 250,000 threshold.
 - Print library and collection storytelling.
 - Newsletter interaction.
 - Responsive layouts for desktop and mobile.
