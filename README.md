@@ -9,6 +9,7 @@ The first static storefront includes:
 - Editorial hero and campaign image.
 - Featured product drop with prototype prices.
 - Collection filters and size selection.
+- Editorial product detail modal with fit, material and care information.
 - Local shopping bag with subtotal.
 - Print library and collection storytelling.
 - Newsletter interaction.
