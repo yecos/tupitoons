@@ -234,7 +234,7 @@
     <div class="store-container">
       <nav class="store-nav" aria-label="Main navigation">
         <div class="store-nav-links">
-          <a href="#shop">Shop</a><a href="#collections">Cartoon Club</a><a href="#prints">Print Library</a><a href="#story">The World</a>
+          <a href="#shop" data-scroll="#shop">Shop</a><a href="#shop" data-scroll="#shop" data-collection="cartoon-club">Cartoon Club</a><a href="#prints">Print Library</a><a href="#story">The World</a>
         </div>
         <a class="store-brand" href="#top" aria-label="Tupitoons home"><span class="store-brand-mark"><img src="assets/tupitoons-logo-glossy.png" alt="Tupitoons cloud mascot logo"></span><span>tupitoons</span></a>
         <div class="store-actions"><button class="store-icon-button" type="button" data-scroll="#shop">Search</button><button class="store-icon-button" type="button" data-cart-open>Bag <span class="bag-count" data-bag-count>0</span></button></div>
@@ -255,30 +255,30 @@
         </section>
 
         <section class="store-section" id="shop" aria-labelledby="shop-title">
-          <div class="store-section-head"><h2 id="shop-title">Featured drop</h2><p>Limited visual stories for late nights, slow mornings and everything in between.</p></div>
+          <div class="store-section-head"><h2 id="shop-title" data-shop-title>Featured drop</h2><p data-shop-description>Limited visual stories for late nights, slow mornings and everything in between.</p></div>
           <div class="store-filter-row" role="group" aria-label="Product filters"><button class="store-filter is-active" type="button" data-filter="all">All pieces</button><button class="store-filter" type="button" data-filter="wide-leg">Wide leg</button><button class="store-filter" type="button" data-filter="sets">Sets</button><button class="store-filter" type="button" data-filter="shorts">Shorts</button></div>
           <div class="store-product-grid">
-            <article class="product-card" data-category="wide-leg" data-product="Bottle Label Wide Leg" data-price="189000" data-image="assets/texture-bottle-print.jpeg">
+            <article class="product-card" data-category="wide-leg" data-collection="afterhours" data-product="Bottle Label Wide Leg" data-price="189000" data-image="assets/texture-bottle-print.jpeg">
               <div class="product-image"><img src="assets/texture-bottle-print.jpeg" alt="Bottle label repeat print for Tupitoons wide-leg pajama pants" loading="lazy"><span class="product-badge">New drop</span><span class="product-code">TUPI-001</span></div>
               <div class="product-info"><div class="product-meta"><span>Wide leg</span><span>Drop 01</span></div><h3>Bottle Label Wide Leg</h3><div class="product-price">COP 189,000</div><div class="size-row" aria-label="Select size"><button class="size-pill" type="button" data-size="S">S</button><button class="size-pill is-selected" type="button" data-size="M">M</button><button class="size-pill" type="button" data-size="L">L</button></div><div class="product-actions"><button class="detail-button" type="button" data-details>View details</button><button class="add-button" type="button" data-add>Add to bag</button></div></div>
             </article>
-            <article class="product-card" data-category="wide-leg" data-product="Blue Donut Club" data-price="179000" data-image="assets/texture-blue-donut-cartoon.jpeg">
+            <article class="product-card" data-category="wide-leg" data-collection="cartoon-club" data-product="Blue Donut Club" data-price="179000" data-image="assets/texture-blue-donut-cartoon.jpeg">
               <div class="product-image"><img src="assets/texture-blue-donut-cartoon.jpeg" alt="Blue cartoon donut repeat print for Tupitoons pajama pants" loading="lazy"><span class="product-badge" style="background: var(--store-blue);">Graphic hit</span><span class="product-code">TUPI-002</span></div>
               <div class="product-info"><div class="product-meta"><span>Wide leg</span><span>Cartoon club</span></div><h3>Blue Donut Club</h3><div class="product-price">COP 179,000</div><div class="size-row"><button class="size-pill" type="button" data-size="S">S</button><button class="size-pill is-selected" type="button" data-size="M">M</button><button class="size-pill" type="button" data-size="L">L</button></div><div class="product-actions"><button class="detail-button" type="button" data-details>View details</button><button class="add-button" type="button" data-add>Add to bag</button></div></div>
             </article>
-            <article class="product-card" data-category="sets" data-product="Pink Character Sleep Set" data-price="169000" data-image="assets/texture-pink-character-cast.jpeg">
+            <article class="product-card" data-category="sets" data-collection="pink-signal" data-product="Pink Character Sleep Set" data-price="169000" data-image="assets/texture-pink-character-cast.jpeg">
               <div class="product-image"><img src="assets/texture-pink-character-cast.jpeg" alt="Pink character repeat print for Tupitoons sleep set" loading="lazy"><span class="product-badge" style="background: var(--store-pink);">Soft signal</span><span class="product-code">TUPI-003</span></div>
               <div class="product-info"><div class="product-meta"><span>Set</span><span>Character cast</span></div><h3>Pink Character Sleep Set</h3><div class="product-price">COP 169,000</div><div class="size-row"><button class="size-pill" type="button" data-size="S">S</button><button class="size-pill is-selected" type="button" data-size="M">M</button><button class="size-pill" type="button" data-size="L">L</button></div><div class="product-actions"><button class="detail-button" type="button" data-details>View details</button><button class="add-button" type="button" data-add>Add to bag</button></div></div>
             </article>
-            <article class="product-card" data-category="sets" data-product="Fried Egg All-Day Set" data-price="159000" data-image="assets/look-fried-egg-studio.jpeg">
+            <article class="product-card" data-category="sets" data-collection="soft-utility" data-product="Fried Egg All-Day Set" data-price="159000" data-image="assets/look-fried-egg-studio.jpeg">
               <div class="product-image"><img src="assets/look-fried-egg-studio.jpeg" alt="Model wearing the Tupitoons fried egg print wide-leg pajama set in a premium grey studio" loading="lazy"><span class="product-badge" style="background: var(--store-lime);">Everyday</span><span class="product-code">TUPI-004</span></div>
               <div class="product-info"><div class="product-meta"><span>Set</span><span>Soft utility</span></div><h3>Fried Egg All-Day Set</h3><div class="product-price">COP 159,000</div><div class="size-row"><button class="size-pill" type="button" data-size="S">S</button><button class="size-pill is-selected" type="button" data-size="M">M</button><button class="size-pill" type="button" data-size="L">L</button></div><div class="product-actions"><button class="detail-button" type="button" data-details>View details</button><button class="add-button" type="button" data-add>Add to bag</button></div></div>
             </article>
-            <article class="product-card" data-category="shorts" data-product="Red Comic Lounge Shorts" data-price="129000" data-image="assets/texture-red-comic-global.jpeg">
+            <article class="product-card" data-category="shorts" data-collection="cartoon-club" data-product="Red Comic Lounge Shorts" data-price="129000" data-image="assets/texture-red-comic-global.jpeg">
               <div class="product-image"><img src="assets/texture-red-comic-global.jpeg" alt="Red comic repeat print for Tupitoons lounge shorts" loading="lazy"><span class="product-badge" style="background: var(--store-coral);">New</span><span class="product-code">TUPI-005</span></div>
               <div class="product-info"><div class="product-meta"><span>Shorts</span><span>Comic club</span></div><h3>Red Comic Lounge Shorts</h3><div class="product-price">COP 129,000</div><div class="size-row"><button class="size-pill" type="button" data-size="S">S</button><button class="size-pill is-selected" type="button" data-size="M">M</button><button class="size-pill" type="button" data-size="L">L</button></div><div class="product-actions"><button class="detail-button" type="button" data-details>View details</button><button class="add-button" type="button" data-add>Add to bag</button></div></div>
             </article>
-            <article class="product-card" data-category="wide-leg" data-product="Green Grinch Street Pant" data-price="189000" data-image="assets/look-grinch-green.jpeg">
+            <article class="product-card" data-category="wide-leg" data-collection="street-sleep" data-product="Green Street Pant" data-price="189000" data-image="assets/look-grinch-green.jpeg">
               <div class="product-image"><img src="assets/look-grinch-green.jpeg" alt="Green cartoon pajama print styled with a black streetwear top" loading="lazy"><span class="product-badge" style="background: var(--store-blue);">Street proof</span><span class="product-code">TUPI-006</span></div>
               <div class="product-info"><div class="product-meta"><span>Wide leg</span><span>Street sleep</span></div><h3>Green Street Pant</h3><div class="product-price">COP 189,000</div><div class="size-row"><button class="size-pill" type="button" data-size="S">S</button><button class="size-pill is-selected" type="button" data-size="M">M</button><button class="size-pill" type="button" data-size="L">L</button></div><div class="product-actions"><button class="detail-button" type="button" data-details>View details</button><button class="add-button" type="button" data-add>Add to bag</button></div></div>
             </article>
@@ -288,10 +288,10 @@
         <section class="store-section" id="collections" aria-labelledby="collections-title">
           <div class="store-section-head"><h2 id="collections-title">Choose your world</h2><p>One brand. Different night characters. Find the print that matches your lane.</p></div>
           <div class="store-collection-grid">
-            <a class="collection-card" href="#shop" data-scroll="#shop" style="--collection-image: url('assets/texture-blue-donut-cartoon.jpeg');"><div><small>01 / Loud</small><h3>Cartoon Club</h3></div></a>
-            <a class="collection-card" href="#shop" data-scroll="#shop" style="--collection-image: url('assets/texture-pink-character-cast.jpeg');"><div><small>02 / Soft</small><h3>Pink Signal</h3></div></a>
-            <a class="collection-card" href="#shop" data-scroll="#shop" style="--collection-image: url('assets/texture-bottle-print.jpeg');"><div><small>03 / Local</small><h3>Afterhours</h3></div></a>
-            <a class="collection-card" href="#shop" data-scroll="#shop" style="--collection-image: url('assets/texture-fried-egg-repeat.jpeg');"><div><small>04 / Easy</small><h3>Soft Utility</h3></div></a>
+            <a class="collection-card" href="#shop" data-scroll="#shop" data-collection="cartoon-club" style="--collection-image: url('assets/texture-blue-donut-cartoon.jpeg');"><div><small>01 / Loud</small><h3>Cartoon Club</h3></div></a>
+            <a class="collection-card" href="#shop" data-scroll="#shop" data-collection="pink-signal" style="--collection-image: url('assets/texture-pink-character-cast.jpeg');"><div><small>02 / Soft</small><h3>Pink Signal</h3></div></a>
+            <a class="collection-card" href="#shop" data-scroll="#shop" data-collection="afterhours" style="--collection-image: url('assets/texture-bottle-print.jpeg');"><div><small>03 / Local</small><h3>Afterhours</h3></div></a>
+            <a class="collection-card" href="#shop" data-scroll="#shop" data-collection="soft-utility" style="--collection-image: url('assets/texture-fried-egg-repeat.jpeg');"><div><small>04 / Easy</small><h3>Soft Utility</h3></div></a>
           </div>
         </section>
 
@@ -460,6 +460,27 @@
         select('[data-modal-size]').forEach(button => button.classList.toggle('is-selected', button.dataset.modalSize === 'M'));
         setModalOpen(true);
       };
+      const shopTitle = document.querySelector('[data-shop-title]');
+      const shopDescription = document.querySelector('[data-shop-description]');
+      const collectionDetails = {
+        'cartoon-club': { title: 'Cartoon Club', copy: 'Loud graphic prints for people who want their downtime to have a point of view.' },
+        'pink-signal': { title: 'Pink Signal', copy: 'A softer character world with high-impact color and a little after-dark mischief.' },
+        afterhours: { title: 'Afterhours', copy: 'Local graphic energy, relaxed silhouettes and prints made for late-night plans.' },
+        'soft-utility': { title: 'Soft Utility', copy: 'Everyday comfort with enough personality to move from the bed to the block.' },
+        'street-sleep': { title: 'Street Sleep', copy: 'Urban attitude, relaxed fit and a graphic that refuses to stay indoors.' }
+      };
+      const applyCatalogFilter = (category = 'all', collection = null) => {
+        const details = collection ? collectionDetails[collection] : null;
+        const categoryNames = { 'all': 'Featured drop', 'wide-leg': 'Wide leg', sets: 'Sets', shorts: 'Shorts' };
+        shopTitle.textContent = details?.title || categoryNames[category] || 'Featured drop';
+        shopDescription.textContent = details?.copy || 'Limited visual stories for late nights, slow mornings and everything in between.';
+        select('[data-filter]').forEach(item => item.classList.toggle('is-active', !collection && item.dataset.filter === category));
+        select('.product-card').forEach(card => {
+          const matchesCategory = category === 'all' || card.dataset.category === category;
+          const matchesCollection = !collection || card.dataset.collection === collection;
+          card.classList.toggle('is-hidden', !(matchesCategory && matchesCollection));
+        });
+      };
       select('[data-cart-open]').forEach(button => button.addEventListener('click', () => setCartOpen(true)));
       select('[data-cart-close]').forEach(button => button.addEventListener('click', () => setCartOpen(false)));
       select('[data-size]').forEach(button => button.addEventListener('click', () => {
@@ -485,13 +506,11 @@
         setCartOpen(true);
       });
       select('[data-filter]').forEach(button => button.addEventListener('click', () => {
-        const filter = button.dataset.filter;
-        select('[data-filter]').forEach(item => item.classList.toggle('is-active', item === button));
-        select('.product-card').forEach(card => card.classList.toggle('is-hidden', filter !== 'all' && card.dataset.category !== filter));
+        applyCatalogFilter(button.dataset.filter);
       }));
       select('[data-scroll]').forEach(link => link.addEventListener('click', event => {
         const target = document.querySelector(link.dataset.scroll);
-        if (target) { event.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        if (target) { event.preventDefault(); if (link.dataset.collection) applyCatalogFilter('all', link.dataset.collection); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       }));
       document.querySelector('[data-newsletter]')?.addEventListener('submit', event => {
         event.preventDefault();
