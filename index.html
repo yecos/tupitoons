@@ -179,8 +179,28 @@
     .modal-size-row { display: flex; gap: 6px; }
     .modal-size-row button { min-width: 42px; padding: 11px; border: 1px solid #10101526; background: transparent; color: var(--store-ink); font: 800 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace; }
     .modal-size-row button.is-selected, .modal-size-row button:hover { border-color: var(--store-ink); background: var(--store-ink); color: var(--store-paper); }
+    .size-guide-link { display: inline-block; margin-top: 12px; color: #69616d; font: 800 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; text-decoration-thickness: 1px; text-underline-offset: 4px; text-transform: uppercase; }
+    .size-guide-link:hover { color: var(--store-ink); }
     .modal-add { width: 100%; margin-top: 17px; padding: 16px; border: 0; background: var(--store-ink); color: var(--store-paper); font: 900 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; text-transform: uppercase; }
     .modal-add:hover { background: var(--store-pink); color: var(--store-ink); }
+    .size-guide-modal { position: fixed; z-index: 31; inset: 0; display: none; place-items: center; padding: 24px; }
+    .size-guide-modal.is-open { display: grid; }
+    .size-guide-backdrop { position: absolute; inset: 0; background: #000000b8; backdrop-filter: blur(8px); }
+    .size-guide-panel { position: relative; z-index: 1; width: min(1060px, 100%); max-height: min(820px, calc(100vh - 48px)); overflow: auto; padding: clamp(24px, 4vw, 46px); border: 1px solid #ffffff30; background: var(--store-paper); color: var(--store-ink); box-shadow: 20px 20px 0 var(--store-lime); }
+    .size-guide-head { display: flex; justify-content: space-between; align-items: start; gap: 24px; }
+    .size-guide-head small { display: block; margin-bottom: 12px; color: #69616d; font: 800 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .13em; text-transform: uppercase; }
+    .size-guide-head h2 { margin: 0; font: 900 clamp(48px, 7vw, 92px)/.8 Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Black", sans-serif; letter-spacing: -.045em; text-transform: uppercase; }
+    .size-guide-close { width: 34px; height: 34px; flex: 0 0 auto; border: 1px solid #10101526; border-radius: 50%; background: transparent; color: var(--store-ink); font-size: 22px; line-height: 1; }
+    .size-guide-close:hover { border-color: var(--store-coral); color: var(--store-coral); }
+    .size-guide-intro { max-width: 690px; margin: 18px 0 24px; color: #4e4753; font-size: 15px; line-height: 1.45; }
+    .size-guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .size-guide-card { overflow: hidden; border: 1px solid #10101526; background: #fff; }
+    .size-guide-card a { display: block; }
+    .size-guide-card img { display: block; width: 100%; height: auto; }
+    .size-guide-card figcaption { padding: 12px 14px; color: #69616d; font: 800 10px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .size-guide-note { margin: 18px 0 0; padding: 14px 16px; border-left: 4px solid var(--store-coral); background: #1010150b; color: #4e4753; font-size: 13px; line-height: 1.45; }
+    .service-link { display: inline-block; margin-top: 12px; color: var(--store-paper); font: 800 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; text-decoration-thickness: 1px; text-underline-offset: 4px; text-transform: uppercase; }
+    .service-link:hover { color: var(--store-lime); }
     @media (max-width: 980px) {
       .store-product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .store-collection-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -216,6 +236,10 @@
       .product-modal-media, .product-modal-media img { min-height: 300px; max-height: 390px; }
       .product-modal-content { padding: 24px; }
       .product-modal-content h2 { font-size: 54px; }
+      .size-guide-modal { padding: 12px; }
+      .size-guide-panel { max-height: calc(100vh - 24px); box-shadow: 10px 10px 0 var(--store-lime); }
+      .size-guide-head { gap: 12px; }
+      .size-guide-grid { grid-template-columns: 1fr; gap: 10px; }
     }
     @media (max-width: 480px) {
       .store-product-grid, .store-collection-grid { grid-template-columns: 1fr; }
@@ -233,7 +257,7 @@
     <div class="store-container">
       <nav class="store-nav" aria-label="Main navigation">
         <div class="store-nav-links">
-          <a href="#shop" data-scroll="#shop">Shop</a><a href="#shop" data-scroll="#shop" data-collection="cartoon-club">Cartoon Club</a><a href="#prints">Print Library</a><a href="#story">The World</a>
+          <a href="#shop" data-scroll="#shop">Shop</a><a href="#shop" data-scroll="#shop" data-collection="cartoon-club">Cartoon Club</a><a href="#prints">Print Library</a><a href="#story">The World</a><a href="#size-guide" data-size-guide-open>Size guide</a>
         </div>
         <a class="store-brand" href="#top" aria-label="Tupitoons home"><span class="store-brand-mark"><img src="assets/tupitoons-logo-glossy.png" alt="Tupitoons cloud mascot logo"></span><span>tupitoons</span></a>
         <div class="store-actions"><button class="store-icon-button" type="button" data-scroll="#shop">Search</button><button class="store-icon-button" type="button" data-cart-open>Bag <span class="bag-count" data-bag-count>0</span></button></div>
@@ -319,7 +343,7 @@
         <section class="store-section" aria-labelledby="service-title">
           <div class="store-section-head"><h2 id="service-title">Soft utility</h2><p>Everything that makes a good store feel easy, clear and worth coming back to.</p></div>
           <div class="store-service-grid">
-            <article class="service-card"><strong>Fit first</strong><p>Size guide, relaxed silhouettes and product notes before checkout.</p></article>
+            <article class="service-card"><strong>Fit first</strong><p>Size guide, relaxed silhouettes and product notes before checkout.</p><a class="service-link" href="#size-guide" data-size-guide-open>Open size guide ↗</a></article>
             <article class="service-card"><strong>Made for nights</strong><p>Comfort, fabric and care information without the technical fog.</p></article>
             <article class="service-card"><strong>Easy exchange</strong><p>Clear changes, returns and delivery details in one place.</p></article>
             <article class="service-card"><strong>Talk to a human</strong><p>WhatsApp support for the last question before you make it yours.</p></article>
@@ -363,8 +387,22 @@
         </div>
         <span class="product-modal-label">Choose your size</span>
         <div class="modal-size-row"><button type="button" data-modal-size="S">S</button><button class="is-selected" type="button" data-modal-size="M">M</button><button type="button" data-modal-size="L">L</button></div>
+        <a class="size-guide-link" href="#size-guide" data-size-guide-open>Not sure? Open size guide ↗</a>
         <button class="modal-add" type="button" data-modal-add>Add selected size to bag</button>
       </div>
+    </div>
+  </section>
+
+  <section class="size-guide-modal" data-size-guide-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="size-guide-title">
+    <div class="size-guide-backdrop" data-size-guide-close></div>
+    <div class="size-guide-panel">
+      <div class="size-guide-head"><div><small>Tupitoons / fit reference / centimeters</small><h2 id="size-guide-title">Find your fit.</h2></div><button class="size-guide-close" type="button" aria-label="Close size guide" data-size-guide-close>×</button></div>
+      <p class="size-guide-intro">Measure a garment that already fits you well and compare it with the tables below. These are the current production references for tops, long pants, women’s shorts and men’s bermuda shorts.</p>
+      <div class="size-guide-grid">
+        <figure class="size-guide-card"><a href="assets/size-guide-bottoms.png"><img src="assets/size-guide-bottoms.png" alt="Tupitoons size guide for unisex pants, men’s bermuda shorts and women’s shorts with measurements in centimeters" loading="lazy"></a><figcaption>Bottoms / pants, bermuda and shorts</figcaption></figure>
+        <figure class="size-guide-card"><a href="assets/size-guide-tops.png"><img src="assets/size-guide-tops.png" alt="Tupitoons size guide for women’s and men’s t-shirts with measurements in centimeters" loading="lazy"></a><figcaption>Tops / women’s and men’s t-shirts</figcaption></figure>
+      </div>
+      <p class="size-guide-note"><strong>Production check:</strong> measurements are shown in centimeters and should be confirmed against the final sample before publishing the live catalog.</p>
     </div>
   </section>
 
@@ -389,6 +427,7 @@
       const modalFit = document.querySelector('[data-modal-fit]');
       const modalMaterial = document.querySelector('[data-modal-material]');
       const modalCare = document.querySelector('[data-modal-care]');
+      const sizeGuideModal = document.querySelector('[data-size-guide-modal]');
       const shippingMessage = document.querySelector('[data-shipping-message]');
       const shippingPercent = document.querySelector('[data-shipping-percent]');
       const shippingBar = document.querySelector('[data-shipping-bar]');
@@ -440,6 +479,12 @@
         productModal.classList.toggle('is-open', open);
         productModal.setAttribute('aria-hidden', String(!open));
         document.body.style.overflow = open || drawer.classList.contains('is-open') ? 'hidden' : '';
+      };
+      const setSizeGuideOpen = open => {
+        if (open) { setModalOpen(false); setCartOpen(false); }
+        sizeGuideModal.classList.toggle('is-open', open);
+        sizeGuideModal.setAttribute('aria-hidden', String(!open));
+        document.body.style.overflow = open ? 'hidden' : '';
       };
       const addProduct = product => {
         const existing = state.cart.find(item => item.name === product.name && item.size === product.size);
@@ -499,6 +544,8 @@
       }));
       select('[data-details]').forEach(button => button.addEventListener('click', () => openProduct(button.closest('.product-card'))));
       select('[data-product-close]').forEach(button => button.addEventListener('click', () => setModalOpen(false)));
+      select('[data-size-guide-open]').forEach(link => link.addEventListener('click', event => { event.preventDefault(); setSizeGuideOpen(true); }));
+      select('[data-size-guide-close]').forEach(button => button.addEventListener('click', () => setSizeGuideOpen(false)));
       select('[data-modal-size]').forEach(button => button.addEventListener('click', () => {
         select('[data-modal-size]').forEach(item => item.classList.toggle('is-selected', item === button));
       }));
@@ -522,7 +569,7 @@
         document.querySelector('[data-newsletter-status]').textContent = 'You are on the list for Drop 01.';
       });
       document.querySelector('[data-checkout]')?.addEventListener('click', () => { alert('Checkout connection is the next commerce step.'); });
-      document.addEventListener('keydown', event => { if (event.key === 'Escape') { setModalOpen(false); setCartOpen(false); } });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') { setSizeGuideOpen(false); setModalOpen(false); setCartOpen(false); } });
       renderCart();
     })();
   </script>
