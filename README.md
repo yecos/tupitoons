@@ -16,7 +16,7 @@ La versión actual es un storefront estático premium, responsive y bilingüe.
 - Filtros por pantalón amplio, sets y shorts.
 - Búsqueda visual por estampado, silueta y colección.
 - Wishlist local con filtro de piezas guardadas.
-- Selector de talla S / M / L.
+- Selección explícita de talla S / M / L dentro de la ficha; sin talla predeterminada.
 - Detalle de producto premium con galería de imágenes, fit, material y cuidado.
 - Bolsa de compra local con cantidades, eliminación, subtotal y persistencia.
 - Barra de progreso para envío gratis desde **COP 250.000**.
@@ -131,7 +131,7 @@ Antes de publicar una modificación importante:
 
 1. Abrir la tienda en español y comprobar navegación, filtros y modal de tallas.
 2. Cambiar a inglés, recargar y confirmar que la preferencia permanece.
-3. Añadir un producto a la bolsa y revisar subtotal, cantidades y envío gratis.
+3. Abrir una ficha, elegir talla y añadir un producto a la bolsa y revisar subtotal, cantidades y envío gratis.
 4. Abrir checkout y validar la solicitud sin enviarla a un cliente real.
 5. Confirmar que las imágenes nuevas responden correctamente.
 6. Revisar el sitio en escritorio y móvil.
@@ -169,3 +169,7 @@ https://tupitoons.vercel.app/
 ## Auditoría y verificaciones
 
 Ver [auditoría priorizada](docs/AUDIT-2026-10-28.md). Ejecuta `node --test tests/*.test.cjs`. Si editas un script inline, ejecuta `node scripts/update-csp.cjs` para actualizar su SHA-256 en `vercel.json`; la prueba falla si la CSP queda desactualizada. Los headers deben verificarse en el preview de Vercel antes de fusionar.
+
+## Edición premium de producto
+
+Ver [cambios y verificación](docs/PREMIUM-PRODUCT.md). El catálogo permite navegar por silueta y ordenar por precio. La tipografía Barlow Condensed se sirve localmente; su licencia está en `assets/fonts/OFL.txt`.
