@@ -12,7 +12,7 @@ La versión actual es un storefront estático premium, responsive y bilingüe.
 
 - Español como idioma inicial.
 - Selector persistente **ES / EN**.
-- Catálogo visual con 15 referencias.
+- Catálogo visual con 16 referencias.
 - Filtros por pantalón amplio, sets y shorts.
 - Búsqueda visual por estampado, silueta y colección.
 - Wishlist local con filtro de piezas guardadas.
@@ -43,6 +43,7 @@ Los precios son referencias de prototipo y deben confirmarse antes de activar el
 | TUPI-004 | Fried Egg All-Day Set | Set | COP 159.000 |
 | TUPI-005 | Red Comic Lounge Shorts | Short | COP 129.000 |
 | TUPI-006 | Green Street Pant | Pantalón amplio | COP 189.000 |
+| TUPI-016 | Green Street Lounge Shorts | Short | COP 129.000 |
 | TUPI-007 | Popcorn Sky Wide Leg | Pantalón amplio | COP 189.000 |
 | TUPI-008 | Bottle Label Lounge Shorts | Short | COP 129.000 |
 | TUPI-009 | Popcorn Sky Lounge Shorts | Short | COP 129.000 |
