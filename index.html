@@ -37,9 +37,12 @@
     .store-brand { display: inline-flex; align-items: center; gap: 9px; color: var(--store-paper); font: 900 26px/.8 Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Black", sans-serif; letter-spacing: -.05em; text-decoration: none; text-transform: lowercase; }
     .store-brand-mark { display: grid; place-items: center; width: 34px; height: 34px; overflow: hidden; border: 2px solid var(--store-ink); border-radius: 10px; background: var(--store-paper); transform: rotate(-4deg); }
     .store-brand-mark img { width: 130%; height: 130%; object-fit: contain; }
-    .store-actions { display: flex; justify-content: flex-end; gap: 10px; }
+    .store-actions { display: flex; justify-content: flex-end; gap: 10px; align-items: center; }
     .store-icon-button { display: inline-flex; align-items: center; gap: 7px; padding: 10px 12px; border: 1px solid var(--store-line); border-radius: 999px; background: transparent; color: var(--store-paper); font: 800 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
     .store-icon-button:hover, .store-icon-button:focus-visible { border-color: var(--store-lime); color: var(--store-lime); }
+    .language-switch { display: inline-flex; align-items: center; gap: 3px; padding: 3px; border: 1px solid var(--store-line); border-radius: 999px; color: var(--store-muted); font: 800 9px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .06em; }
+    .language-switch button { padding: 6px 7px; border: 0; border-radius: 999px; background: transparent; color: inherit; font: inherit; letter-spacing: inherit; }
+    .language-switch button.is-active, .language-switch button:hover, .language-switch button:focus-visible { background: var(--store-lime); color: var(--store-ink); }
     .bag-count { display: grid; place-items: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 99px; background: var(--store-pink); color: var(--store-ink); }
     .store-hero { position: relative; display: grid; grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr); gap: 20px; min-height: 690px; padding: clamp(28px, 5vw, 72px) 0 80px; align-items: end; }
     .store-hero::before { content: 'TUPI'; position: absolute; top: 7%; right: -3%; color: #ffffff08; font: 900 clamp(160px, 28vw, 430px)/.8 Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Black", sans-serif; letter-spacing: -.09em; pointer-events: none; }
@@ -303,33 +306,33 @@
 </head>
 <body>
   <div class="store-shell">
-    <div class="store-topline"><span>Free shipping over COP 250,000</span><span>Drop 01 / sleep in your own lane</span></div>
+    <div class="store-topline"><span data-i18n="top.shipping">Free shipping over COP 250,000</span><span data-i18n="top.drop">Drop 01 / sleep in your own lane</span></div>
     <div class="store-container">
-      <nav class="store-nav" aria-label="Main navigation">
+      <nav class="store-nav" aria-label="Main navigation" data-i18n-aria="nav.main">
         <div class="store-nav-links">
-          <a href="#shop" data-scroll="#shop">Shop</a><a href="#shop" data-scroll="#shop" data-collection="cartoon-club">Cartoon Club</a><a href="#prints">Print Library</a><a href="#story">The World</a><a href="#size-guide" data-size-guide-open>Size guide</a>
+          <a href="#shop" data-scroll="#shop" data-i18n="nav.shop">Shop</a><a href="#shop" data-scroll="#shop" data-collection="cartoon-club">Cartoon Club</a><a href="#prints" data-i18n="nav.prints">Print Library</a><a href="#story" data-i18n="nav.world">The World</a><a href="#size-guide" data-size-guide-open data-i18n="nav.size">Size guide</a>
         </div>
-        <a class="store-brand" href="#top" aria-label="Tupitoons home"><span class="store-brand-mark"><img src="assets/tupitoons-logo-glossy.png" alt="Tupitoons cloud mascot logo"></span><span>tupitoons</span></a>
-        <div class="store-actions"><button class="store-icon-button" type="button" data-scroll="#shop">Search</button><button class="store-icon-button" type="button" data-cart-open>Bag <span class="bag-count" data-bag-count>0</span></button></div>
+        <a class="store-brand" href="#top" aria-label="Tupitoons home" data-i18n-aria="nav.home"><span class="store-brand-mark"><img src="assets/tupitoons-logo-glossy.png" alt="Tupitoons cloud mascot logo"></span><span>tupitoons</span></a>
+        <div class="store-actions"><button class="store-icon-button" type="button" data-scroll="#shop"><span data-i18n="nav.search">Search</span></button><button class="store-icon-button" type="button" data-cart-open><span data-i18n="nav.bag">Bag</span> <span class="bag-count" data-bag-count>0</span></button><div class="language-switch" aria-label="Language selector" data-i18n-aria="language.selector"><button type="button" data-language="es">ES</button><span>/</span><button type="button" data-language="en">EN</button></div></div>
       </nav>
 
       <main id="top">
         <section class="store-hero" aria-labelledby="hero-title">
           <div class="store-hero-copy">
-            <span class="store-kicker">Urban sleepwear / drop 01</span>
-            <h1 id="hero-title">From the bed<br>to the <em>block.</em></h1>
-            <p class="store-hero-lede">Pajamas with cartoon energy, premium comfort and enough attitude to leave the bedroom.</p>
-            <div class="store-hero-actions"><a class="store-primary" href="#shop">Shop the drop</a><a class="store-secondary" href="#story">Enter the world</a></div>
+            <span class="store-kicker" data-i18n="hero.kicker">Urban sleepwear / drop 01</span>
+            <h1 id="hero-title" data-i18n-html="hero.title">From the bed<br>to the <em>block.</em></h1>
+            <p class="store-hero-lede" data-i18n="hero.lede">Pajamas with cartoon energy, premium comfort and enough attitude to leave the bedroom.</p>
+            <div class="store-hero-actions"><a class="store-primary" href="#shop" data-i18n="hero.shop">Shop the drop</a><a class="store-secondary" href="#story" data-i18n="hero.world">Enter the world</a></div>
           </div>
           <div class="store-hero-art">
             <a class="store-hero-frame" href="assets/look-bottle-print-studio.jpeg"><img src="assets/look-bottle-print-studio.jpeg" alt="Editorial model wearing Tupitoons bottle-print wide-leg pajama pants in a premium grey studio" loading="eager"></a>
-            <span class="store-hero-sticker">Soft<br>power<br>only</span><span class="store-hero-code">TUPI / 01 — PRODUCT HERO</span>
+            <span class="store-hero-sticker" data-i18n-html="hero.sticker">Soft<br>power<br>only</span><span class="store-hero-code" data-i18n="hero.code">TUPI / 01 — PRODUCT HERO</span>
           </div>
         </section>
 
         <section class="store-section" id="shop" aria-labelledby="shop-title">
           <div class="store-section-head"><h2 id="shop-title" data-shop-title>Featured drop</h2><p data-shop-description>Limited visual stories for late nights, slow mornings and everything in between.</p></div>
-          <div class="store-filter-row" role="group" aria-label="Product filters"><button class="store-filter is-active" type="button" data-filter="all">All pieces</button><button class="store-filter" type="button" data-filter="wide-leg">Wide leg</button><button class="store-filter" type="button" data-filter="sets">Sets</button><button class="store-filter" type="button" data-filter="shorts">Shorts</button></div>
+          <div class="store-filter-row" role="group" aria-label="Product filters" data-i18n-aria="shop.filters"><button class="store-filter is-active" type="button" data-filter="all" data-i18n="filter.all">All pieces</button><button class="store-filter" type="button" data-filter="wide-leg" data-i18n="filter.wide">Wide leg</button><button class="store-filter" type="button" data-filter="sets" data-i18n="filter.sets">Sets</button><button class="store-filter" type="button" data-filter="shorts" data-i18n="filter.shorts">Shorts</button></div>
           <div class="store-product-grid">
             <article class="product-card" data-category="wide-leg" data-collection="afterhours" data-product="Bottle Label Wide Leg" data-price="189000" data-image="assets/look-bottle-print-studio.jpeg">
               <div class="product-image"><img src="assets/look-bottle-print-studio.jpeg" alt="Model wearing Tupitoons bottle-label wide-leg pajama pants in a premium grey studio" loading="lazy"><span class="product-badge">New drop</span><span class="product-code">TUPI-001</span></div>
@@ -375,92 +378,92 @@
         </section>
 
         <section class="store-section" id="collections" aria-labelledby="collections-title">
-          <div class="store-section-head"><h2 id="collections-title">Choose your world</h2><p>One brand. Different night characters. Find the print that matches your lane.</p></div>
+          <div class="store-section-head"><h2 id="collections-title" data-i18n="collections.title">Choose your world</h2><p data-i18n="collections.copy">One brand. Different night characters. Find the print that matches your lane.</p></div>
           <div class="store-collection-grid">
-            <a class="collection-card" href="#shop" data-scroll="#shop" data-collection="cartoon-club" style="--collection-image: url('assets/texture-blue-donut-cartoon.jpeg');"><div><small>01 / Loud</small><h3>Cartoon Club</h3></div></a>
-            <a class="collection-card" href="#shop" data-scroll="#shop" data-collection="pink-signal" style="--collection-image: url('assets/texture-pink-character-cast.jpeg');"><div><small>02 / Soft</small><h3>Pink Signal</h3></div></a>
-            <a class="collection-card" href="#shop" data-scroll="#shop" data-collection="afterhours" style="--collection-image: url('assets/texture-bottle-print.jpeg');"><div><small>03 / Local</small><h3>Afterhours</h3></div></a>
-            <a class="collection-card" href="#shop" data-scroll="#shop" data-collection="soft-utility" style="--collection-image: url('assets/texture-fried-egg-repeat.jpeg');"><div><small>04 / Easy</small><h3>Soft Utility</h3></div></a>
+            <a class="collection-card" href="#shop" data-scroll="#shop" data-collection="cartoon-club" style="--collection-image: url('assets/texture-blue-donut-cartoon.jpeg');"><div><small data-i18n="collection.loud">01 / Loud</small><h3>Cartoon Club</h3></div></a>
+            <a class="collection-card" href="#shop" data-scroll="#shop" data-collection="pink-signal" style="--collection-image: url('assets/texture-pink-character-cast.jpeg');"><div><small data-i18n="collection.soft">02 / Soft</small><h3>Pink Signal</h3></div></a>
+            <a class="collection-card" href="#shop" data-scroll="#shop" data-collection="afterhours" style="--collection-image: url('assets/texture-bottle-print.jpeg');"><div><small data-i18n="collection.local">03 / Local</small><h3>Afterhours</h3></div></a>
+            <a class="collection-card" href="#shop" data-scroll="#shop" data-collection="soft-utility" style="--collection-image: url('assets/texture-fried-egg-repeat.jpeg');"><div><small data-i18n="collection.easy">04 / Easy</small><h3>Soft Utility</h3></div></a>
           </div>
         </section>
 
         <section class="store-section" id="story" aria-labelledby="story-title">
           <div class="store-story">
-            <div class="store-story-copy"><small>Tupitoons / the world</small><h2 id="story-title">Sleep in your own lane.</h2><p>Comfort is not an afterthought. It is the uniform for late-night ideas, slow mornings and the small decision to show up as yourself.</p></div>
+            <div class="store-story-copy"><small data-i18n="story.kicker">Tupitoons / the world</small><h2 id="story-title" data-i18n="story.title">Sleep in your own lane.</h2><p data-i18n="story.copy">Comfort is not an afterthought. It is the uniform for late-night ideas, slow mornings and the small decision to show up as yourself.</p></div>
             <a class="store-story-image" href="assets/look-graffiti-cartoons.jpeg"><img src="assets/look-graffiti-cartoons.jpeg" alt="Model in cartoon pajama pants styled on a monochrome rooftop with a skateboard" loading="lazy"></a>
           </div>
         </section>
 
         <section class="store-section" id="prints" aria-labelledby="prints-title">
-          <div class="store-section-head"><h2 id="prints-title">Print library</h2><p>Texture is the product. Browse the signals that shape Drop 01.</p></div>
+          <div class="store-section-head"><h2 id="prints-title" data-i18n="prints.title">Print library</h2><p data-i18n="prints.copy">Texture is the product. Browse the signals that shape Drop 01.</p></div>
           <div class="store-print-strip">
-            <a class="print-swatch" href="assets/texture-blue-donut-cartoon.jpeg"><img src="assets/texture-blue-donut-cartoon.jpeg" alt="Blue donut cartoon texture" loading="lazy"><span>Blue overload</span></a>
-            <a class="print-swatch" href="assets/texture-red-comic-global.jpeg"><img src="assets/texture-red-comic-global.jpeg" alt="Red comic global texture" loading="lazy"><span>Red comic</span></a>
-            <a class="print-swatch" href="assets/texture-fried-egg-repeat.jpeg"><img src="assets/texture-fried-egg-repeat.jpeg" alt="Fried egg texture" loading="lazy"><span>Fried egg</span></a>
-            <a class="print-swatch" href="assets/texture-bottle-print.jpeg"><img src="assets/texture-bottle-print.jpeg" alt="Bottle label texture" loading="lazy"><span>Bottle label</span></a>
-            <a class="print-swatch" href="assets/texture-pink-character-cast.jpeg"><img src="assets/texture-pink-character-cast.jpeg" alt="Pink character texture" loading="lazy"><span>Pink cast</span></a>
+            <a class="print-swatch" href="assets/texture-blue-donut-cartoon.jpeg"><img src="assets/texture-blue-donut-cartoon.jpeg" alt="Blue donut cartoon texture" loading="lazy"><span data-i18n="print.blue">Blue overload</span></a>
+            <a class="print-swatch" href="assets/texture-red-comic-global.jpeg"><img src="assets/texture-red-comic-global.jpeg" alt="Red comic global texture" loading="lazy"><span data-i18n="print.red">Red comic</span></a>
+            <a class="print-swatch" href="assets/texture-fried-egg-repeat.jpeg"><img src="assets/texture-fried-egg-repeat.jpeg" alt="Fried egg texture" loading="lazy"><span data-i18n="print.egg">Fried egg</span></a>
+            <a class="print-swatch" href="assets/texture-bottle-print.jpeg"><img src="assets/texture-bottle-print.jpeg" alt="Bottle label texture" loading="lazy"><span data-i18n="print.bottle">Bottle label</span></a>
+            <a class="print-swatch" href="assets/texture-pink-character-cast.jpeg"><img src="assets/texture-pink-character-cast.jpeg" alt="Pink character texture" loading="lazy"><span data-i18n="print.pink">Pink cast</span></a>
           </div>
         </section>
 
         <section class="store-section" aria-labelledby="service-title">
-          <div class="store-section-head"><h2 id="service-title">Soft utility</h2><p>Everything that makes a good store feel easy, clear and worth coming back to.</p></div>
+          <div class="store-section-head"><h2 id="service-title" data-i18n="service.title">Soft utility</h2><p data-i18n="service.copy">Everything that makes a good store feel easy, clear and worth coming back to.</p></div>
           <div class="store-service-grid">
-            <article class="service-card"><strong>Fit first</strong><p>Size guide, relaxed silhouettes and product notes before checkout.</p><a class="service-link" href="#size-guide" data-size-guide-open>Open size guide ↗</a></article>
-            <article class="service-card"><strong>Made for nights</strong><p>Comfort, fabric and care information without the technical fog.</p></article>
-            <article class="service-card"><strong>Easy exchange</strong><p>Clear changes, returns and delivery details in one place.</p></article>
-            <article class="service-card"><strong>Talk to a human</strong><p>WhatsApp support for the last question before you make it yours.</p><a class="service-link" href="https://wa.me/573012438980?text=Hola%20Tupitoons%2C%20tengo%20una%20pregunta%20sobre%20la%20tienda." target="_blank" rel="noopener noreferrer">Write on WhatsApp ↗</a></article>
+            <article class="service-card"><strong data-i18n="service.fit.title">Fit first</strong><p data-i18n="service.fit.copy">Size guide, relaxed silhouettes and product notes before checkout.</p><a class="service-link" href="#size-guide" data-size-guide-open data-i18n="service.fit.link">Open size guide ↗</a></article>
+            <article class="service-card"><strong data-i18n="service.nights.title">Made for nights</strong><p data-i18n="service.nights.copy">Comfort, fabric and care information without the technical fog.</p></article>
+            <article class="service-card"><strong data-i18n="service.exchange.title">Easy exchange</strong><p data-i18n="service.exchange.copy">Clear changes, returns and delivery details in one place.</p></article>
+            <article class="service-card"><strong data-i18n="service.human.title">Talk to a human</strong><p data-i18n="service.human.copy">WhatsApp support for the last question before you make it yours.</p><a class="service-link" href="https://wa.me/573012438980?text=Hola%20Tupitoons%2C%20tengo%20una%20pregunta%20sobre%20la%20tienda." target="_blank" rel="noopener noreferrer" data-i18n="service.human.link">Write on WhatsApp ↗</a></article>
           </div>
         </section>
       </main>
 
       <footer class="store-footer">
         <div class="store-footer-grid">
-          <div><h3>Stay soft.<br>Move loud.</h3><p>Tupitoons is urban sleepwear with cartoon energy and a street-level point of view.</p></div>
-          <div><h3>Get the drop</h3><p>New prints, limited releases and things worth staying up for.</p><form class="newsletter-form" data-newsletter><input type="email" placeholder="Your email" aria-label="Your email" required><button type="submit">Join</button></form><p class="newsletter-status" data-newsletter-status aria-live="polite"></p></div>
-          <div class="store-footer-links"><h3>Explore</h3><a href="#shop">Shop the drop</a><a href="#collections">Collections</a><a href="#prints">Print library</a><a href="#story">The world</a><a href="https://wa.me/573012438980?text=Hola%20Tupitoons%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20la%20marca." target="_blank" rel="noopener noreferrer">WhatsApp support ↗</a><a href="#top">Back to top ↑</a></div>
+          <div><h3 data-i18n-html="footer.brand">Stay soft.<br>Move loud.</h3><p data-i18n="footer.brand.copy">Tupitoons is urban sleepwear with cartoon energy and a street-level point of view.</p></div>
+          <div><h3 data-i18n="footer.news.title">Get the drop</h3><p data-i18n="footer.news.copy">New prints, limited releases and things worth staying up for.</p><form class="newsletter-form" data-newsletter><input type="email" placeholder="Your email" aria-label="Your email" data-i18n-placeholder="footer.news.placeholder" data-i18n-aria="footer.news.placeholder" required><button type="submit" data-i18n="footer.news.button">Join</button></form><p class="newsletter-status" data-newsletter-status aria-live="polite"></p></div>
+          <div class="store-footer-links"><h3 data-i18n="footer.explore">Explore</h3><a href="#shop" data-i18n="footer.shop">Shop the drop</a><a href="#collections" data-i18n="footer.collections">Collections</a><a href="#prints" data-i18n="footer.prints">Print library</a><a href="#story" data-i18n="footer.world">The world</a><a href="https://wa.me/573012438980?text=Hola%20Tupitoons%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20la%20marca." target="_blank" rel="noopener noreferrer" data-i18n="footer.whatsapp">WhatsApp support ↗</a><a href="#top" data-i18n="footer.top">Back to top ↑</a></div>
         </div>
-        <div class="store-footer-note"><span>Tupitoons / Store prototype / Drop 01</span><span>Built for comfort with intent</span></div>
+        <div class="store-footer-note"><span data-i18n="footer.note">Tupitoons / Store prototype / Drop 01</span><span data-i18n="footer.tagline">Built for comfort with intent</span></div>
       </footer>
     </div>
-    <span class="prototype-note">Prototype / prices to confirm</span>
+    <span class="prototype-note" data-i18n="prototype.note">Prototype / prices to confirm</span>
   </div>
 
   <div class="cart-backdrop" data-cart-close></div>
-  <aside class="cart-drawer" aria-label="Shopping bag" aria-hidden="true" data-cart-drawer>
-    <div class="cart-head"><h2>Your bag</h2><button class="cart-close" type="button" aria-label="Close bag" data-cart-close>×</button></div>
+  <aside class="cart-drawer" aria-label="Shopping bag" data-i18n-aria="cart.label" aria-hidden="true" data-cart-drawer>
+    <div class="cart-head"><h2 data-i18n="cart.title">Your bag</h2><button class="cart-close" type="button" aria-label="Close bag" data-cart-close data-i18n-aria="cart.close">×</button></div>
     <div class="cart-items" data-cart-items><p class="cart-empty">Your bag is empty.<br>Pick a print and make it yours.</p></div>
-    <div class="cart-footer"><div class="shipping-progress" aria-live="polite"><div class="shipping-progress-head"><span data-shipping-message>Add pieces to unlock free shipping.</span><strong data-shipping-percent>0%</strong></div><div class="shipping-track"><span data-shipping-bar></span></div></div><div class="cart-subtotal"><span>Subtotal</span><span data-cart-subtotal>COP 0</span></div><button class="checkout-button" type="button" data-checkout disabled>Continue to checkout</button></div>
+    <div class="cart-footer"><div class="shipping-progress" aria-live="polite"><div class="shipping-progress-head"><span data-shipping-message>Add pieces to unlock free shipping.</span><strong data-shipping-percent>0%</strong></div><div class="shipping-track"><span data-shipping-bar></span></div></div><div class="cart-subtotal"><span data-i18n="cart.subtotal">Subtotal</span><span data-cart-subtotal>COP 0</span></div><button class="checkout-button" type="button" data-checkout disabled data-i18n="cart.checkout">Continue to checkout</button></div>
   </aside>
 
   <section class="checkout-modal" data-checkout-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
     <div class="checkout-backdrop" data-checkout-close></div>
     <div class="checkout-panel">
-      <div class="checkout-head"><div><small>Tupitoons / order request / Drop 01</small><h2 id="checkout-title">Make it yours.</h2></div><button class="checkout-close" type="button" aria-label="Close checkout" data-checkout-close>×</button></div>
-      <p class="checkout-intro">Leave your details and we’ll prepare the order request with your selected pieces. Final stock, delivery and payment are confirmed before dispatch.</p>
+      <div class="checkout-head"><div><small data-i18n="checkout.kicker">Tupitoons / order request / Drop 01</small><h2 id="checkout-title" data-i18n="checkout.title">Make it yours.</h2></div><button class="checkout-close" type="button" aria-label="Close checkout" data-checkout-close data-i18n-aria="checkout.close">×</button></div>
+      <p class="checkout-intro" data-i18n="checkout.intro">Leave your details and we’ll prepare the order request with your selected pieces. Final stock, delivery and payment are confirmed before dispatch.</p>
       <div class="checkout-success" data-checkout-success hidden>
         <span class="checkout-success-mark">✓</span>
-        <h3>Request received.</h3>
-        <p>Your order request is saved on this device. Keep the reference handy while we connect the final delivery and payment details.</p>
+        <h3 data-i18n="checkout.success.title">Request received.</h3>
+        <p data-i18n="checkout.success.copy">Your order request is saved on this device. Keep the reference handy while we connect the final delivery and payment details.</p>
         <span class="checkout-reference" data-checkout-reference>TUPI-000000</span>
-        <div class="checkout-success-actions"><button class="checkout-secondary" type="button" data-copy-order>Copy order summary</button><button class="checkout-secondary" type="button" data-whatsapp-order>Send on WhatsApp</button><button class="checkout-secondary" type="button" data-checkout-close>Continue shopping</button></div>
+        <div class="checkout-success-actions"><button class="checkout-secondary" type="button" data-copy-order data-i18n="checkout.success.copyButton">Copy order summary</button><button class="checkout-secondary" type="button" data-whatsapp-order data-i18n="checkout.success.whatsapp">Send on WhatsApp</button><button class="checkout-secondary" type="button" data-checkout-close data-i18n="checkout.success.continue">Continue shopping</button></div>
         <p class="checkout-copy-status" data-copy-status aria-live="polite"></p>
       </div>
       <div class="checkout-layout" data-checkout-layout>
         <form class="checkout-form" data-checkout-form>
           <div class="checkout-form-grid">
-            <div class="checkout-field full"><label for="checkout-name">Full name</label><input id="checkout-name" name="name" type="text" autocomplete="name" placeholder="Your name" required></div>
-            <div class="checkout-field"><label for="checkout-email">Email</label><input id="checkout-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required></div>
-            <div class="checkout-field"><label for="checkout-phone">Phone / WhatsApp</label><input id="checkout-phone" name="phone" type="tel" autocomplete="tel" placeholder="300 000 0000" required></div>
-            <div class="checkout-field"><label for="checkout-city">City</label><input id="checkout-city" name="city" type="text" autocomplete="address-level2" placeholder="Bogotá" required></div>
-            <div class="checkout-field"><label for="checkout-delivery">Delivery preference</label><select id="checkout-delivery" name="delivery" required><option value="">Choose one</option><option>Home delivery</option><option>Pickup point</option></select></div>
-            <div class="checkout-field full"><label for="checkout-address">Address / pickup note</label><input id="checkout-address" name="address" type="text" autocomplete="street-address" placeholder="Where should we send it?" required></div>
-            <div class="checkout-field full"><label for="checkout-note">Anything else?</label><textarea id="checkout-note" name="note" placeholder="Fit notes, delivery timing or a message for the team."></textarea></div>
+            <div class="checkout-field full"><label for="checkout-name" data-i18n="checkout.name">Full name</label><input id="checkout-name" name="name" type="text" autocomplete="name" placeholder="Your name" data-i18n-placeholder="checkout.name.placeholder" required></div>
+            <div class="checkout-field"><label for="checkout-email" data-i18n="checkout.email">Email</label><input id="checkout-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" data-i18n-placeholder="checkout.email.placeholder" required></div>
+            <div class="checkout-field"><label for="checkout-phone" data-i18n="checkout.phone">Phone / WhatsApp</label><input id="checkout-phone" name="phone" type="tel" autocomplete="tel" placeholder="300 000 0000" required></div>
+            <div class="checkout-field"><label for="checkout-city" data-i18n="checkout.city">City</label><input id="checkout-city" name="city" type="text" autocomplete="address-level2" placeholder="Bogotá" data-i18n-placeholder="checkout.city.placeholder" required></div>
+            <div class="checkout-field"><label for="checkout-delivery" data-i18n="checkout.delivery">Delivery preference</label><select id="checkout-delivery" name="delivery" required><option value="" data-i18n="checkout.delivery.choose">Choose one</option><option value="home" data-i18n="checkout.delivery.home">Home delivery</option><option value="pickup" data-i18n="checkout.delivery.pickup">Pickup point</option></select></div>
+            <div class="checkout-field full"><label for="checkout-address" data-i18n="checkout.address">Address / pickup note</label><input id="checkout-address" name="address" type="text" autocomplete="street-address" placeholder="Where should we send it?" data-i18n-placeholder="checkout.address.placeholder" required></div>
+            <div class="checkout-field full"><label for="checkout-note" data-i18n="checkout.note">Anything else?</label><textarea id="checkout-note" name="note" placeholder="Fit notes, delivery timing or a message for the team." data-i18n-placeholder="checkout.note.placeholder"></textarea></div>
           </div>
-          <label class="checkout-consent"><input name="consent" type="checkbox" required> I confirm that these details are correct for this order request.</label>
-          <button class="checkout-submit" type="submit">Create order request</button>
+          <label class="checkout-consent"><input name="consent" type="checkbox" required><span data-i18n="checkout.consent">I confirm that these details are correct for this order request.</span></label>
+          <button class="checkout-submit" type="submit" data-i18n="checkout.submit">Create order request</button>
           <p class="checkout-status" data-checkout-status aria-live="polite"></p>
         </form>
-        <aside class="checkout-summary" aria-label="Order summary"><h3>Your selection</h3><div class="checkout-summary-items" data-checkout-summary></div><div class="checkout-summary-total"><span>Total</span><strong data-checkout-total>COP 0</strong></div><p class="checkout-summary-note">Shipping and payment are confirmed with the team before the order is finalized.</p></aside>
+        <aside class="checkout-summary" aria-label="Order summary" data-i18n-aria="checkout.summary.label"><h3 data-i18n="checkout.summary.title">Your selection</h3><div class="checkout-summary-items" data-checkout-summary></div><div class="checkout-summary-total"><span data-i18n="checkout.summary.total">Total</span><strong data-checkout-total>COP 0</strong></div><p class="checkout-summary-note" data-i18n="checkout.summary.note">Shipping and payment are confirmed with the team before the order is finalized.</p></aside>
       </div>
     </div>
   </section>
@@ -470,7 +473,7 @@
     <div class="product-modal-panel">
       <div class="product-modal-media"><img data-modal-image src="assets/texture-bottle-print.jpeg" alt="Product preview"></div>
       <div class="product-modal-content">
-        <button class="product-modal-close" type="button" aria-label="Close product details" data-product-close>×</button>
+        <button class="product-modal-close" type="button" aria-label="Close product details" data-product-close data-i18n-aria="modal.close">×</button>
         <span class="product-modal-tag" data-modal-tag>Drop 01 / product details</span>
         <h2 id="modal-product-title" data-modal-title>Bottle Label Wide Leg</h2>
         <span class="product-modal-price" data-modal-price>COP 189,000</span>
@@ -480,10 +483,10 @@
           <div class="product-fact"><strong>Feel</strong><span data-modal-material>Soft cotton blend</span></div>
           <div class="product-fact"><strong>Care</strong><span data-modal-care>Cold wash / inside out</span></div>
         </div>
-        <span class="product-modal-label">Choose your size</span>
+        <span class="product-modal-label" data-i18n="modal.size">Choose your size</span>
         <div class="modal-size-row"><button type="button" data-modal-size="S">S</button><button class="is-selected" type="button" data-modal-size="M">M</button><button type="button" data-modal-size="L">L</button></div>
-        <a class="size-guide-link" href="#size-guide" data-size-guide-open>Not sure? Open size guide ↗</a>
-        <button class="modal-add" type="button" data-modal-add>Add selected size to bag</button>
+        <a class="size-guide-link" href="#size-guide" data-size-guide-open data-i18n="modal.guide">Not sure? Open size guide ↗</a>
+        <button class="modal-add" type="button" data-modal-add data-i18n="modal.add">Add selected size to bag</button>
       </div>
     </div>
   </section>
@@ -491,24 +494,55 @@
   <section class="size-guide-modal" data-size-guide-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="size-guide-title">
     <div class="size-guide-backdrop" data-size-guide-close></div>
     <div class="size-guide-panel">
-      <div class="size-guide-head"><div><small>Tupitoons / fit reference / centimeters</small><h2 id="size-guide-title">Find your fit.</h2></div><button class="size-guide-close" type="button" aria-label="Close size guide" data-size-guide-close>×</button></div>
-      <p class="size-guide-intro">Measure a garment that already fits you well and compare it with the tables below. These are the current production references for tops, long pants, women’s shorts and men’s bermuda shorts.</p>
+      <div class="size-guide-head"><div><small data-i18n="size.kicker">Tupitoons / fit reference / centimeters</small><h2 id="size-guide-title" data-i18n="size.title">Find your fit.</h2></div><button class="size-guide-close" type="button" aria-label="Close size guide" data-size-guide-close data-i18n-aria="size.close">×</button></div>
+      <p class="size-guide-intro" data-i18n="size.intro">Measure a garment that already fits you well and compare it with the tables below. These are the current production references for tops, long pants, women’s shorts and men’s bermuda shorts.</p>
       <div class="size-guide-grid">
-        <figure class="size-guide-card"><a href="assets/size-guide-bottoms.png"><img src="assets/size-guide-bottoms.png" alt="Tupitoons size guide for unisex pants, men’s bermuda shorts and women’s shorts with measurements in centimeters" loading="lazy"></a><figcaption>Bottoms / pants, bermuda and shorts</figcaption></figure>
-        <figure class="size-guide-card"><a href="assets/size-guide-tops.png"><img src="assets/size-guide-tops.png" alt="Tupitoons size guide for women’s and men’s t-shirts with measurements in centimeters" loading="lazy"></a><figcaption>Tops / women’s and men’s t-shirts</figcaption></figure>
+        <figure class="size-guide-card"><a href="assets/size-guide-bottoms.png"><img src="assets/size-guide-bottoms.png" alt="Tupitoons size guide for unisex pants, men’s bermuda shorts and women’s shorts with measurements in centimeters" loading="lazy"></a><figcaption data-i18n="size.bottoms">Bottoms / pants, bermuda and shorts</figcaption></figure>
+        <figure class="size-guide-card"><a href="assets/size-guide-tops.png"><img src="assets/size-guide-tops.png" alt="Tupitoons size guide for women’s and men’s t-shirts with measurements in centimeters" loading="lazy"></a><figcaption data-i18n="size.tops">Tops / women’s and men’s t-shirts</figcaption></figure>
       </div>
-      <p class="size-guide-note"><strong>Production check:</strong> measurements are shown in centimeters and should be confirmed against the final sample before publishing the live catalog.</p>
+      <p class="size-guide-note"><strong data-i18n="size.note.title">Production check:</strong> <span data-i18n="size.note.copy">measurements are shown in centimeters and should be confirmed against the final sample before publishing the live catalog.</span></p>
     </div>
   </section>
 
   <script>
     (() => {
-      const money = value => `COP ${new Intl.NumberFormat('es-CO').format(value)}`;
-      const whatsappNumber = '573012438980';
+      const languageStorageKey = 'tupitoons-language-v1';
       const storageKey = 'tupitoons-bag-v1';
       const orderStorageKey = 'tupitoons-orders-v1';
       const readStoredCart = () => { try { return JSON.parse(localStorage.getItem(storageKey) || '[]'); } catch { return []; } };
-      const state = { cart: readStoredCart() };
+      const readStoredLanguage = () => { try { return localStorage.getItem(languageStorageKey) === 'en' ? 'en' : 'es'; } catch { return 'es'; } };
+      const state = { cart: readStoredCart(), language: readStoredLanguage(), catalog: { category: 'all', collection: null } };
+      const translations = {
+        es: {
+          "top.shipping": "Envío gratis desde COP 250.000", "top.drop": "Drop 01 / duerme a tu manera", "nav.main": "Navegación principal", "nav.home": "Inicio de Tupitoons", "nav.shop": "Tienda", "nav.prints": "Biblioteca de estampados", "nav.world": "El universo", "nav.size": "Guía de tallas", "nav.search": "Buscar", "nav.bag": "Bolsa", "language.selector": "Selector de idioma",
+          "hero.kicker": "Pijamas urbanas / drop 01", "hero.title": "De la cama<br>al <em>barrio.</em>", "hero.lede": "Pijamas con energía de cartoon, comodidad premium y actitud suficiente para salir del dormitorio.", "hero.shop": "Ver el drop", "hero.world": "Entrar al universo", "hero.sticker": "Poder<br>suave<br>siempre", "hero.code": "TUPI / 01 — PRODUCTO HERO",
+          "shop.filters": "Filtros de producto", "filter.all": "Todas las piezas", "filter.wide": "Pantalón amplio", "filter.sets": "Sets", "filter.shorts": "Shorts", "collections.title": "Elige tu universo", "collections.copy": "Una marca. Diferentes personajes nocturnos. Encuentra el estampado que va contigo.", "collection.loud": "01 / Intenso", "collection.soft": "02 / Suave", "collection.local": "03 / Local", "collection.easy": "04 / Fácil",
+          "story.kicker": "Tupitoons / el universo", "story.title": "Duerme en tu propio carril.", "story.copy": "La comodidad no es un detalle. Es el uniforme para las ideas de madrugada, las mañanas lentas y la decisión pequeña de presentarte como eres.", "prints.title": "Biblioteca de estampados", "prints.copy": "La textura es el producto. Explora las señales que forman el Drop 01.", "print.blue": "Exceso azul", "print.red": "Cómic rojo", "print.egg": "Huevo frito", "print.bottle": "Etiqueta de botella", "print.pink": "Cast rosa",
+          "service.title": "Utilidad suave", "service.copy": "Todo lo que hace que una buena tienda sea fácil, clara y un lugar al que quieras volver.", "service.fit.title": "Primero el fit", "service.fit.copy": "Guía de tallas, siluetas relajadas y notas de producto antes de pagar.", "service.fit.link": "Abrir guía de tallas ↗", "service.nights.title": "Hecho para la noche", "service.nights.copy": "Comodidad, tela y cuidado sin la niebla técnica.", "service.exchange.title": "Cambio fácil", "service.exchange.copy": "Cambios, devoluciones y entregas claras en un solo lugar.", "service.human.title": "Habla con alguien", "service.human.copy": "Soporte por WhatsApp para la última pregunta antes de hacerlo tuyo.", "service.human.link": "Escribir por WhatsApp ↗",
+          "footer.brand": "Suave por dentro.<br>Fuerte por fuera.", "footer.brand.copy": "Tupitoons es pijama urbana con energía de cartoon y una mirada de calle.", "footer.news.title": "Recibe el drop", "footer.news.copy": "Nuevos estampados, lanzamientos limitados y cosas por las que vale la pena desvelarse.", "footer.news.placeholder": "Tu correo", "footer.news.button": "Unirme", "footer.explore": "Explora", "footer.shop": "Ver el drop", "footer.collections": "Colecciones", "footer.prints": "Biblioteca de estampados", "footer.world": "El universo", "footer.whatsapp": "Soporte por WhatsApp ↗", "footer.top": "Volver arriba ↑", "footer.note": "Tupitoons / Prototipo de tienda / Drop 01", "footer.tagline": "Creado para la comodidad con intención", "prototype.note": "Prototipo / precios por confirmar",
+          "cart.label": "Bolsa de compras", "cart.close": "Cerrar bolsa", "cart.title": "Tu bolsa", "cart.empty": "Tu bolsa está vacía.<br>Elige un estampado y hazlo tuyo.", "cart.shipping": "Agrega {amount} para desbloquear el envío gratis.", "cart.freeShipping": "Envío gratis desbloqueado.", "cart.subtotal": "Subtotal", "cart.checkout": "Continuar al pago", "cart.size": "Talla", "cart.qty": "Cantidad", "cart.decrease": "Disminuir cantidad", "cart.increase": "Aumentar cantidad", "cart.remove": "Eliminar {name}",
+          "modal.close": "Cerrar detalles del producto", "modal.size": "Elige tu talla", "modal.guide": "¿No estás seguro? Abre la guía de tallas ↗", "modal.add": "Añadir talla seleccionada a la bolsa",
+          "size.kicker": "Tupitoons / referencia de fit / centímetros", "size.close": "Cerrar guía de tallas", "size.title": "Encuentra tu fit.", "size.intro": "Mide una prenda que ya te quede bien y compárala con las tablas de abajo. Estas son las referencias actuales de producción para camisetas, pantalones largos, shorts de mujer y bermudas de hombre.", "size.bottoms": "Pantalones / bermudas y shorts", "size.tops": "Camisetas / mujer y hombre", "size.note.title": "Verificación de producción:", "size.note.copy": "las medidas están en centímetros y deben confirmarse con la muestra final antes de publicar el catálogo.",
+          "checkout.close": "Cerrar pago", "checkout.kicker": "Tupitoons / solicitud de pedido / Drop 01", "checkout.title": "Hazlo tuyo.", "checkout.intro": "Déjanos tus datos y prepararemos la solicitud con las piezas que elegiste. Stock, entrega y pago final se confirman antes del despacho.", "checkout.success.title": "Solicitud recibida.", "checkout.success.copy": "Tu solicitud quedó guardada en este dispositivo. Guarda la referencia mientras conectamos los detalles finales de entrega y pago.", "checkout.success.copyButton": "Copiar resumen", "checkout.success.whatsapp": "Enviar por WhatsApp", "checkout.success.continue": "Seguir comprando", "checkout.name": "Nombre completo", "checkout.name.placeholder": "Tu nombre", "checkout.email": "Correo", "checkout.email.placeholder": "tu@correo.com", "checkout.phone": "Teléfono / WhatsApp", "checkout.city": "Ciudad", "checkout.city.placeholder": "Bogotá", "checkout.delivery": "Preferencia de entrega", "checkout.delivery.choose": "Elige una opción", "checkout.delivery.home": "Entrega a domicilio", "checkout.delivery.pickup": "Punto de recogida", "checkout.address": "Dirección / nota de recogida", "checkout.address.placeholder": "¿Dónde debemos enviarlo?", "checkout.note": "¿Algo más?", "checkout.note.placeholder": "Notas de fit, horario de entrega o un mensaje para el equipo.", "checkout.consent": "Confirmo que estos datos son correctos para esta solicitud.", "checkout.submit": "Crear solicitud de pedido", "checkout.summary.label": "Resumen del pedido", "checkout.summary.title": "Tu selección", "checkout.summary.total": "Total", "checkout.summary.note": "El envío y el pago se confirman con el equipo antes de finalizar el pedido.", "checkout.empty": "Tu bolsa está vacía. Añade una pieza antes de iniciar el pago.",
+          "newsletter.success": "Ya estás en la lista del Drop 01.", "product.details": "Ver detalles", "product.add": "Añadir a la bolsa", "product.sizeAria": "Elegir talla", "product.short": "Short", "product.wide": "Pantalón amplio", "product.set": "Set", "product.new": "Nuevo drop", "product.shortCut": "Corte short", "product.graphic": "Estampado gráfico", "product.soft": "Señal suave", "product.everyday": "Para todos los días", "product.street": "Actitud de calle", "product.print": "Nuevo estampado", "product.silhouette": "Nueva silueta", "product.newTag": "Nuevo", "product.cartoon": "Cartoon Club", "product.afterhours": "Afterhours", "product.pinkSignal": "Pink Signal", "product.softUtility": "Soft Utility", "product.streetSleep": "Street Sleep", "product.comic": "Comic Club", "collection.featured": "Drop destacado", "collection.description": "Historias visuales limitadas para noches largas, mañanas lentas y todo lo que hay entre ellas.", "order.request": "Solicitud de pedido Tupitoons", "order.size": "talla", "order.total": "Total", "order.name": "Nombre", "order.email": "Correo", "order.phone": "Teléfono", "order.city": "Ciudad", "order.delivery": "Entrega", "order.address": "Dirección", "order.note": "Nota", "copy.success": "Resumen copiado.", "copy.unavailable": "No se puede copiar aquí. Usa la referencia de arriba."
+        },
+        en: {
+          "top.shipping": "Free shipping over COP 250,000", "top.drop": "Drop 01 / sleep in your own lane", "nav.main": "Main navigation", "nav.home": "Tupitoons home", "nav.shop": "Shop", "nav.prints": "Print Library", "nav.world": "The World", "nav.size": "Size guide", "nav.search": "Search", "nav.bag": "Bag", "language.selector": "Language selector",
+          "hero.kicker": "Urban sleepwear / drop 01", "hero.title": "From the bed<br>to the <em>block.</em>", "hero.lede": "Pajamas with cartoon energy, premium comfort and enough attitude to leave the bedroom.", "hero.shop": "Shop the drop", "hero.world": "Enter the world", "hero.sticker": "Soft<br>power<br>only", "hero.code": "TUPI / 01 — PRODUCT HERO",
+          "shop.filters": "Product filters", "filter.all": "All pieces", "filter.wide": "Wide leg", "filter.sets": "Sets", "filter.shorts": "Shorts", "collections.title": "Choose your world", "collections.copy": "One brand. Different night characters. Find the print that matches your lane.", "collection.loud": "01 / Loud", "collection.soft": "02 / Soft", "collection.local": "03 / Local", "collection.easy": "04 / Easy",
+          "story.kicker": "Tupitoons / the world", "story.title": "Sleep in your own lane.", "story.copy": "Comfort is not an afterthought. It is the uniform for late-night ideas, slow mornings and the small decision to show up as yourself.", "prints.title": "Print library", "prints.copy": "Texture is the product. Browse the signals that shape Drop 01.", "print.blue": "Blue overload", "print.red": "Red comic", "print.egg": "Fried egg", "print.bottle": "Bottle label", "print.pink": "Pink cast",
+          "service.title": "Soft utility", "service.copy": "Everything that makes a good store feel easy, clear and worth coming back to.", "service.fit.title": "Fit first", "service.fit.copy": "Size guide, relaxed silhouettes and product notes before checkout.", "service.fit.link": "Open size guide ↗", "service.nights.title": "Made for nights", "service.nights.copy": "Comfort, fabric and care information without the technical fog.", "service.exchange.title": "Easy exchange", "service.exchange.copy": "Clear changes, returns and delivery details in one place.", "service.human.title": "Talk to a human", "service.human.copy": "WhatsApp support for the last question before you make it yours.", "service.human.link": "Write on WhatsApp ↗",
+          "footer.brand": "Stay soft.<br>Move loud.", "footer.brand.copy": "Tupitoons is urban sleepwear with cartoon energy and a street-level point of view.", "footer.news.title": "Get the drop", "footer.news.copy": "New prints, limited releases and things worth staying up for.", "footer.news.placeholder": "Your email", "footer.news.button": "Join", "footer.explore": "Explore", "footer.shop": "Shop the drop", "footer.collections": "Collections", "footer.prints": "Print library", "footer.world": "The world", "footer.whatsapp": "WhatsApp support ↗", "footer.top": "Back to top ↑", "footer.note": "Tupitoons / Store prototype / Drop 01", "footer.tagline": "Built for comfort with intent", "prototype.note": "Prototype / prices to confirm",
+          "cart.label": "Shopping bag", "cart.close": "Close bag", "cart.title": "Your bag", "cart.empty": "Your bag is empty.<br>Pick a print and make it yours.", "cart.shipping": "Add {amount} for free shipping.", "cart.freeShipping": "Free shipping unlocked.", "cart.subtotal": "Subtotal", "cart.checkout": "Continue to checkout", "cart.size": "Size", "cart.qty": "Qty", "cart.decrease": "Decrease quantity", "cart.increase": "Increase quantity", "cart.remove": "Remove {name}",
+          "modal.close": "Close product details", "modal.size": "Choose your size", "modal.guide": "Not sure? Open size guide ↗", "modal.add": "Add selected size to bag",
+          "size.kicker": "Tupitoons / fit reference / centimeters", "size.close": "Close size guide", "size.title": "Find your fit.", "size.intro": "Measure a garment that already fits you well and compare it with the tables below. These are the current production references for tops, long pants, women’s shorts and men’s bermuda shorts.", "size.bottoms": "Bottoms / pants, bermuda and shorts", "size.tops": "Tops / women’s and men’s t-shirts", "size.note.title": "Production check:", "size.note.copy": "measurements are shown in centimeters and should be confirmed against the final sample before publishing the live catalog.",
+          "checkout.close": "Close checkout", "checkout.kicker": "Tupitoons / order request / Drop 01", "checkout.title": "Make it yours.", "checkout.intro": "Leave your details and we’ll prepare the order request with your selected pieces. Final stock, delivery and payment are confirmed before dispatch.", "checkout.success.title": "Request received.", "checkout.success.copy": "Your order request is saved on this device. Keep the reference handy while we connect the final delivery and payment details.", "checkout.success.copyButton": "Copy order summary", "checkout.success.whatsapp": "Send on WhatsApp", "checkout.success.continue": "Continue shopping", "checkout.name": "Full name", "checkout.name.placeholder": "Your name", "checkout.email": "Email", "checkout.email.placeholder": "you@email.com", "checkout.phone": "Phone / WhatsApp", "checkout.city": "City", "checkout.city.placeholder": "Bogotá", "checkout.delivery": "Delivery preference", "checkout.delivery.choose": "Choose one", "checkout.delivery.home": "Home delivery", "checkout.delivery.pickup": "Pickup point", "checkout.address": "Address / pickup note", "checkout.address.placeholder": "Where should we send it?", "checkout.note": "Anything else?", "checkout.note.placeholder": "Fit notes, delivery timing or a message for the team.", "checkout.consent": "I confirm that these details are correct for this order request.", "checkout.submit": "Create order request", "checkout.summary.label": "Order summary", "checkout.summary.title": "Your selection", "checkout.summary.total": "Total", "checkout.summary.note": "Shipping and payment are confirmed with the team before the order is finalized.", "checkout.empty": "Your bag is empty. Add a piece before starting checkout.",
+          "newsletter.success": "You are on the list for Drop 01.", "product.details": "View details", "product.add": "Add to bag", "product.sizeAria": "Select size", "product.short": "Shorts", "product.wide": "Wide leg", "product.set": "Set", "product.new": "New drop", "product.shortCut": "Short cut", "product.graphic": "Graphic hit", "product.soft": "Soft signal", "product.everyday": "Everyday", "product.street": "Street proof", "product.print": "New print", "product.silhouette": "New silhouette", "product.newTag": "New", "product.cartoon": "Cartoon Club", "product.afterhours": "Afterhours", "product.pinkSignal": "Pink Signal", "product.softUtility": "Soft Utility", "product.streetSleep": "Street Sleep", "product.comic": "Comic Club", "collection.featured": "Featured drop", "collection.description": "Limited visual stories for late nights, slow mornings and everything in between.", "order.request": "Tupitoons order request", "order.size": "size", "order.total": "Total", "order.name": "Name", "order.email": "Email", "order.phone": "Phone", "order.city": "City", "order.delivery": "Delivery", "order.address": "Address", "order.note": "Note", "copy.success": "Order summary copied.", "copy.unavailable": "Copy is not available here. Use the reference above."
+        }
+      };
+      const t = (key, vars = {}) => Object.entries(vars).reduce((text, [name, value]) => text.replace(`{${name}}`, value), translations[state.language][key] || translations.en[key] || key);
+      const money = value => `COP ${new Intl.NumberFormat(state.language === 'es' ? 'es-CO' : 'en-US').format(value)}`;
+      const whatsappNumber = '573012438980';
       const select = selector => [...document.querySelectorAll(selector)];
       const bagCount = document.querySelector('[data-bag-count]');
       const drawer = document.querySelector('[data-cart-drawer]');
@@ -552,12 +586,28 @@
         'Popcorn Sky Wide Leg': { tag: 'Cartoon Club / wide leg', copy: 'A sky-blue popcorn print with a relaxed silhouette, clean styling and a little movie-night energy.', fit: 'Relaxed wide leg', material: 'Soft cotton blend', care: 'Cold wash / inside out' },
         'Popcorn Sky Lounge Shorts': { tag: 'Cartoon Club / shorts', copy: 'The same popcorn-sky attitude in a lighter short cut for warm nights, slow mornings and quick city escapes.', fit: 'Relaxed lounge short', material: 'Lightweight cotton', care: 'Cold wash / hang dry' }
       };
+      const productDetailsEs = {
+        'Bottle Label Wide Leg': { tag: 'Afterhours / pantalón amplio', copy: 'Una silueta amplia con tacto suave y un estampado de etiquetas pensado para verse desde el otro lado de la habitación.', fit: 'Pantalón amplio relajado', material: 'Mezcla de algodón suave', care: 'Lavar en frío / al revés' },
+        'Bottle Label Lounge Shorts': { tag: 'Afterhours / shorts', copy: 'El estampado de etiquetas en un short fácil para noches cálidas y vueltas por la ciudad.', fit: 'Short relajado', material: 'Algodón ligero', care: 'Lavar en frío / secar colgado' },
+        'Blue Donut Club': { tag: 'Cartoon Club / pantalón amplio', copy: 'Un gráfico lleno de color con una silueta fácil para las mañanas lentas con más actitud.', fit: 'Pantalón amplio relajado', material: 'Mezcla de algodón suave', care: 'Lavar en frío / al revés' },
+        'Pink Character Sleep Set': { tag: 'Pink Signal / set', copy: 'Un set de personajes que mantiene el mood juguetón mientras el fit se siente effortless y suave.', fit: 'Set relajado', material: 'Algodón ligero', care: 'Lavar en frío / secar colgado' },
+        'Pink Character Wide Leg': { tag: 'Pink Signal / pantalón amplio', copy: 'Un estampado de personajes a todo volumen con una silueta amplia para noches suaves y salidas brillantes.', fit: 'Pantalón amplio relajado', material: 'Mezcla de algodón suave', care: 'Lavar en frío / al revés' },
+        'Fried Egg All-Day Set': { tag: 'Soft Utility / set', copy: 'El gráfico de todos los días: comodidad amplia, un repeat brillante y estructura para salir del dormitorio.', fit: 'Pantalón amplio relajado', material: 'Mezcla de algodón suave', care: 'Lavar en frío / al revés' },
+        'Red Comic Lounge Shorts': { tag: 'Comic Club / shorts', copy: 'Un short gráfico con energía de viñeta, movimiento fácil y un estampado que habla por sí solo.', fit: 'Short relajado', material: 'Algodón ligero', care: 'Lavar en frío / secar colgado' },
+        'Green Street Pant': { tag: 'Street Sleep / pantalón amplio', copy: 'Un pantalón con actitud de calle donde el color cartoon se encuentra con una silueta limpia y relajada.', fit: 'Pantalón amplio relajado', material: 'Mezcla de algodón suave', care: 'Lavar en frío / al revés' },
+        'Popcorn Sky Wide Leg': { tag: 'Cartoon Club / pantalón amplio', copy: 'Un estampado azul cielo de palomitas con silueta relajada, styling limpio y energía de noche de película.', fit: 'Pantalón amplio relajado', material: 'Mezcla de algodón suave', care: 'Lavar en frío / al revés' },
+        'Popcorn Sky Lounge Shorts': { tag: 'Cartoon Club / shorts', copy: 'La misma actitud Popcorn Sky en un corte short para noches cálidas, mañanas lentas y escapadas por la ciudad.', fit: 'Short relajado', material: 'Algodón ligero', care: 'Lavar en frío / secar colgado' }
+      };
+      const productUi = {
+        'Bottle Label Wide Leg': { badge: 'product.new', meta: ['product.wide', 'product.afterhours'] }, 'Bottle Label Lounge Shorts': { badge: 'product.shortCut', meta: ['product.short', 'product.afterhours'] }, 'Blue Donut Club': { badge: 'product.graphic', meta: ['product.wide', 'product.cartoon'] }, 'Pink Character Sleep Set': { badge: 'product.soft', meta: ['product.set', 'product.pinkSignal'] }, 'Pink Character Wide Leg': { badge: 'product.silhouette', meta: ['product.wide', 'product.pinkSignal'] }, 'Fried Egg All-Day Set': { badge: 'product.everyday', meta: ['product.set', 'product.softUtility'] }, 'Red Comic Lounge Shorts': { badge: 'product.newTag', meta: ['product.short', 'product.comic'] }, 'Green Street Pant': { badge: 'product.street', meta: ['product.wide', 'product.streetSleep'] }, 'Popcorn Sky Wide Leg': { badge: 'product.print', meta: ['product.wide', 'product.cartoon'] }, 'Popcorn Sky Lounge Shorts': { badge: 'product.shortCut', meta: ['product.short', 'product.cartoon'] }
+      };
+      const getProductDetails = name => state.language === 'es' ? (productDetailsEs[name] || productDetails[name]) : productDetails[name];
       const persistCart = () => { try { localStorage.setItem(storageKey, JSON.stringify(state.cart)); } catch { /* Local persistence is optional in preview mode. */ } };
       const cartTotal = () => state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
       const renderCheckoutSummary = () => {
         const total = cartTotal();
         checkoutTotal.textContent = money(total);
-        checkoutSummary.innerHTML = state.cart.length ? state.cart.map(item => `<div class="checkout-summary-item"><img src="${item.image}" alt="${item.name}" loading="lazy"><div><strong>${item.name}</strong><span>Size ${item.size} · Qty ${item.quantity}</span></div><span class="checkout-summary-price">${money(item.price * item.quantity)}</span></div>`).join('') : '<p class="checkout-summary-note">Your bag is empty. Add a piece before starting checkout.</p>';
+        checkoutSummary.innerHTML = state.cart.length ? state.cart.map(item => `<div class="checkout-summary-item"><img src="${item.image}" alt="${item.name}" loading="lazy"><div><strong>${item.name}</strong><span>${t('cart.size')} ${item.size} · ${t('cart.qty')} ${item.quantity}</span></div><span class="checkout-summary-price">${money(item.price * item.quantity)}</span></div>`).join('') : `<p class="checkout-summary-note">${t('checkout.empty')}</p>`;
       };
 
       const renderCart = () => {
@@ -570,14 +620,14 @@
         subtotal.textContent = money(total);
         shippingPercent.textContent = `${progress}%`;
         shippingBar.style.width = `${progress}%`;
-        shippingMessage.textContent = remaining ? `Add ${money(remaining)} for free shipping.` : 'Free shipping unlocked.';
+        shippingMessage.textContent = remaining ? t('cart.shipping', { amount: money(remaining) }) : t('cart.freeShipping');
         checkoutButton.disabled = !state.cart.length;
         renderCheckoutSummary();
         if (!state.cart.length) {
-          cartItems.innerHTML = '<p class="cart-empty">Your bag is empty.<br>Pick a print and make it yours.</p>';
+          cartItems.innerHTML = `<p class="cart-empty">${t('cart.empty')}</p>`;
           return;
         }
-        cartItems.innerHTML = state.cart.map((item, index) => `<div class="cart-item"><img src="${item.image}" alt="${item.name}" loading="lazy"><div class="cart-item-main"><strong>${item.name}</strong><span>Size ${item.size}</span><div class="cart-controls"><div class="cart-qty"><button type="button" data-cart-action="decrease" data-cart-index="${index}" aria-label="Decrease quantity">−</button><span>${item.quantity}</span><button type="button" data-cart-action="increase" data-cart-index="${index}" aria-label="Increase quantity">+</button></div></div></div><div class="cart-item-side"><span class="cart-item-price">${money(item.price * item.quantity)}</span><button class="cart-remove" type="button" data-cart-action="remove" data-cart-index="${index}" aria-label="Remove ${item.name}">×</button></div></div>`).join('');
+        cartItems.innerHTML = state.cart.map((item, index) => `<div class="cart-item"><img src="${item.image}" alt="${item.name}" loading="lazy"><div class="cart-item-main"><strong>${item.name}</strong><span>${t('cart.size')} ${item.size}</span><div class="cart-controls"><div class="cart-qty"><button type="button" data-cart-action="decrease" data-cart-index="${index}" aria-label="${t('cart.decrease')}">−</button><span>${item.quantity}</span><button type="button" data-cart-action="increase" data-cart-index="${index}" aria-label="${t('cart.increase')}">+</button></div></div></div><div class="cart-item-side"><span class="cart-item-price">${money(item.price * item.quantity)}</span><button class="cart-remove" type="button" data-cart-action="remove" data-cart-index="${index}" aria-label="${t('cart.remove', { name: item.name })}">×</button></div></div>`).join('');
         cartItems.querySelectorAll('[data-cart-action]').forEach(button => button.addEventListener('click', () => {
           const index = Number(button.dataset.cartIndex);
           const action = button.dataset.cartAction;
@@ -620,23 +670,23 @@
         renderCart();
       };
       const formatOrderText = order => [
-        `Tupitoons order request ${order.reference}`,
+        `${t('order.request')} ${order.reference}`,
         '',
-        ...order.items.map(item => `${item.quantity} × ${item.name} / size ${item.size} / ${money(item.price * item.quantity)}`),
+        ...order.items.map(item => `${item.quantity} × ${item.name} / ${t('order.size')} ${item.size} / ${money(item.price * item.quantity)}`),
         '',
-        `Total: ${money(order.total)}`,
-        `Name: ${order.customer.name}`,
-        `Email: ${order.customer.email}`,
-        `Phone: ${order.customer.phone}`,
-        `City: ${order.customer.city}`,
-        `Delivery: ${order.customer.delivery}`,
-        `Address: ${order.customer.address}`,
-        order.customer.note ? `Note: ${order.customer.note}` : ''
+        `${t('order.total')}: ${money(order.total)}`,
+        `${t('order.name')}: ${order.customer.name}`,
+        `${t('order.email')}: ${order.customer.email}`,
+        `${t('order.phone')}: ${order.customer.phone}`,
+        `${t('order.city')}: ${order.customer.city}`,
+        `${t('order.delivery')}: ${order.customer.delivery === 'home' ? t('checkout.delivery.home') : t('checkout.delivery.pickup')}`,
+        `${t('order.address')}: ${order.customer.address}`,
+        order.customer.note ? `${t('order.note')}: ${order.customer.note}` : ''
       ].filter(Boolean).join('\n');
       const openProduct = card => {
         const product = { name: card.dataset.product, price: Number(card.dataset.price), image: card.dataset.image };
         activeProduct = product;
-        const details = productDetails[product.name] || productDetails['Bottle Label Wide Leg'];
+        const details = getProductDetails(product.name) || getProductDetails('Bottle Label Wide Leg');
         modalImage.src = product.image;
         modalImage.alt = product.name;
         modalTag.textContent = details.tag;
@@ -652,23 +702,54 @@
       const shopTitle = document.querySelector('[data-shop-title]');
       const shopDescription = document.querySelector('[data-shop-description]');
       const collectionDetails = {
-        'cartoon-club': { title: 'Cartoon Club', copy: 'Loud graphic prints for people who want their downtime to have a point of view.' },
-        'pink-signal': { title: 'Pink Signal', copy: 'A softer character world with high-impact color and a little after-dark mischief.' },
-        afterhours: { title: 'Afterhours', copy: 'Local graphic energy, relaxed silhouettes and prints made for late-night plans.' },
-        'soft-utility': { title: 'Soft Utility', copy: 'Everyday comfort with enough personality to move from the bed to the block.' },
-        'street-sleep': { title: 'Street Sleep', copy: 'Urban attitude, relaxed fit and a graphic that refuses to stay indoors.' }
+        'cartoon-club': { en: { title: 'Cartoon Club', copy: 'Loud graphic prints for people who want their downtime to have a point of view.' }, es: { title: 'Cartoon Club', copy: 'Estampados gráficos intensos para quienes quieren que su descanso tenga opinión propia.' } },
+        'pink-signal': { en: { title: 'Pink Signal', copy: 'A softer character world with high-impact color and a little after-dark mischief.' }, es: { title: 'Pink Signal', copy: 'Un universo de personajes suaves con color de alto impacto y un poco de picardía nocturna.' } },
+        afterhours: { en: { title: 'Afterhours', copy: 'Local graphic energy, relaxed silhouettes and prints made for late-night plans.' }, es: { title: 'Afterhours', copy: 'Energía gráfica local, siluetas relajadas y estampados para planes de madrugada.' } },
+        'soft-utility': { en: { title: 'Soft Utility', copy: 'Everyday comfort with enough personality to move from the bed to the block.' }, es: { title: 'Soft Utility', copy: 'Comodidad diaria con personalidad suficiente para pasar de la cama al barrio.' } },
+        'street-sleep': { en: { title: 'Street Sleep', copy: 'Urban attitude, relaxed fit and a graphic that refuses to stay indoors.' }, es: { title: 'Street Sleep', copy: 'Actitud urbana, fit relajado y un gráfico que se niega a quedarse en casa.' } }
       };
       const applyCatalogFilter = (category = 'all', collection = null) => {
-        const details = collection ? collectionDetails[collection] : null;
-        const categoryNames = { 'all': 'Featured drop', 'wide-leg': 'Wide leg', sets: 'Sets', shorts: 'Shorts' };
+        state.catalog = { category, collection };
+        const details = collection ? collectionDetails[collection]?.[state.language] : null;
+        const categoryNames = { 'all': t('collection.featured'), 'wide-leg': t('product.wide'), sets: t('filter.sets'), shorts: t('filter.shorts') };
         shopTitle.textContent = details?.title || categoryNames[category] || 'Featured drop';
-        shopDescription.textContent = details?.copy || 'Limited visual stories for late nights, slow mornings and everything in between.';
+        shopDescription.textContent = details?.copy || t('collection.description');
         select('[data-filter]').forEach(item => item.classList.toggle('is-active', !collection && item.dataset.filter === category));
         select('.product-card').forEach(card => {
           const matchesCategory = category === 'all' || card.dataset.category === category;
           const matchesCollection = !collection || card.dataset.collection === collection;
           card.classList.toggle('is-hidden', !(matchesCategory && matchesCollection));
         });
+      };
+      const applyLanguage = language => {
+        state.language = language === 'en' ? 'en' : 'es';
+        try { localStorage.setItem(languageStorageKey, state.language); } catch { /* Language preference is optional in preview mode. */ }
+        document.documentElement.lang = state.language;
+        select('[data-i18n]').forEach(element => { element.textContent = t(element.dataset.i18n); });
+        select('[data-i18n-html]').forEach(element => { element.innerHTML = t(element.dataset.i18nHtml); });
+        select('[data-i18n-placeholder]').forEach(element => { element.setAttribute('placeholder', t(element.dataset.i18nPlaceholder)); });
+        select('[data-i18n-aria]').forEach(element => { element.setAttribute('aria-label', t(element.dataset.i18nAria)); });
+        select('[data-language]').forEach(button => button.classList.toggle('is-active', button.dataset.language === state.language));
+        select('.product-card').forEach(card => {
+          const ui = productUi[card.dataset.product];
+          if (!ui) return;
+          card.querySelector('.product-badge').textContent = t(ui.badge);
+          card.querySelector('.product-meta span:first-child').textContent = t(ui.meta[0]);
+          card.querySelector('.product-meta span:last-child').textContent = t(ui.meta[1]);
+          card.querySelector('.size-row').setAttribute('aria-label', t('product.sizeAria'));
+          card.querySelector('[data-details]').textContent = t('product.details');
+          card.querySelector('[data-add]').textContent = t('product.add');
+        });
+        applyCatalogFilter(state.catalog.category, state.catalog.collection);
+        if (activeProduct) {
+          const details = getProductDetails(activeProduct.name) || getProductDetails('Bottle Label Wide Leg');
+          modalTag.textContent = details.tag;
+          modalCopy.textContent = details.copy;
+          modalFit.textContent = details.fit;
+          modalMaterial.textContent = details.material;
+          modalCare.textContent = details.care;
+        }
+        renderCart();
       };
       select('[data-cart-open]').forEach(button => button.addEventListener('click', () => setCartOpen(true)));
       select('[data-cart-close]').forEach(button => button.addEventListener('click', () => setCartOpen(false)));
@@ -700,6 +781,7 @@
       select('[data-filter]').forEach(button => button.addEventListener('click', () => {
         applyCatalogFilter(button.dataset.filter);
       }));
+      select('[data-language]').forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.language)));
       select('[data-scroll]').forEach(link => link.addEventListener('click', event => {
         const target = document.querySelector(link.dataset.scroll);
         if (target) { event.preventDefault(); if (link.dataset.collection) applyCatalogFilter('all', link.dataset.collection); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
@@ -707,13 +789,13 @@
       document.querySelector('[data-newsletter]')?.addEventListener('submit', event => {
         event.preventDefault();
         event.currentTarget.reset();
-        document.querySelector('[data-newsletter-status]').textContent = 'You are on the list for Drop 01.';
+        document.querySelector('[data-newsletter-status]').textContent = t('newsletter.success');
       });
       checkoutButton?.addEventListener('click', () => { if (state.cart.length) setCheckoutOpen(true); });
       checkoutForm?.addEventListener('submit', event => {
         event.preventDefault();
         checkoutStatus.textContent = '';
-        if (!state.cart.length) { checkoutStatus.textContent = 'Add a piece to your bag before creating an order request.'; return; }
+        if (!state.cart.length) { checkoutStatus.textContent = t('checkout.empty'); return; }
         const formData = new FormData(event.currentTarget);
         const order = {
           reference: `TUPI-${Date.now().toString(36).slice(-6).toUpperCase()}`,
@@ -736,15 +818,15 @@
       });
       document.querySelector('[data-copy-order]')?.addEventListener('click', async () => {
         if (!lastOrderText) return;
-        try { await navigator.clipboard.writeText(lastOrderText); copyStatus.textContent = 'Order summary copied.'; }
-        catch { copyStatus.textContent = 'Copy is not available here. Use the reference above.'; }
+        try { await navigator.clipboard.writeText(lastOrderText); copyStatus.textContent = t('copy.success'); }
+        catch { copyStatus.textContent = t('copy.unavailable'); }
       });
       document.querySelector('[data-whatsapp-order]')?.addEventListener('click', () => {
         if (!lastOrderText) return;
         window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(lastOrderText)}`, '_blank', 'noopener,noreferrer');
       });
       document.addEventListener('keydown', event => { if (event.key === 'Escape') { setCheckoutOpen(false); setSizeGuideOpen(false); setModalOpen(false); setCartOpen(false); } });
-      renderCart();
+      applyLanguage(state.language);
     })();
   </script>
 </body>
