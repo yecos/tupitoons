@@ -12,7 +12,7 @@ La versión actual es un storefront estático premium, responsive y bilingüe.
 
 - Español como idioma inicial.
 - Selector persistente **ES / EN**.
-- Catálogo visual con 13 referencias.
+- Catálogo visual con 15 referencias.
 - Filtros por pantalón amplio, sets y shorts.
 - Búsqueda visual por estampado, silueta y colección.
 - Wishlist local con filtro de piezas guardadas.
@@ -50,6 +50,8 @@ Los precios son referencias de prototipo y deben confirmarse antes de activar el
 | TUPI-011 | Red Comic Wide Leg | Pantalón amplio | COP 189.000 |
 | TUPI-012 | Stitch Island Wide Leg | Pantalón amplio | COP 189.000 |
 | TUPI-013 | Stitch Island Lounge Shorts | Short | COP 129.000 |
+| TUPI-014 | Blue Cartoon Party Wide Leg | Pantalón amplio | COP 189.000 |
+| TUPI-015 | Blue Cartoon Party Lounge Shorts | Short | COP 129.000 |
 
 ## Experiencia de compra
 
