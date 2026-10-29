@@ -168,4 +168,4 @@ https://tupitoons.vercel.app/
 
 ## Auditoría y verificaciones
 
-Ver [auditoría priorizada](docs/AUDIT-2026-10-28.md). Ejecuta `node --test tests/*.test.cjs`. Si editas un script inline, actualiza su SHA-256 en `vercel.json`; la prueba falla si la CSP queda desactualizada. Los headers deben verificarse en el preview de Vercel antes de fusionar.
+Ver [auditoría priorizada](docs/AUDIT-2026-10-28.md). Ejecuta `node --test tests/*.test.cjs`. Si editas un script inline, ejecuta `node scripts/update-csp.cjs` para actualizar su SHA-256 en `vercel.json`; la prueba falla si la CSP queda desactualizada. Los headers deben verificarse en el preview de Vercel antes de fusionar.

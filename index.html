@@ -36,7 +36,7 @@
       --store-max: 1400px;
     }
     html { scroll-behavior: smooth; }
-    html[data-mak-report] body { min-width: 0; margin: 0; background: var(--store-ink); color: var(--store-paper); }
+    html[data-mak-report] body { min-width: 0; margin: 0; background: var(--store-ink); color: var(--store-paper); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     html[data-mak-report] body::before { opacity: .18; background: radial-gradient(800px 500px at 90% 8%, #ff4e9b22, transparent 65%), radial-gradient(700px 500px at 8% 44%, #86d9ed16, transparent 64%); }
     * { box-sizing: border-box; }
     button, input { font: inherit; }
@@ -442,22 +442,52 @@
       .store-hero-sticker { width: 88px; height: 88px; font-size: 12px; }
     }
     [hidden] { display: none !important; }
-    /* Keep intrinsic grid sizing from pushing mobile actions outside the viewport. */
+    .store-nav { grid-template-columns: auto minmax(0, 1fr) auto; }
+    .store-brand { grid-column: 1; grid-row: 1; }
+    .store-actions { grid-column: 3; grid-row: 1; }
+    .store-nav-links { grid-column: 2; grid-row: 1; justify-content: center; }
     .store-nav > *, .store-actions { min-width: 0; }
     :focus-visible { outline: 3px solid var(--store-coral); outline-offset: 4px; }
     .skip-link { position: fixed; z-index: 100; top: 8px; left: 8px; padding: 14px; background: var(--store-lime); color: var(--store-ink); transform: translateY(-180%); }
     .skip-link:focus { transform: none; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
     .cart-drawer:not(.is-open) { visibility: hidden; }
     .size-pill, .wishlist-toggle, .cart-qty button, .cart-remove, .cart-close, .language-switch button, .store-filter { min-width: 44px; min-height: 44px; }
+    .store-menu-toggle, .mobile-language, .search-icon { display: none; }
+    .store-section-head h2 { overflow-wrap: anywhere; }
+    .catalog-status { margin: -4px 0 20px; color: var(--store-muted); font-size: 14px; line-height: 1.5; }
+    .search-results-button { width: 100%; min-height: 48px; margin-top: 24px; padding: 12px 16px; border: 1px solid var(--store-ink); border-radius: 999px; background: var(--store-ink); color: var(--store-paper); font-weight: 700; }
+    .search-results-button:hover { background: #302a38; }
+    .search-empty button { display: block; margin-top: 16px; }
+    .store-hero-lede { line-height: 1.5; }
+    @media (max-width: 1100px) {
+      .store-nav { grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; padding: 16px 0; }
+      .store-brand, .store-brand-mark { width: 56px; height: 56px; }
+      .store-brand { grid-column: 1; grid-row: 1; justify-self: start; }
+      .store-actions { grid-column: 2; grid-row: 1; justify-content: flex-end; flex-wrap: nowrap; gap: 8px; }
+      .store-actions > .language-switch { display: none; }
+      .store-actions [data-search-open] { display: grid; place-items: center; padding: 0; min-width: 44px; min-height: 44px; }
+      .store-actions [data-search-open] > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+      .search-icon { display: block; width: 18px; height: 18px; }
+      .store-actions [data-cart-open] { min-height: 44px; font-size: 10px; }
+      .store-nav.has-menu .store-menu-toggle { grid-column: 3; grid-row: 1; display: grid; place-content: center; gap: 5px; width: 44px; height: 44px; padding: 10px; border: 1px solid var(--store-line); border-radius: 50%; background: transparent; color: var(--store-paper); }
+      .menu-line { display: block; width: 18px; height: 2px; background: currentColor; }
+      .menu-is-open .menu-line:first-child { transform: translateY(3.5px) rotate(45deg); }
+      .menu-is-open .menu-line:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+      .store-nav-links { grid-column: 1 / -1; grid-row: 2; display: flex; flex-direction: column; flex-wrap: nowrap; gap: 0; overflow: visible; padding: 12px 0 0; }
+      .store-nav.has-menu:not(.menu-is-open) .store-nav-links { display: none; }
+      .store-nav-links a { display: flex; align-items: center; min-height: 52px; border-bottom: 1px solid var(--store-line); font-size: 12px; line-height: 1.4; }
+      .mobile-language { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0 4px; color: var(--store-muted); font-size: 11px; }
+      .store-topline { flex-wrap: wrap; gap: 4px 12px; line-height: 1.4; text-align: center; }
+    }
     @media (max-width: 760px) {
-      .store-nav { grid-template-columns: minmax(0, 1fr); gap: 14px; }
-      .store-brand { grid-column: 1; grid-row: 1; justify-self: center; }
-      .store-actions { grid-column: 1; grid-row: 2; justify-content: center; flex-wrap: wrap; gap: 6px; }
-      .store-nav-links { grid-row: 3; flex-wrap: wrap; overflow: visible; gap: 4px 14px; }
-      .store-nav-links a { display: inline-flex; align-items: center; min-height: 44px; line-height: 1.4; }
-      .store-hero { padding-top: 30px; }
-      .store-hero-art { min-width: 0; }
-      .store-topline { flex-wrap: wrap; line-height: 1.4; text-align: center; }
+      .store-hero { gap: 20px; padding: 28px 0 48px; }
+      .store-hero h1 { margin: 20px 0; font-size: clamp(56px, 16vw, 100px); line-height: .88; }
+      .store-hero-copy { padding-bottom: 0; }
+      .store-hero-lede { font-size: 17px; }
+      .store-hero-art { min-width: 0; min-height: 400px; }
+      .store-hero-actions { margin-top: 22px; }
+      .prototype-note { position: static; display: block; width: fit-content; max-width: calc(100% - 32px); margin: 12px auto 24px; text-align: center; line-height: 1.5; }
     }
   </style>
 </head>
@@ -467,11 +497,13 @@
     <div class="store-topline"><span data-i18n="top.shipping">Free shipping over COP 250,000</span><span data-i18n="top.drop">Drop 01 / sleep in your own lane</span></div>
     <div class="store-container">
       <nav class="store-nav" aria-label="Main navigation" data-i18n-aria="nav.main">
-        <div class="store-nav-links">
-          <a href="#shop" data-scroll="#shop" data-i18n="nav.shop">Shop</a><a href="#shop" data-scroll="#shop" data-collection="cartoon-club">Cartoon Club</a><a href="#prints" data-i18n="nav.prints">Print Library</a><a href="#story" data-i18n="nav.world">The World</a><a href="#size-guide" data-size-guide-open data-i18n="nav.size">Size guide</a>
-        </div>
         <a class="store-brand" href="#top" aria-label="Tupitoons home" data-i18n-aria="nav.home"><span class="store-brand-mark"><img src="assets/tupitoons-mark-small.webp" alt="Tupitoons cloud mascot logo"></span></a>
-        <div class="store-actions"><button class="store-icon-button" type="button" data-search-open><span data-i18n="nav.search">Search</span></button><button class="store-icon-button" type="button" data-cart-open><span data-i18n="nav.bag">Bag</span> <span class="bag-count" data-bag-count>0</span></button><div class="language-switch" aria-label="Language selector" data-i18n-aria="language.selector"><button type="button" data-language="es">ES</button><span>/</span><button type="button" data-language="en">EN</button></div></div>
+        <div class="store-actions"><button class="store-icon-button" type="button" data-search-open><svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span data-i18n="nav.search">Search</span></button><button class="store-icon-button" type="button" data-cart-open><span data-i18n="nav.bag">Bag</span> <span class="bag-count" data-bag-count>0</span></button><div class="language-switch" aria-label="Language selector" data-i18n-aria="language.selector"><button type="button" data-language="es">ES</button><span>/</span><button type="button" data-language="en">EN</button></div></div>
+        <button class="store-menu-toggle" type="button" data-menu-toggle aria-controls="store-menu" aria-expanded="false" aria-label="Abrir menú"><span class="menu-line" aria-hidden="true"></span><span class="menu-line" aria-hidden="true"></span></button>
+        <div class="store-nav-links" id="store-menu">
+          <a href="#shop" data-scroll="#shop" data-i18n="nav.shop">Shop</a><a href="#shop" data-scroll="#shop" data-collection="cartoon-club">Cartoon Club</a><a href="#prints" data-i18n="nav.prints">Print Library</a><a href="#story" data-i18n="nav.world">The World</a><a href="#size-guide" data-size-guide-open data-i18n="nav.size">Size guide</a>
+          <div class="mobile-language"><span data-i18n="language.selector">Language selector</span><div class="language-switch" aria-label="Language selector" data-i18n-aria="language.selector"><button type="button" data-language="es">ES</button><span>/</span><button type="button" data-language="en">EN</button></div></div>
+        </div>
       </nav>
 
       <main id="top">
@@ -491,6 +523,7 @@
         <section class="store-section" id="shop" aria-labelledby="shop-title">
           <div class="store-section-head"><h2 id="shop-title" data-shop-title>Featured drop</h2><p data-shop-description>Limited visual stories for late nights, slow mornings and everything in between.</p></div>
           <div class="store-filter-row" role="group" aria-label="Product filters" data-i18n-aria="shop.filters"><button class="store-filter is-active" type="button" data-filter="all" data-i18n="filter.all">All pieces</button><button class="store-filter" type="button" data-filter="wide-leg" data-i18n="filter.wide">Wide leg</button><button class="store-filter" type="button" data-filter="sets" data-i18n="filter.sets">Sets</button><button class="store-filter" type="button" data-filter="shorts" data-i18n="filter.shorts">Shorts</button><button class="store-filter" type="button" data-wishlist-filter><span data-i18n="filter.saved">Saved</span><span class="saved-count" data-wishlist-count>0</span></button></div>
+          <p class="catalog-status" data-catalog-status role="status" aria-live="polite" aria-atomic="true"></p>
           <div class="store-product-grid">
             <article class="product-card" data-category="wide-leg" data-collection="afterhours" data-product="Bottle Label Wide Leg" data-price="189000" data-image="assets/look-bottle-print-studio.jpeg">
               <div class="product-image"><img src="assets/look-bottle-print-studio.jpeg" alt="Model wearing Tupitoons bottle-label wide-leg pajama pants in a premium grey studio" loading="lazy"><span class="product-badge">New drop</span><span class="product-code">TUPI-001</span></div>
@@ -561,7 +594,7 @@
               <div class="product-info"><div class="product-meta"><span>Shorts</span><span>Cartoon club</span></div><h3>Blue Cartoon Party Lounge Shorts</h3><div class="product-price">COP 129,000</div><div class="size-row"><button class="size-pill" type="button" data-size="S">S</button><button class="size-pill is-selected" type="button" data-size="M">M</button><button class="size-pill" type="button" data-size="L">L</button></div><div class="product-actions"><button class="detail-button" type="button" data-details>View details</button><button class="add-button" type="button" data-add>Add to bag</button></div></div>
             </article>
           </div>
-          <p class="search-empty" data-search-empty data-i18n="search.empty" hidden>No pieces match that search yet. Try a print, a silhouette or a collection.</p>
+          <div class="search-empty" data-search-empty hidden><p data-i18n="search.empty">No pieces match that search yet. Try a print, a silhouette or a collection.</p><button class="store-secondary" type="button" data-reset-catalog data-i18n="search.reset">Clear filters</button></div>
         </section>
 
         <section class="store-section" id="collections" aria-labelledby="collections-title">
@@ -628,6 +661,7 @@
       <div class="search-head"><div><small data-i18n="search.kicker">Tupitoons / find your print</small><h2 id="search-title" data-i18n="search.title">Find your lane.</h2></div><button class="search-close" type="button" aria-label="Close search" data-search-close data-i18n-aria="search.close">×</button></div>
       <div class="search-input-wrap"><input type="search" data-search-input placeholder="Search prints, silhouettes or collections" data-i18n-placeholder="search.placeholder" data-i18n-aria="search.input"></div>
       <div class="search-hints" aria-label="Search suggestions" data-i18n-aria="search.suggestions"><button type="button" data-search-term="cartoon" data-i18n="search.hint.cartoon">Cartoon Club</button><button type="button" data-search-term="wide leg" data-i18n="search.hint.wide">Wide leg</button><button type="button" data-search-term="pink" data-i18n="search.hint.pink">Pink Signal</button><button type="button" data-search-term="shorts" data-i18n="search.hint.shorts">Shorts</button></div>
+      <button class="search-results-button" type="button" data-search-results></button>
     </div>
   </section>
 
@@ -711,27 +745,27 @@
     <div class="policy-backdrop" data-policy-close></div>
     <div class="policy-panel">
       <div class="policy-head"><div><small data-i18n="policy.kicker">Tupitoons / compra consciente / Drop 01</small><h2 id="policy-title" data-policy-title>Envíos</h2></div><button class="policy-close" type="button" aria-label="Cerrar políticas" data-policy-close data-i18n-aria="policy.close">×</button></div>
-      <div class="policy-tabs" role="tablist" aria-label="Store policies" data-i18n-aria="policy.tabs"><button class="policy-tab is-active" type="button" role="tab" aria-selected="true" data-policy-tab="shipping" data-i18n="policy.shipping.tab">Envíos</button><button class="policy-tab" type="button" role="tab" aria-selected="false" data-policy-tab="returns" data-i18n="policy.returns.tab">Cambios</button><button class="policy-tab" type="button" role="tab" aria-selected="false" data-policy-tab="privacy" data-i18n="policy.privacy.tab">Privacidad</button><button class="policy-tab" type="button" role="tab" aria-selected="false" data-policy-tab="terms" data-i18n="policy.terms.tab">Términos</button></div>
+      <div class="policy-tabs" role="tablist" aria-label="Store policies" data-i18n-aria="policy.tabs"><button class="policy-tab is-active" type="button" role="tab" aria-selected="true" id="policy-tab-shipping" aria-controls="policy-panel-shipping" tabindex="0" data-policy-tab="shipping" data-i18n="policy.shipping.tab">Envíos</button><button class="policy-tab" type="button" role="tab" aria-selected="false" id="policy-tab-returns" aria-controls="policy-panel-returns" tabindex="-1" data-policy-tab="returns" data-i18n="policy.returns.tab">Cambios</button><button class="policy-tab" type="button" role="tab" aria-selected="false" id="policy-tab-privacy" aria-controls="policy-panel-privacy" tabindex="-1" data-policy-tab="privacy" data-i18n="policy.privacy.tab">Privacidad</button><button class="policy-tab" type="button" role="tab" aria-selected="false" id="policy-tab-terms" aria-controls="policy-panel-terms" tabindex="-1" data-policy-tab="terms" data-i18n="policy.terms.tab">Términos</button></div>
       <div class="policy-content">
-        <article data-policy-panel="shipping">
+        <article role="tabpanel" tabindex="0" id="policy-panel-shipping" aria-labelledby="policy-tab-shipping" data-policy-panel="shipping">
           <h3 data-i18n="policy.shipping.title">Envíos claros</h3>
           <p data-i18n="policy.shipping.copy">Preparamos cada pedido después de confirmar stock, talla, ciudad y medio de pago. Queremos que la experiencia se sienta tan cuidada como la prenda.</p>
           <ul><li data-i18n="policy.shipping.item1">Envío gratis desde COP 250.000.</li><li data-i18n="policy.shipping.item2">La tarifa y el tiempo estimado se confirman antes del despacho.</li><li data-i18n="policy.shipping.item3">Recibirás la referencia del pedido y el seguimiento por WhatsApp o correo.</li></ul>
           <p class="policy-note" data-i18n="policy.shipping.note">La cobertura, transportadora y tarifa final dependen de la ciudad de entrega y se confirman con el equipo.</p>
         </article>
-        <article data-policy-panel="returns" hidden>
+        <article role="tabpanel" tabindex="0" id="policy-panel-returns" aria-labelledby="policy-tab-returns" data-policy-panel="returns" hidden>
           <h3 data-i18n="policy.returns.title">Cambios sin drama</h3>
           <p data-i18n="policy.returns.copy">Si la talla no funciona, escríbenos antes de usar o lavar la prenda para revisar disponibilidad y coordinar el cambio.</p>
           <ul><li data-i18n="policy.returns.item1">Las prendas deben conservar etiquetas y estar sin uso.</li><li data-i18n="policy.returns.item2">Los cambios dependen de inventario disponible.</li><li data-i18n="policy.returns.item3">Los costos de transporte se confirman según el caso y la ciudad.</li></ul>
           <p class="policy-note" data-i18n="policy.returns.note">Antes de publicar la tienda transaccional, esta guía se convertirá en una política jurídica completa con plazos y procedimiento definitivo.</p>
         </article>
-        <article data-policy-panel="privacy" hidden>
+        <article role="tabpanel" tabindex="0" id="policy-panel-privacy" aria-labelledby="policy-tab-privacy" data-policy-panel="privacy" hidden>
           <h3 data-i18n="policy.privacy.title">Tu información importa</h3>
           <p data-i18n="policy.privacy.copy">Usamos los datos que compartes para preparar tu solicitud, responderte y coordinar entrega o pago. No vendemos tu información.</p>
           <ul><li data-i18n="policy.privacy.item1">Tus datos de contacto permanecen en esta página hasta que copies el resumen o decidas enviarlo por WhatsApp. No guardamos el pedido en este dispositivo.</li><li data-i18n="policy.privacy.item2">WhatsApp y los proveedores de pago aplican sus propias políticas.</li><li data-i18n="policy.privacy.item3">Puedes pedir corrección o eliminación escribiendo al equipo.</li></ul>
           <p class="policy-note" data-i18n="policy.privacy.note">La política final se actualizará cuando conectemos la base de datos, analítica y pasarela de pagos.</p>
         </article>
-        <article data-policy-panel="terms" hidden>
+        <article role="tabpanel" tabindex="0" id="policy-panel-terms" aria-labelledby="policy-tab-terms" data-policy-panel="terms" hidden>
           <h3 data-i18n="policy.terms.title">Términos de compra</h3>
           <p data-i18n="policy.terms.copy">Los precios, tallas y disponibilidad mostrados pertenecen al Drop 01 y deben confirmarse antes de finalizar el pedido.</p>
           <ul><li data-i18n="policy.terms.item1">Una solicitud no representa un cobro automático.</li><li data-i18n="policy.terms.item2">El pedido se confirma cuando el equipo valida stock, entrega y pago.</li><li data-i18n="policy.terms.item3">Al enviar tus datos confirmas que la información es correcta.</li></ul>
@@ -772,7 +806,7 @@
       const state = { cart: readStoredCart(), wishlist: readStoredWishlist(), language: readStoredLanguage(), catalog: { category: 'all', collection: null, wishlistOnly: false, search: '' } };
       const translations = {
         es: {
-          "skip.shop": "Saltar al catálogo", "top.shipping": "Envío gratis desde COP 250.000", "top.drop": "Drop 01 / duerme a tu manera", "nav.main": "Navegación principal", "nav.home": "Inicio de Tupitoons", "nav.shop": "Tienda", "nav.prints": "Biblioteca de estampados", "nav.world": "El universo", "nav.size": "Guía de tallas", "nav.search": "Buscar", "nav.bag": "Bolsa", "language.selector": "Selector de idioma",
+          "nav.openMenu": "Abrir menú", "nav.closeMenu": "Cerrar menú", "catalog.count": "{count} piezas", "search.showResults": "Ver resultados · {count}", "search.reset": "Ver todas las piezas", "skip.shop": "Saltar al catálogo", "top.shipping": "Envío gratis desde COP 250.000", "top.drop": "Drop 01 / duerme a tu manera", "nav.main": "Navegación principal", "nav.home": "Inicio de Tupitoons", "nav.shop": "Tienda", "nav.prints": "Biblioteca de estampados", "nav.world": "El universo", "nav.size": "Guía de tallas", "nav.search": "Buscar", "nav.bag": "Bolsa", "language.selector": "Selector de idioma",
           "search.kicker": "Tupitoons / encuentra tu estampado", "search.title": "Encuentra tu carril.", "search.close": "Cerrar búsqueda", "search.placeholder": "Busca estampados, siluetas o colecciones", "search.input": "Buscar en Tupitoons", "search.suggestions": "Sugerencias de búsqueda", "search.hint.cartoon": "Cartoon Club", "search.hint.wide": "Pantalón amplio", "search.hint.pink": "Pink Signal", "search.hint.shorts": "Shorts", "search.empty": "Todavía no hay piezas con esa búsqueda. Prueba un estampado, una silueta o una colección.", "search.results": "Resultados", "search.resultsCopy": "Piezas que coinciden con tu búsqueda. Elige una favorita y llévala a tu próxima noche.", "wishlist.description": "Tus piezas guardadas para volver cuando el mood esté listo.", "wishlist.add": "Guardar", "wishlist.remove": "Quitar",
           "hero.kicker": "Pijamas urbanas / drop 01", "hero.title": "De la cama<br>al <em>barrio.</em>", "hero.lede": "Pijamas con energía de cartoon, comodidad premium y actitud suficiente para salir del dormitorio.", "hero.shop": "Ver el drop", "hero.world": "Entrar al universo", "hero.sticker": "Poder<br>suave<br>siempre", "hero.code": "TUPI / 01 — PRODUCTO HERO",
           "shop.filters": "Filtros de producto", "filter.all": "Todas las piezas", "filter.wide": "Pantalón amplio", "filter.sets": "Sets", "filter.shorts": "Shorts", "filter.saved": "Guardados", "collections.title": "Elige tu universo", "collections.copy": "Una marca. Diferentes personajes nocturnos. Encuentra el estampado que va contigo.", "collection.loud": "01 / Intenso", "collection.soft": "02 / Suave", "collection.local": "03 / Local", "collection.easy": "04 / Fácil",
@@ -786,7 +820,7 @@
           "newsletter.success": "La lista de correo aún no está activa. No hemos guardado tu correo.", "product.details": "Ver detalles", "product.add": "Añadir a la bolsa", "product.sizeAria": "Elegir talla", "product.short": "Short", "product.wide": "Pantalón amplio", "product.set": "Set", "product.new": "Nuevo drop", "product.shortCut": "Corte short", "product.graphic": "Estampado gráfico", "product.soft": "Señal suave", "product.everyday": "Para todos los días", "product.street": "Actitud de calle", "product.print": "Nuevo estampado", "product.silhouette": "Nueva silueta", "product.newTag": "Nuevo", "product.cartoon": "Cartoon Club", "product.afterhours": "Afterhours", "product.pinkSignal": "Pink Signal", "product.softUtility": "Soft Utility", "product.streetSleep": "Street Sleep", "product.comic": "Comic Club", "collection.featured": "Drop destacado", "collection.description": "Historias visuales limitadas para noches largas, mañanas lentas y todo lo que hay entre ellas.", "order.request": "Solicitud de pedido Tupitoons", "order.size": "talla", "order.total": "Total", "order.name": "Nombre", "order.email": "Correo", "order.phone": "Teléfono", "order.city": "Ciudad", "order.delivery": "Entrega", "order.payment": "Pago", "order.address": "Dirección", "order.note": "Nota", "copy.success": "Resumen copiado.", "copy.unavailable": "No se puede copiar aquí. Usa la referencia de arriba."
         },
         en: {
-          "skip.shop": "Skip to catalogue", "top.shipping": "Free shipping over COP 250,000", "top.drop": "Drop 01 / sleep in your own lane", "nav.main": "Main navigation", "nav.home": "Tupitoons home", "nav.shop": "Shop", "nav.prints": "Print Library", "nav.world": "The World", "nav.size": "Size guide", "nav.search": "Search", "nav.bag": "Bag", "language.selector": "Language selector",
+          "nav.openMenu": "Open menu", "nav.closeMenu": "Close menu", "catalog.count": "{count} pieces", "search.showResults": "View results · {count}", "search.reset": "View all pieces", "skip.shop": "Skip to catalogue", "top.shipping": "Free shipping over COP 250,000", "top.drop": "Drop 01 / sleep in your own lane", "nav.main": "Main navigation", "nav.home": "Tupitoons home", "nav.shop": "Shop", "nav.prints": "Print Library", "nav.world": "The World", "nav.size": "Size guide", "nav.search": "Search", "nav.bag": "Bag", "language.selector": "Language selector",
           "search.kicker": "Tupitoons / find your print", "search.title": "Find your lane.", "search.close": "Close search", "search.placeholder": "Search prints, silhouettes or collections", "search.input": "Search Tupitoons", "search.suggestions": "Search suggestions", "search.hint.cartoon": "Cartoon Club", "search.hint.wide": "Wide leg", "search.hint.pink": "Pink Signal", "search.hint.shorts": "Shorts", "search.empty": "No pieces match that search yet. Try a print, a silhouette or a collection.", "search.results": "Results", "search.resultsCopy": "Pieces that match your search. Pick a favorite and take it into your next night.", "wishlist.description": "Your saved pieces, waiting for the right mood.", "wishlist.add": "Save", "wishlist.remove": "Remove",
           "hero.kicker": "Urban sleepwear / drop 01", "hero.title": "From the bed<br>to the <em>block.</em>", "hero.lede": "Pajamas with cartoon energy, premium comfort and enough attitude to leave the bedroom.", "hero.shop": "Shop the drop", "hero.world": "Enter the world", "hero.sticker": "Soft<br>power<br>only", "hero.code": "TUPI / 01 — PRODUCT HERO",
           "shop.filters": "Product filters", "filter.all": "All pieces", "filter.wide": "Wide leg", "filter.sets": "Sets", "filter.shorts": "Shorts", "filter.saved": "Saved", "collections.title": "Choose your world", "collections.copy": "One brand. Different night characters. Find the print that matches your lane.", "collection.loud": "01 / Loud", "collection.soft": "02 / Soft", "collection.local": "03 / Local", "collection.easy": "04 / Easy",
@@ -810,6 +844,33 @@
       const money = value => `COP ${new Intl.NumberFormat(state.language === 'es' ? 'es-CO' : 'en-US').format(value)}`;
       const whatsappNumber = '573012438980';
       const select = selector => [...document.querySelectorAll(selector)];
+      const navigation = document.querySelector('.store-nav');
+      const menuButton = document.querySelector('[data-menu-toggle]');
+      const menuLinks = document.querySelector('#store-menu');
+      const compactNavigation = window.matchMedia('(max-width: 1100px)');
+      const setMenuOpen = (open, restoreFocus = false) => {
+        const expanded = compactNavigation.matches && open;
+        navigation.classList.toggle('menu-is-open', expanded);
+        menuButton.setAttribute('aria-expanded', String(expanded));
+        menuButton.setAttribute('aria-label', t(expanded ? 'nav.closeMenu' : 'nav.openMenu'));
+        if (restoreFocus && compactNavigation.matches) menuButton.focus();
+      };
+      navigation.classList.add('has-menu');
+      menuButton.addEventListener('click', () => setMenuOpen(menuButton.getAttribute('aria-expanded') !== 'true'));
+      menuLinks.addEventListener('click', event => {
+        if (event.target.closest('a')) setMenuOpen(false, true);
+      }, true);
+      document.addEventListener('click', event => {
+        if (!navigation.contains(event.target)) setMenuOpen(false);
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && navigation.classList.contains('menu-is-open')) { event.preventDefault(); setMenuOpen(false, true); }
+      });
+      compactNavigation.addEventListener('change', () => {
+        const wasInMenu = menuLinks.contains(document.activeElement);
+        setMenuOpen(false, wasInMenu);
+        if (compactNavigation.matches && navigation.contains(document.activeElement) && !document.activeElement.getClientRects().length) menuButton.focus();
+      });
       const bagCount = document.querySelector('[data-bag-count]');
       const drawer = document.querySelector('[data-cart-drawer]');
       const backdrop = document.querySelector('.cart-backdrop');
@@ -1001,7 +1062,8 @@
           (focusables(next)[0] || next).focus();
         } else {
           activeDialog = null;
-          if (dialogTrigger?.isConnected) dialogTrigger.focus();
+          if (dialogTrigger?.isConnected && dialogTrigger.getClientRects().length) dialogTrigger.focus();
+          else if (compactNavigation.matches) menuButton.focus();
           dialogTrigger = null;
         }
       };
@@ -1042,7 +1104,7 @@
         const tab = document.querySelector(`[data-policy-tab="${section}"]`);
         const panel = document.querySelector(`[data-policy-panel="${section}"]`);
         if (!tab || !panel) return;
-        select('[data-policy-tab]').forEach(item => { const active = item === tab; item.classList.toggle('is-active', active); item.setAttribute('aria-selected', String(active)); });
+        select('[data-policy-tab]').forEach(item => { const active = item === tab; item.classList.toggle('is-active', active); item.setAttribute('aria-selected', String(active)); item.tabIndex = active ? 0 : -1; });
         select('[data-policy-panel]').forEach(item => { item.hidden = item !== panel; });
         policyTitle.textContent = tab.textContent;
       };
@@ -1096,7 +1158,7 @@
         modalFit.textContent = details.fit;
         modalMaterial.textContent = details.material;
         modalCare.textContent = details.care;
-        select('[data-modal-size]').forEach(button => button.classList.toggle('is-selected', button.dataset.modalSize === 'M'));
+        select('[data-modal-size]').forEach(button => { const selected = button.dataset.modalSize === 'M'; button.classList.toggle('is-selected', selected); button.setAttribute('aria-pressed', String(selected)); });
         updateModalWishlist();
         setModalOpen(true);
       };
@@ -1116,7 +1178,8 @@
         const query = state.catalog.search.trim().toLowerCase();
         shopTitle.textContent = query ? `${t('search.results')} / ${state.catalog.search}` : state.catalog.wishlistOnly ? t('filter.saved') : details?.title || categoryNames[category] || 'Featured drop';
         shopDescription.textContent = query ? t('search.resultsCopy') : state.catalog.wishlistOnly ? t('wishlist.description') : details?.copy || t('collection.description');
-        select('[data-filter]').forEach(item => item.classList.toggle('is-active', !collection && !state.catalog.wishlistOnly && item.dataset.filter === category));
+        select('[data-filter]').forEach(item => { const active = !collection && !state.catalog.wishlistOnly && item.dataset.filter === category; item.classList.toggle('is-active', active); item.setAttribute('aria-pressed', String(active)); });
+        wishlistFilter.setAttribute('aria-pressed', String(state.catalog.wishlistOnly));
         let visibleCount = 0;
         select('.product-card').forEach(card => {
           const matchesCategory = category === 'all' || card.dataset.category === category;
@@ -1129,6 +1192,8 @@
           if (visible) visibleCount += 1;
         });
         if (searchEmpty) searchEmpty.hidden = visibleCount > 0;
+        document.querySelector('[data-catalog-status]').textContent = t('catalog.count', { count: visibleCount });
+        document.querySelector('[data-search-results]').textContent = t('search.showResults', { count: visibleCount });
         renderWishlist();
       };
       const applyLanguage = language => {
@@ -1141,7 +1206,8 @@
         select('[data-i18n-html]').forEach(element => { element.innerHTML = t(element.dataset.i18nHtml); });
         select('[data-i18n-placeholder]').forEach(element => { element.setAttribute('placeholder', t(element.dataset.i18nPlaceholder)); });
         select('[data-i18n-aria]').forEach(element => { element.setAttribute('aria-label', t(element.dataset.i18nAria)); });
-        select('[data-language]').forEach(button => button.classList.toggle('is-active', button.dataset.language === state.language));
+        select('[data-language]').forEach(button => { const active = button.dataset.language === state.language; button.classList.toggle('is-active', active); button.setAttribute('aria-pressed', String(active)); });
+        setMenuOpen(navigation.classList.contains('menu-is-open'));
         if (policyModal?.classList.contains('is-open')) setPolicySection(document.querySelector('.policy-tab.is-active')?.dataset.policyTab || 'shipping');
         select('.product-card').forEach(card => {
           const ui = productUi[card.dataset.product];
@@ -1150,7 +1216,10 @@
           card.querySelector('.product-meta span:first-child').textContent = t(ui.meta[0]);
           card.querySelector('.product-meta span:last-child').textContent = t(ui.meta[1]);
           card.querySelector('.size-row').setAttribute('aria-label', t('product.sizeAria'));
+          card.querySelector('.product-price').textContent = money(Number(card.dataset.price));
           card.querySelector('[data-details]').textContent = t('product.details');
+          card.querySelector('[data-details]').setAttribute('aria-label', `${t('product.details')}: ${card.dataset.product}`);
+          card.querySelector('[data-add]').setAttribute('aria-label', `${t('product.add')}: ${card.dataset.product}`);
           card.querySelector('[data-add]').textContent = t('product.add');
         });
         applyCatalogFilter(state.catalog.category, state.catalog.collection);
@@ -1239,13 +1308,33 @@
         state.catalog.category = 'all';
         state.catalog.wishlistOnly = false;
         applyCatalogFilter();
-        document.querySelector('#shop')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      });
+      const showSearchResults = () => {
+        setSearchOpen(false);
+        requestAnimationFrame(() => {
+          shopTitle.tabIndex = -1;
+          shopTitle.focus({ preventScroll: true });
+          document.querySelector('#shop').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
+        });
+      };
+      document.querySelector('[data-search-results]').addEventListener('click', showSearchResults);
+      searchInput.addEventListener('keydown', event => {
+        if (event.key === 'Enter') { event.preventDefault(); showSearchResults(); }
+      });
+      document.querySelector('[data-reset-catalog]').addEventListener('click', () => {
+        state.catalog.wishlistOnly = false;
+        state.catalog.search = '';
+        searchInput.value = '';
+        applyCatalogFilter('all', null);
+        shopTitle.tabIndex = -1;
+        shopTitle.focus();
       });
       select('[data-search-term]').forEach(button => button.addEventListener('click', () => {
         if (!searchInput) return;
         searchInput.value = button.dataset.searchTerm;
         searchInput.dispatchEvent(new Event('input', { bubbles: true }));
-        setSearchOpen(false);
+        showSearchResults();
       }));
       select('[data-cart-open]').forEach(button => button.addEventListener('click', () => setCartOpen(true)));
       select('[data-cart-close]').forEach(button => button.addEventListener('click', () => setCartOpen(false)));
@@ -1268,6 +1357,16 @@
       select('[data-policy-open]').forEach(link => link.addEventListener('click', event => { event.preventDefault(); setPolicyOpen(true, link.dataset.policyOpen); }));
       select('[data-policy-close]').forEach(button => button.addEventListener('click', () => setPolicyOpen(false)));
       select('[data-policy-tab]').forEach(button => button.addEventListener('click', () => setPolicySection(button.dataset.policyTab)));
+      document.querySelector('.policy-tabs').addEventListener('keydown', event => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        const tabs = select('[data-policy-tab]');
+        const current = tabs.indexOf(event.target);
+        if (current < 0) return;
+        event.preventDefault();
+        const index = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (current + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+        setPolicySection(tabs[index].dataset.policyTab);
+        tabs[index].focus();
+      });
       select('[data-modal-size]').forEach(button => button.addEventListener('click', () => {
         select('[data-modal-size]').forEach(item => { item.classList.toggle('is-selected', item === button); item.setAttribute('aria-pressed', String(item === button)); });
       }));
