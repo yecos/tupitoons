@@ -408,7 +408,7 @@
             <article class="service-card"><strong>Fit first</strong><p>Size guide, relaxed silhouettes and product notes before checkout.</p><a class="service-link" href="#size-guide" data-size-guide-open>Open size guide ↗</a></article>
             <article class="service-card"><strong>Made for nights</strong><p>Comfort, fabric and care information without the technical fog.</p></article>
             <article class="service-card"><strong>Easy exchange</strong><p>Clear changes, returns and delivery details in one place.</p></article>
-            <article class="service-card"><strong>Talk to a human</strong><p>WhatsApp support for the last question before you make it yours.</p></article>
+            <article class="service-card"><strong>Talk to a human</strong><p>WhatsApp support for the last question before you make it yours.</p><a class="service-link" href="https://wa.me/573012438980?text=Hola%20Tupitoons%2C%20tengo%20una%20pregunta%20sobre%20la%20tienda." target="_blank" rel="noopener noreferrer">Write on WhatsApp ↗</a></article>
           </div>
         </section>
       </main>
@@ -417,7 +417,7 @@
         <div class="store-footer-grid">
           <div><h3>Stay soft.<br>Move loud.</h3><p>Tupitoons is urban sleepwear with cartoon energy and a street-level point of view.</p></div>
           <div><h3>Get the drop</h3><p>New prints, limited releases and things worth staying up for.</p><form class="newsletter-form" data-newsletter><input type="email" placeholder="Your email" aria-label="Your email" required><button type="submit">Join</button></form><p class="newsletter-status" data-newsletter-status aria-live="polite"></p></div>
-          <div class="store-footer-links"><h3>Explore</h3><a href="#shop">Shop the drop</a><a href="#collections">Collections</a><a href="#prints">Print library</a><a href="#story">The world</a><a href="#top">Back to top ↑</a></div>
+          <div class="store-footer-links"><h3>Explore</h3><a href="#shop">Shop the drop</a><a href="#collections">Collections</a><a href="#prints">Print library</a><a href="#story">The world</a><a href="https://wa.me/573012438980?text=Hola%20Tupitoons%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20la%20marca." target="_blank" rel="noopener noreferrer">WhatsApp support ↗</a><a href="#top">Back to top ↑</a></div>
         </div>
         <div class="store-footer-note"><span>Tupitoons / Store prototype / Drop 01</span><span>Built for comfort with intent</span></div>
       </footer>
@@ -442,7 +442,7 @@
         <h3>Request received.</h3>
         <p>Your order request is saved on this device. Keep the reference handy while we connect the final delivery and payment details.</p>
         <span class="checkout-reference" data-checkout-reference>TUPI-000000</span>
-        <div class="checkout-success-actions"><button class="checkout-secondary" type="button" data-copy-order>Copy order summary</button><button class="checkout-secondary" type="button" data-checkout-close>Continue shopping</button></div>
+        <div class="checkout-success-actions"><button class="checkout-secondary" type="button" data-copy-order>Copy order summary</button><button class="checkout-secondary" type="button" data-whatsapp-order>Send on WhatsApp</button><button class="checkout-secondary" type="button" data-checkout-close>Continue shopping</button></div>
         <p class="checkout-copy-status" data-copy-status aria-live="polite"></p>
       </div>
       <div class="checkout-layout" data-checkout-layout>
@@ -504,6 +504,7 @@
   <script>
     (() => {
       const money = value => `COP ${new Intl.NumberFormat('es-CO').format(value)}`;
+      const whatsappNumber = '573012438980';
       const storageKey = 'tupitoons-bag-v1';
       const orderStorageKey = 'tupitoons-orders-v1';
       const readStoredCart = () => { try { return JSON.parse(localStorage.getItem(storageKey) || '[]'); } catch { return []; } };
@@ -737,6 +738,10 @@
         if (!lastOrderText) return;
         try { await navigator.clipboard.writeText(lastOrderText); copyStatus.textContent = 'Order summary copied.'; }
         catch { copyStatus.textContent = 'Copy is not available here. Use the reference above.'; }
+      });
+      document.querySelector('[data-whatsapp-order]')?.addEventListener('click', () => {
+        if (!lastOrderText) return;
+        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(lastOrderText)}`, '_blank', 'noopener,noreferrer');
       });
       document.addEventListener('keydown', event => { if (event.key === 'Escape') { setCheckoutOpen(false); setSizeGuideOpen(false); setModalOpen(false); setCartOpen(false); } });
       renderCart();

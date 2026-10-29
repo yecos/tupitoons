@@ -13,6 +13,7 @@ The first static storefront includes:
 - Size guide modal with the supplied centimeter references for tops and bottoms.
 - Local shopping bag with subtotal, quantity controls, removal and persistence.
 - Checkout request flow with customer details, order reference, local history and copyable order summary.
+- WhatsApp support and order handoff prepared for +57 301 243 8980.
 - Free-shipping progress toward the prototype COP 250,000 threshold.
 - Collection cards that filter the catalog and update its editorial context.
 - Popcorn Sky Wide Leg campaign reference added as TUPI-007.
