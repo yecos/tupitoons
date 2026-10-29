@@ -1,12 +1,27 @@
 <!doctype html>
-<html lang="en" data-mak-report="document" data-mak-theme="custom">
+<html lang="es" data-mak-report="document" data-mak-theme="custom">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Tupitoons — urban sleepwear with cartoon energy and a street-level point of view.">
+  <meta name="description" content="Tupitoons — pijamas urbanas con energía de cartoon, comodidad premium y actitud de calle.">
+  <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#101015">
+  <link rel="canonical" href="https://tupitoons.vercel.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tupitoons">
+  <meta property="og:title" content="Tupitoons — Pijamas urbanas">
+  <meta property="og:description" content="Pijamas urbanas con estampados de cartoon, siluetas relajadas y actitud de calle.">
+  <meta property="og:url" content="https://tupitoons.vercel.app/">
+  <meta property="og:image" content="https://tupitoons.vercel.app/assets/tupitoons-mark.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tupitoons — Pijamas urbanas">
+  <meta name="twitter:description" content="Pijamas urbanas con estampados de cartoon, siluetas relajadas y actitud de calle.">
+  <meta name="twitter:image" content="https://tupitoons.vercel.app/assets/tupitoons-mark.png">
   <link rel="icon" href="assets/tupitoons-logo-glossy.png" type="image/png">
-  <title>Tupitoons — Urban sleepwear</title>
+  <title>Tupitoons — Pijamas urbanas</title>
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"ClothingStore","name":"Tupitoons","url":"https://tupitoons.vercel.app/","description":"Pijamas urbanas con energía de cartoon, comodidad premium y actitud de calle.","telephone":"+57 301 243 8980","image":"https://tupitoons.vercel.app/assets/tupitoons-mark.png","priceRange":"COP"}
+  </script>
   <style>
     :root {
       --store-ink: #101015;
@@ -307,6 +322,25 @@
     .size-guide-note { margin: 18px 0 0; padding: 14px 16px; border-left: 4px solid var(--store-coral); background: #1010150b; color: #4e4753; font-size: 13px; line-height: 1.45; }
     .search-empty { margin: 18px 0 0; padding: 26px; border: 1px dashed var(--store-line); color: var(--store-muted); font-size: 15px; line-height: 1.45; }
     .search-empty[hidden] { display: none; }
+    .policy-modal { position: fixed; z-index: 32; inset: 0; display: none; place-items: center; padding: 24px; }
+    .policy-modal.is-open { display: grid; }
+    .policy-backdrop { position: absolute; inset: 0; background: #000000b8; backdrop-filter: blur(8px); }
+    .policy-panel { position: relative; z-index: 1; width: min(920px, 100%); max-height: min(760px, calc(100vh - 48px)); overflow: auto; padding: clamp(24px, 4vw, 48px); border: 1px solid #ffffff30; background: var(--store-paper); color: var(--store-ink); box-shadow: 20px 20px 0 var(--store-blue); }
+    .policy-head { display: flex; justify-content: space-between; align-items: start; gap: 24px; }
+    .policy-head small { display: block; margin-bottom: 12px; color: #69616d; font: 800 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .13em; text-transform: uppercase; }
+    .policy-head h2 { margin: 0; font: 900 clamp(46px, 7vw, 84px)/.82 Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Black", sans-serif; letter-spacing: -.045em; text-transform: uppercase; }
+    .policy-close { width: 34px; height: 34px; flex: 0 0 auto; border: 1px solid #10101526; border-radius: 50%; background: transparent; color: var(--store-ink); font-size: 22px; line-height: 1; }
+    .policy-close:hover { border-color: var(--store-coral); color: var(--store-coral); }
+    .policy-tabs { display: flex; flex-wrap: wrap; gap: 7px; margin: 28px 0 22px; padding-bottom: 16px; border-bottom: 1px solid #1010151f; }
+    .policy-tab { padding: 10px 13px; border: 1px solid #10101526; background: transparent; color: #69616d; font: 800 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .policy-tab.is-active, .policy-tab:hover { border-color: var(--store-ink); background: var(--store-ink); color: var(--store-paper); }
+    .policy-content { max-width: 720px; color: #4e4753; font-size: 15px; line-height: 1.55; }
+    .policy-content article[hidden] { display: none; }
+    .policy-content h3 { margin: 0 0 12px; color: var(--store-ink); font: 900 30px/.9 Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Black", sans-serif; text-transform: uppercase; }
+    .policy-content p { margin: 0 0 14px; }
+    .policy-content ul { margin: 0 0 18px; padding-left: 20px; }
+    .policy-content li + li { margin-top: 7px; }
+    .policy-note { margin-top: 22px; padding: 14px 16px; border-left: 4px solid var(--store-blue); background: #1010150b; font-size: 13px; }
     .saved-count { display: inline-grid; place-items: center; min-width: 17px; height: 17px; margin-left: 4px; border-radius: 99px; background: var(--store-pink); color: var(--store-ink); font-size: 9px; }
     [data-reveal] { opacity: 0; transform: translate3d(0, 28px, 0); transition: opacity .75s ease var(--reveal-delay, 0ms), transform .75s cubic-bezier(.2,.8,.2,1) var(--reveal-delay, 0ms); }
     [data-reveal].is-visible { opacity: 1; transform: translate3d(0, 0, 0); }
@@ -394,6 +428,10 @@
       .checkout-summary { order: -1; }
       .search-modal { padding: 24px 12px; }
       .search-panel { box-shadow: 10px 10px 0 var(--store-lime); }
+      .policy-modal { padding: 12px; }
+      .policy-panel { max-height: calc(100vh - 24px); box-shadow: 10px 10px 0 var(--store-blue); }
+      .policy-head { gap: 12px; }
+      .policy-tabs { gap: 5px; }
     }
     @media (max-width: 480px) {
       .store-product-grid, .store-collection-grid { grid-template-columns: 1fr; }
@@ -536,7 +574,7 @@
           <div class="store-service-grid">
             <article class="service-card"><strong data-i18n="service.fit.title">Fit first</strong><p data-i18n="service.fit.copy">Size guide, relaxed silhouettes and product notes before checkout.</p><a class="service-link" href="#size-guide" data-size-guide-open data-i18n="service.fit.link">Open size guide ↗</a></article>
             <article class="service-card"><strong data-i18n="service.nights.title">Made for nights</strong><p data-i18n="service.nights.copy">Comfort, fabric and care information without the technical fog.</p></article>
-            <article class="service-card"><strong data-i18n="service.exchange.title">Easy exchange</strong><p data-i18n="service.exchange.copy">Clear changes, returns and delivery details in one place.</p></article>
+            <article class="service-card"><strong data-i18n="service.exchange.title">Easy exchange</strong><p data-i18n="service.exchange.copy">Clear changes, returns and delivery details in one place.</p><a class="service-link" href="#returns" data-policy-open="returns" data-i18n="service.exchange.link">View store policy ↗</a></article>
             <article class="service-card"><strong data-i18n="service.human.title">Talk to a human</strong><p data-i18n="service.human.copy">WhatsApp support for the last question before you make it yours.</p><a class="service-link" href="https://wa.me/573012438980?text=Hola%20Tupitoons%2C%20tengo%20una%20pregunta%20sobre%20la%20tienda." target="_blank" rel="noopener noreferrer" data-i18n="service.human.link">Write on WhatsApp ↗</a></article>
           </div>
         </section>
@@ -546,7 +584,7 @@
         <div class="store-footer-grid">
           <div><h3 data-i18n-html="footer.brand">Stay soft.<br>Move loud.</h3><p data-i18n="footer.brand.copy">Tupitoons is urban sleepwear with cartoon energy and a street-level point of view.</p></div>
           <div><h3 data-i18n="footer.news.title">Get the drop</h3><p data-i18n="footer.news.copy">New prints, limited releases and things worth staying up for.</p><form class="newsletter-form" data-newsletter><input type="email" placeholder="Your email" aria-label="Your email" data-i18n-placeholder="footer.news.placeholder" data-i18n-aria="footer.news.placeholder" required><button type="submit" data-i18n="footer.news.button">Join</button></form><p class="newsletter-status" data-newsletter-status aria-live="polite"></p></div>
-          <div class="store-footer-links"><h3 data-i18n="footer.explore">Explore</h3><a href="#shop" data-i18n="footer.shop">Shop the drop</a><a href="#collections" data-i18n="footer.collections">Collections</a><a href="#prints" data-i18n="footer.prints">Print library</a><a href="#story" data-i18n="footer.world">The world</a><a href="https://wa.me/573012438980?text=Hola%20Tupitoons%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20la%20marca." target="_blank" rel="noopener noreferrer" data-i18n="footer.whatsapp">WhatsApp support ↗</a><a href="#top" data-i18n="footer.top">Back to top ↑</a></div>
+          <div class="store-footer-links"><h3 data-i18n="footer.explore">Explore</h3><a href="#shop" data-i18n="footer.shop">Shop the drop</a><a href="#collections" data-i18n="footer.collections">Collections</a><a href="#prints" data-i18n="footer.prints">Print library</a><a href="#story" data-i18n="footer.world">The world</a><a href="#shipping" data-policy-open="shipping" data-i18n="footer.shipping">Shipping</a><a href="#returns" data-policy-open="returns" data-i18n="footer.returns">Changes & returns</a><a href="#privacy" data-policy-open="privacy" data-i18n="footer.privacy">Privacy</a><a href="#terms" data-policy-open="terms" data-i18n="footer.terms">Terms</a><a href="https://wa.me/573012438980?text=Hola%20Tupitoons%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20la%20marca." target="_blank" rel="noopener noreferrer" data-i18n="footer.whatsapp">WhatsApp support ↗</a><a href="#top" data-i18n="footer.top">Back to top ↑</a></div>
         </div>
         <div class="store-footer-note"><span data-i18n="footer.note">Tupitoons / Store prototype / Drop 01</span><span data-i18n="footer.tagline">Built for comfort with intent</span></div>
       </footer>
@@ -646,6 +684,40 @@
     </div>
   </section>
 
+  <section class="policy-modal" data-policy-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="policy-title">
+    <div class="policy-backdrop" data-policy-close></div>
+    <div class="policy-panel">
+      <div class="policy-head"><div><small data-i18n="policy.kicker">Tupitoons / compra consciente / Drop 01</small><h2 id="policy-title" data-policy-title>Envíos</h2></div><button class="policy-close" type="button" aria-label="Cerrar políticas" data-policy-close data-i18n-aria="policy.close">×</button></div>
+      <div class="policy-tabs" role="tablist" aria-label="Store policies" data-i18n-aria="policy.tabs"><button class="policy-tab is-active" type="button" role="tab" aria-selected="true" data-policy-tab="shipping" data-i18n="policy.shipping.tab">Envíos</button><button class="policy-tab" type="button" role="tab" aria-selected="false" data-policy-tab="returns" data-i18n="policy.returns.tab">Cambios</button><button class="policy-tab" type="button" role="tab" aria-selected="false" data-policy-tab="privacy" data-i18n="policy.privacy.tab">Privacidad</button><button class="policy-tab" type="button" role="tab" aria-selected="false" data-policy-tab="terms" data-i18n="policy.terms.tab">Términos</button></div>
+      <div class="policy-content">
+        <article data-policy-panel="shipping">
+          <h3 data-i18n="policy.shipping.title">Envíos claros</h3>
+          <p data-i18n="policy.shipping.copy">Preparamos cada pedido después de confirmar stock, talla, ciudad y medio de pago. Queremos que la experiencia se sienta tan cuidada como la prenda.</p>
+          <ul><li data-i18n="policy.shipping.item1">Envío gratis desde COP 250.000.</li><li data-i18n="policy.shipping.item2">La tarifa y el tiempo estimado se confirman antes del despacho.</li><li data-i18n="policy.shipping.item3">Recibirás la referencia del pedido y el seguimiento por WhatsApp o correo.</li></ul>
+          <p class="policy-note" data-i18n="policy.shipping.note">La cobertura, transportadora y tarifa final dependen de la ciudad de entrega y se confirman con el equipo.</p>
+        </article>
+        <article data-policy-panel="returns" hidden>
+          <h3 data-i18n="policy.returns.title">Cambios sin drama</h3>
+          <p data-i18n="policy.returns.copy">Si la talla no funciona, escríbenos antes de usar o lavar la prenda para revisar disponibilidad y coordinar el cambio.</p>
+          <ul><li data-i18n="policy.returns.item1">Las prendas deben conservar etiquetas y estar sin uso.</li><li data-i18n="policy.returns.item2">Los cambios dependen de inventario disponible.</li><li data-i18n="policy.returns.item3">Los costos de transporte se confirman según el caso y la ciudad.</li></ul>
+          <p class="policy-note" data-i18n="policy.returns.note">Antes de publicar la tienda transaccional, esta guía se convertirá en una política jurídica completa con plazos y procedimiento definitivo.</p>
+        </article>
+        <article data-policy-panel="privacy" hidden>
+          <h3 data-i18n="policy.privacy.title">Tu información importa</h3>
+          <p data-i18n="policy.privacy.copy">Usamos los datos que compartes para preparar tu solicitud, responderte y coordinar entrega o pago. No vendemos tu información.</p>
+          <ul><li data-i18n="policy.privacy.item1">La solicitud se guarda localmente durante esta fase de prototipo.</li><li data-i18n="policy.privacy.item2">WhatsApp y los proveedores de pago aplican sus propias políticas.</li><li data-i18n="policy.privacy.item3">Puedes pedir corrección o eliminación escribiendo al equipo.</li></ul>
+          <p class="policy-note" data-i18n="policy.privacy.note">La política final se actualizará cuando conectemos la base de datos, analítica y pasarela de pagos.</p>
+        </article>
+        <article data-policy-panel="terms" hidden>
+          <h3 data-i18n="policy.terms.title">Términos de compra</h3>
+          <p data-i18n="policy.terms.copy">Los precios, tallas y disponibilidad mostrados pertenecen al Drop 01 y deben confirmarse antes de finalizar el pedido.</p>
+          <ul><li data-i18n="policy.terms.item1">Una solicitud no representa un cobro automático.</li><li data-i18n="policy.terms.item2">El pedido se confirma cuando el equipo valida stock, entrega y pago.</li><li data-i18n="policy.terms.item3">Al enviar tus datos confirmas que la información es correcta.</li></ul>
+          <p class="policy-note" data-i18n="policy.terms.note">Esta versión es una base comercial informativa; los términos definitivos se publicarán antes de activar pagos en línea.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <script>
     (() => {
       const languageStorageKey = 'tupitoons-language-v1';
@@ -663,8 +735,8 @@
           "hero.kicker": "Pijamas urbanas / drop 01", "hero.title": "De la cama<br>al <em>barrio.</em>", "hero.lede": "Pijamas con energía de cartoon, comodidad premium y actitud suficiente para salir del dormitorio.", "hero.shop": "Ver el drop", "hero.world": "Entrar al universo", "hero.sticker": "Poder<br>suave<br>siempre", "hero.code": "TUPI / 01 — PRODUCTO HERO",
           "shop.filters": "Filtros de producto", "filter.all": "Todas las piezas", "filter.wide": "Pantalón amplio", "filter.sets": "Sets", "filter.shorts": "Shorts", "filter.saved": "Guardados", "collections.title": "Elige tu universo", "collections.copy": "Una marca. Diferentes personajes nocturnos. Encuentra el estampado que va contigo.", "collection.loud": "01 / Intenso", "collection.soft": "02 / Suave", "collection.local": "03 / Local", "collection.easy": "04 / Fácil",
           "story.kicker": "Tupitoons / el universo", "story.title": "Duerme en tu propio carril.", "story.copy": "La comodidad no es un detalle. Es el uniforme para las ideas de madrugada, las mañanas lentas y la decisión pequeña de presentarte como eres.", "prints.title": "Biblioteca de estampados", "prints.copy": "La textura es el producto. Explora las señales que forman el Drop 01.", "print.blue": "Exceso azul", "print.red": "Cómic rojo", "print.egg": "Huevo frito", "print.bottle": "Etiqueta de botella", "print.pink": "Cast rosa",
-          "service.title": "Utilidad suave", "service.copy": "Todo lo que hace que una buena tienda sea fácil, clara y un lugar al que quieras volver.", "service.fit.title": "Primero el fit", "service.fit.copy": "Guía de tallas, siluetas relajadas y notas de producto antes de pagar.", "service.fit.link": "Abrir guía de tallas ↗", "service.nights.title": "Hecho para la noche", "service.nights.copy": "Comodidad, tela y cuidado sin la niebla técnica.", "service.exchange.title": "Cambio fácil", "service.exchange.copy": "Cambios, devoluciones y entregas claras en un solo lugar.", "service.human.title": "Habla con alguien", "service.human.copy": "Soporte por WhatsApp para la última pregunta antes de hacerlo tuyo.", "service.human.link": "Escribir por WhatsApp ↗",
-          "footer.brand": "Suave por dentro.<br>Fuerte por fuera.", "footer.brand.copy": "Tupitoons es pijama urbana con energía de cartoon y una mirada de calle.", "footer.news.title": "Recibe el drop", "footer.news.copy": "Nuevos estampados, lanzamientos limitados y cosas por las que vale la pena desvelarse.", "footer.news.placeholder": "Tu correo", "footer.news.button": "Unirme", "footer.explore": "Explora", "footer.shop": "Ver el drop", "footer.collections": "Colecciones", "footer.prints": "Biblioteca de estampados", "footer.world": "El universo", "footer.whatsapp": "Soporte por WhatsApp ↗", "footer.top": "Volver arriba ↑", "footer.note": "Tupitoons / Prototipo de tienda / Drop 01", "footer.tagline": "Creado para la comodidad con intención", "prototype.note": "Prototipo / precios por confirmar",
+          "service.title": "Utilidad suave", "service.copy": "Todo lo que hace que una buena tienda sea fácil, clara y un lugar al que quieras volver.", "service.fit.title": "Primero el fit", "service.fit.copy": "Guía de tallas, siluetas relajadas y notas de producto antes de pagar.", "service.fit.link": "Abrir guía de tallas ↗", "service.nights.title": "Hecho para la noche", "service.nights.copy": "Comodidad, tela y cuidado sin la niebla técnica.", "service.exchange.title": "Cambio fácil", "service.exchange.copy": "Cambios, devoluciones y entregas claras en un solo lugar.", "service.exchange.link": "Ver política de tienda ↗", "service.human.title": "Habla con alguien", "service.human.copy": "Soporte por WhatsApp para la última pregunta antes de hacerlo tuyo.", "service.human.link": "Escribir por WhatsApp ↗",
+          "footer.brand": "Suave por dentro.<br>Fuerte por fuera.", "footer.brand.copy": "Tupitoons es pijama urbana con energía de cartoon y una mirada de calle.", "footer.news.title": "Recibe el drop", "footer.news.copy": "Nuevos estampados, lanzamientos limitados y cosas por las que vale la pena desvelarse.", "footer.news.placeholder": "Tu correo", "footer.news.button": "Unirme", "footer.explore": "Explora", "footer.shop": "Ver el drop", "footer.collections": "Colecciones", "footer.prints": "Biblioteca de estampados", "footer.world": "El universo", "footer.shipping": "Envíos", "footer.returns": "Cambios y devoluciones", "footer.privacy": "Privacidad", "footer.terms": "Términos", "footer.whatsapp": "Soporte por WhatsApp ↗", "footer.top": "Volver arriba ↑", "footer.note": "Tupitoons / Prototipo de tienda / Drop 01", "footer.tagline": "Creado para la comodidad con intención", "prototype.note": "Prototipo / precios por confirmar",
           "cart.label": "Bolsa de compras", "cart.close": "Cerrar bolsa", "cart.title": "Tu bolsa", "cart.empty": "Tu bolsa está vacía.<br>Elige un estampado y hazlo tuyo.", "cart.shipping": "Agrega {amount} para desbloquear el envío gratis.", "cart.freeShipping": "Envío gratis desbloqueado.", "cart.subtotal": "Subtotal", "cart.checkout": "Continuar al pago", "cart.size": "Talla", "cart.qty": "Cantidad", "cart.decrease": "Disminuir cantidad", "cart.increase": "Aumentar cantidad", "cart.remove": "Eliminar {name}",
           "modal.close": "Cerrar detalles del producto", "modal.size": "Elige tu talla", "modal.guide": "¿No estás seguro? Abre la guía de tallas ↗", "modal.add": "Añadir talla seleccionada a la bolsa", "modal.wishlistSave": "Guardar en favoritos", "modal.wishlistSaved": "Guardado en favoritos", "modal.viewImage": "Ver imagen",
           "size.kicker": "Tupitoons / guía de talla / centímetros", "size.close": "Cerrar guía de tallas", "size.title": "Encuentra tu talla.", "size.intro": "Mide una prenda que ya te quede bien y compárala con nuestro sistema de fit Tupitoons. Estas referencias están pensadas para siluetas relajadas, movimiento diario y un poco más de espacio.", "size.compare.title": "Compara. Elige. Muévete.", "size.compare.copy": "Extiende tu prenda favorita, toma las mismas medidas y elige la fila más cercana. Si estás entre dos tallas, sube una para un fit urbano más relajado.", "size.unit": "Todas las medidas en cm", "size.legend.title": "Referencia de medición", "size.legend.a": "Cintura / ancho", "size.legend.b": "Cadera / pecho", "size.legend.c": "Tiro / cuerpo", "size.legend.d": "Largo", "size.table.size": "Talla", "size.pants.title": "Pantalón amplio unisex", "size.pants.copy": "La silueta Tupitoons de todos los días: amplia, relajada y hecha para moverse de la cama al barrio.", "size.pants.aria": "Medidas del pantalón unisex", "size.pants.note": "Pretina elástica · fit relajado · las medidas pueden variar ±0,5 cm.", "size.bermuda.title": "Pantaloneta de hombre", "size.bermuda.copy": "Una silueta corta y fácil con la misma actitud urbana y suave.", "size.bermuda.aria": "Medidas de la pantaloneta de hombre", "size.bermuda.note": "Pretina elástica · medida frontal · referencia aproximada.", "size.shorts.title": "Short lounge de mujer", "size.shorts.copy": "Para noches cálidas, mañanas lentas y días en los que te niegas a vestirte aburrido.", "size.shorts.aria": "Medidas del short lounge de mujer", "size.shorts.note": "Pretina elástica · pierna relajada · referencia aproximada.", "size.womenTop.title": "Camiseta de mujer", "size.womenTop.copy": "Una base ajustada para equilibrar el volumen de tus pantalones Tupitoons favoritos.", "size.womenTop.aria": "Medidas de la camiseta de mujer", "size.womenTop.note": "Jersey de algodón suave · silueta ajustada · referencia aproximada.", "size.menTop.title": "Camiseta de hombre", "size.menTop.copy": "Una camiseta relajada para llevar debajo de los estampados intensos y las siluetas amplias.", "size.menTop.aria": "Medidas de la camiseta de hombre", "size.menTop.note": "Jersey de algodón suave · silueta relajada · referencia aproximada.", "size.note.title": "Verificación de producción:", "size.note.copy": "Estas son las referencias actuales de producción y deben confirmarse con la muestra final antes de publicar el catálogo.",
@@ -686,6 +758,12 @@
           "newsletter.success": "You are on the list for Drop 01.", "product.details": "View details", "product.add": "Add to bag", "product.sizeAria": "Select size", "product.short": "Shorts", "product.wide": "Wide leg", "product.set": "Set", "product.new": "New drop", "product.shortCut": "Short cut", "product.graphic": "Graphic hit", "product.soft": "Soft signal", "product.everyday": "Everyday", "product.street": "Street proof", "product.print": "New print", "product.silhouette": "New silhouette", "product.newTag": "New", "product.cartoon": "Cartoon Club", "product.afterhours": "Afterhours", "product.pinkSignal": "Pink Signal", "product.softUtility": "Soft Utility", "product.streetSleep": "Street Sleep", "product.comic": "Comic Club", "collection.featured": "Featured drop", "collection.description": "Limited visual stories for late nights, slow mornings and everything in between.", "order.request": "Tupitoons order request", "order.size": "size", "order.total": "Total", "order.name": "Name", "order.email": "Email", "order.phone": "Phone", "order.city": "City", "order.delivery": "Delivery", "order.payment": "Payment", "order.address": "Address", "order.note": "Note", "copy.success": "Order summary copied.", "copy.unavailable": "Copy is not available here. Use the reference above."
         }
       };
+      Object.assign(translations.es, {
+        "policy.kicker": "Tupitoons / compra consciente / Drop 01", "policy.close": "Cerrar políticas", "policy.tabs": "Políticas de la tienda", "policy.shipping.tab": "Envíos", "policy.returns.tab": "Cambios", "policy.privacy.tab": "Privacidad", "policy.terms.tab": "Términos", "policy.shipping.title": "Envíos claros", "policy.shipping.copy": "Preparamos cada pedido después de confirmar stock, talla, ciudad y medio de pago. Queremos que la experiencia se sienta tan cuidada como la prenda.", "policy.shipping.item1": "Envío gratis desde COP 250.000.", "policy.shipping.item2": "La tarifa y el tiempo estimado se confirman antes del despacho.", "policy.shipping.item3": "Recibirás la referencia del pedido y el seguimiento por WhatsApp o correo.", "policy.shipping.note": "La cobertura, transportadora y tarifa final dependen de la ciudad de entrega y se confirman con el equipo.", "policy.returns.title": "Cambios sin drama", "policy.returns.copy": "Si la talla no funciona, escríbenos antes de usar o lavar la prenda para revisar disponibilidad y coordinar el cambio.", "policy.returns.item1": "Las prendas deben conservar etiquetas y estar sin uso.", "policy.returns.item2": "Los cambios dependen de inventario disponible.", "policy.returns.item3": "Los costos de transporte se confirman según el caso y la ciudad.", "policy.returns.note": "Antes de publicar la tienda transaccional, esta guía se convertirá en una política jurídica completa con plazos y procedimiento definitivo.", "policy.privacy.title": "Tu información importa", "policy.privacy.copy": "Usamos los datos que compartes para preparar tu solicitud, responderte y coordinar entrega o pago. No vendemos tu información.", "policy.privacy.item1": "La solicitud se guarda localmente durante esta fase de prototipo.", "policy.privacy.item2": "WhatsApp y los proveedores de pago aplican sus propias políticas.", "policy.privacy.item3": "Puedes pedir corrección o eliminación escribiendo al equipo.", "policy.privacy.note": "La política final se actualizará cuando conectemos la base de datos, analítica y pasarela de pagos.", "policy.terms.title": "Términos de compra", "policy.terms.copy": "Los precios, tallas y disponibilidad mostrados pertenecen al Drop 01 y deben confirmarse antes de finalizar el pedido.", "policy.terms.item1": "Una solicitud no representa un cobro automático.", "policy.terms.item2": "El pedido se confirma cuando el equipo valida stock, entrega y pago.", "policy.terms.item3": "Al enviar tus datos confirmas que la información es correcta.", "policy.terms.note": "Esta versión es una base comercial informativa; los términos definitivos se publicarán antes de activar pagos en línea."
+      });
+      Object.assign(translations.en, {
+        "policy.kicker": "Tupitoons / conscious shopping / Drop 01", "policy.close": "Close policies", "policy.tabs": "Store policies", "policy.shipping.tab": "Shipping", "policy.returns.tab": "Returns", "policy.privacy.tab": "Privacy", "policy.terms.tab": "Terms", "policy.shipping.title": "Clear shipping", "policy.shipping.copy": "We prepare every order after confirming stock, size, city and payment preference. The experience should feel as considered as the garment.", "policy.shipping.item1": "Free shipping from COP 250,000.", "policy.shipping.item2": "The final rate and estimated timing are confirmed before dispatch.", "policy.shipping.item3": "You receive the order reference and tracking through WhatsApp or email.", "policy.shipping.note": "Coverage, carrier and final rate depend on the delivery city and are confirmed with the team.", "policy.returns.title": "Easy exchanges", "policy.returns.copy": "If the size does not work, write to us before wearing or washing the garment so we can review stock and coordinate the exchange.", "policy.returns.item1": "Garments must keep their tags and be unworn.", "policy.returns.item2": "Exchanges depend on available inventory.", "policy.returns.item3": "Transport costs are confirmed according to the case and city.", "policy.returns.note": "Before the transactional store goes live, this guide will become a complete legal policy with final deadlines and process.", "policy.privacy.title": "Your information matters", "policy.privacy.copy": "We use the details you share to prepare your request, reply to you and coordinate delivery or payment. We do not sell your information.", "policy.privacy.item1": "The request is stored locally during this prototype phase.", "policy.privacy.item2": "WhatsApp and payment providers have their own policies.", "policy.privacy.item3": "You can request correction or deletion by writing to the team.", "policy.privacy.note": "The final policy will be updated when we connect the database, analytics and payment gateway.", "policy.terms.title": "Purchase terms", "policy.terms.copy": "The prices, sizes and availability shown belong to Drop 01 and must be confirmed before the order is finalized.", "policy.terms.item1": "A request does not create an automatic charge.", "policy.terms.item2": "The order is confirmed when the team validates stock, delivery and payment.", "policy.terms.item3": "By submitting your details, you confirm the information is correct.", "policy.terms.note": "This version is an informative commercial base; final terms will be published before online payments are activated."
+      });
       const t = (key, vars = {}) => Object.entries(vars).reduce((text, [name, value]) => text.replace(`{${name}}`, value), translations[state.language][key] || translations.en[key] || key);
       const money = value => `COP ${new Intl.NumberFormat(state.language === 'es' ? 'es-CO' : 'en-US').format(value)}`;
       const whatsappNumber = '573012438980';
@@ -715,6 +793,8 @@
       const modalMaterial = document.querySelector('[data-modal-material]');
       const modalCare = document.querySelector('[data-modal-care]');
       const sizeGuideModal = document.querySelector('[data-size-guide-modal]');
+      const policyModal = document.querySelector('[data-policy-modal]');
+      const policyTitle = document.querySelector('[data-policy-title]');
       const shippingMessage = document.querySelector('[data-shipping-message]');
       const shippingPercent = document.querySelector('[data-shipping-percent]');
       const shippingBar = document.querySelector('[data-shipping-bar]');
@@ -880,6 +960,20 @@
         sizeGuideModal.setAttribute('aria-hidden', String(!open));
         document.body.style.overflow = open ? 'hidden' : '';
       };
+      const setPolicySection = section => {
+        const tab = document.querySelector(`[data-policy-tab="${section}"]`);
+        const panel = document.querySelector(`[data-policy-panel="${section}"]`);
+        if (!tab || !panel) return;
+        select('[data-policy-tab]').forEach(item => { const active = item === tab; item.classList.toggle('is-active', active); item.setAttribute('aria-selected', String(active)); });
+        select('[data-policy-panel]').forEach(item => { item.hidden = item !== panel; });
+        policyTitle.textContent = tab.textContent;
+      };
+      const setPolicyOpen = (open, section = 'shipping') => {
+        if (open) { setModalOpen(false); setCartOpen(false); setSizeGuideOpen(false); setPolicySection(section); }
+        policyModal.classList.toggle('is-open', open);
+        policyModal.setAttribute('aria-hidden', String(!open));
+        document.body.style.overflow = open ? 'hidden' : '';
+      };
       const setCheckoutOpen = open => {
         if (open) { setModalOpen(false); setCartOpen(false); setSizeGuideOpen(false); renderCheckoutSummary(); }
         checkoutModal.classList.toggle('is-open', open);
@@ -963,11 +1057,14 @@
         state.language = language === 'en' ? 'en' : 'es';
         try { localStorage.setItem(languageStorageKey, state.language); } catch { /* Language preference is optional in preview mode. */ }
         document.documentElement.lang = state.language;
+        document.title = state.language === 'es' ? 'Tupitoons — Pijamas urbanas' : 'Tupitoons — Urban sleepwear';
+        document.querySelector('meta[name="description"]')?.setAttribute('content', state.language === 'es' ? 'Tupitoons — pijamas urbanas con energía de cartoon, comodidad premium y actitud de calle.' : 'Tupitoons — urban sleepwear with cartoon energy, premium comfort and a street-level point of view.');
         select('[data-i18n]').forEach(element => { element.textContent = t(element.dataset.i18n); });
         select('[data-i18n-html]').forEach(element => { element.innerHTML = t(element.dataset.i18nHtml); });
         select('[data-i18n-placeholder]').forEach(element => { element.setAttribute('placeholder', t(element.dataset.i18nPlaceholder)); });
         select('[data-i18n-aria]').forEach(element => { element.setAttribute('aria-label', t(element.dataset.i18nAria)); });
         select('[data-language]').forEach(button => button.classList.toggle('is-active', button.dataset.language === state.language));
+        if (policyModal?.classList.contains('is-open')) setPolicySection(document.querySelector('.policy-tab.is-active')?.dataset.policyTab || 'shipping');
         select('.product-card').forEach(card => {
           const ui = productUi[card.dataset.product];
           if (!ui) return;
@@ -1089,6 +1186,9 @@
       select('[data-product-close]').forEach(button => button.addEventListener('click', () => setModalOpen(false)));
       select('[data-size-guide-open]').forEach(link => link.addEventListener('click', event => { event.preventDefault(); setSizeGuideOpen(true); }));
       select('[data-size-guide-close]').forEach(button => button.addEventListener('click', () => setSizeGuideOpen(false)));
+      select('[data-policy-open]').forEach(link => link.addEventListener('click', event => { event.preventDefault(); setPolicyOpen(true, link.dataset.policyOpen); }));
+      select('[data-policy-close]').forEach(button => button.addEventListener('click', () => setPolicyOpen(false)));
+      select('[data-policy-tab]').forEach(button => button.addEventListener('click', () => setPolicySection(button.dataset.policyTab)));
       select('[data-modal-size]').forEach(button => button.addEventListener('click', () => {
         select('[data-modal-size]').forEach(item => item.classList.toggle('is-selected', item === button));
       }));

@@ -27,6 +27,8 @@ La versión actual es un storefront estático premium, responsive y bilingüe.
 - Guía de tallas propia con tablas de pantalones, pantalonetas, shorts y camisetas.
 - Biblioteca de estampados y bloques editoriales de marca.
 - Newsletter visual con confirmación local.
+- Centro bilingüe de políticas para envíos, cambios, privacidad y términos.
+- Metadatos SEO iniciales: canonical, Open Graph, Twitter Card y datos estructurados de tienda.
 - Isotipo grande, transparente y sin wordmark en la cabecera.
 - Motion system: entrada editorial, reveal por scroll, parallax, tilt 3D, microinteracciones y soporte para movimiento reducido.
 - Diseño responsive para escritorio y móvil.
@@ -153,7 +155,7 @@ https://tupitoons.vercel.app/
 - Conectar inventario y pedidos a un backend persistente.
 - Integrar una pasarela de pagos disponible en Colombia, incluyendo PSE y otros métodos locales.
 - Definir tarifas, cobertura y tiempos de envío.
-- Formalizar políticas de cambios, devoluciones, tratamiento de datos y términos de compra.
+- Sustituir la guía informativa de políticas por textos jurídicos finales revisados.
 - Añadir analítica de conversión y seguimiento de eventos.
 - Configurar dominio final y correo comercial.
 - Crear panel interno para catálogo, pedidos y estados de despacho.
