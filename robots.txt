@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tupitoons.vercel.app/sitemap.xml
