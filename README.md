@@ -12,7 +12,7 @@ La versión actual es un storefront estático premium, responsive y bilingüe.
 
 - Español como idioma inicial.
 - Selector persistente **ES / EN**.
-- Catálogo visual con 16 referencias.
+- Catálogo visual con 17 referencias.
 - Filtros por pantalón amplio, sets y shorts.
 - Búsqueda visual por estampado, silueta y colección.
 - Wishlist local con filtro de piezas guardadas.
@@ -50,6 +50,7 @@ Los precios son referencias de prototipo y deben confirmarse antes de activar el
 | TUPI-008 | Bottle Label Lounge Shorts | Short | COP 129.000 |
 | TUPI-009 | Popcorn Sky Lounge Shorts | Short | COP 129.000 |
 | TUPI-010 | Pink Character Wide Leg | Pantalón amplio | COP 189.000 |
+| TUPI-017 | Pink Character Lounge Shorts | Short | COP 129.000 |
 | TUPI-011 | Red Comic Wide Leg | Pantalón amplio | COP 189.000 |
 | TUPI-012 | Stitch Island Wide Leg | Pantalón amplio | COP 189.000 |
 | TUPI-013 | Stitch Island Lounge Shorts | Short | COP 129.000 |
