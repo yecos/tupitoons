@@ -157,6 +157,52 @@
     .cart-footer { margin-top: auto; padding-top: 18px; border-top: 1px solid #10101526; }
     .cart-subtotal { display: flex; justify-content: space-between; margin-bottom: 14px; font: 900 16px/1 ui-monospace, SFMono-Regular, Consolas, monospace; text-transform: uppercase; }
     .checkout-button { width: 100%; padding: 16px; border: 0; background: var(--store-ink); color: var(--store-paper); font: 900 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .checkout-button:disabled { cursor: not-allowed; opacity: .4; }
+    .checkout-modal { position: fixed; z-index: 32; inset: 0; display: none; place-items: center; padding: 24px; }
+    .checkout-modal.is-open { display: grid; }
+    .checkout-backdrop { position: absolute; inset: 0; background: #000000b8; backdrop-filter: blur(8px); }
+    .checkout-panel { position: relative; z-index: 1; width: min(1040px, 100%); max-height: min(820px, calc(100vh - 48px)); overflow: auto; padding: clamp(24px, 4vw, 46px); border: 1px solid #ffffff30; background: var(--store-paper); color: var(--store-ink); box-shadow: 20px 20px 0 var(--store-blue); }
+    .checkout-head { display: flex; justify-content: space-between; align-items: start; gap: 24px; }
+    .checkout-head small { display: block; margin-bottom: 12px; color: #69616d; font: 800 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .13em; text-transform: uppercase; }
+    .checkout-head h2 { margin: 0; font: 900 clamp(48px, 7vw, 92px)/.8 Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Black", sans-serif; letter-spacing: -.045em; text-transform: uppercase; }
+    .checkout-close { width: 34px; height: 34px; flex: 0 0 auto; border: 1px solid #10101526; border-radius: 50%; background: transparent; color: var(--store-ink); font-size: 22px; line-height: 1; }
+    .checkout-close:hover { border-color: var(--store-coral); color: var(--store-coral); }
+    .checkout-intro { max-width: 680px; margin: 18px 0 28px; color: #4e4753; font-size: 15px; line-height: 1.45; }
+    .checkout-layout { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(260px, .88fr); gap: 28px; }
+    .checkout-form { display: grid; gap: 14px; }
+    .checkout-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .checkout-field { display: grid; gap: 7px; }
+    .checkout-field.full { grid-column: 1 / -1; }
+    .checkout-field label, .checkout-consent { color: #69616d; font: 800 10px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .checkout-field input, .checkout-field select, .checkout-field textarea { width: 100%; border: 1px solid #10101526; border-radius: 0; background: #fff; color: var(--store-ink); font: inherit; outline: none; }
+    .checkout-field input, .checkout-field select { min-height: 44px; padding: 0 12px; }
+    .checkout-field textarea { min-height: 84px; padding: 12px; resize: vertical; }
+    .checkout-field input:focus, .checkout-field select:focus, .checkout-field textarea:focus { border-color: var(--store-blue); box-shadow: 0 0 0 2px #17b5ff2b; }
+    .checkout-consent { display: flex; align-items: start; gap: 8px; margin-top: 2px; line-height: 1.35; text-transform: none; }
+    .checkout-consent input { margin-top: 1px; accent-color: var(--store-blue); }
+    .checkout-submit { width: 100%; padding: 16px; border: 0; background: var(--store-ink); color: var(--store-paper); font: 900 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .checkout-submit:hover { background: var(--store-blue); }
+    .checkout-status { min-height: 18px; margin: 0; color: var(--store-coral); font-size: 12px; line-height: 1.4; }
+    .checkout-summary { align-self: start; padding: 18px; border: 1px solid #10101526; background: #10101508; }
+    .checkout-summary h3 { margin: 0 0 16px; font: 900 24px/.9 Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Black", sans-serif; letter-spacing: -.03em; text-transform: uppercase; }
+    .checkout-summary-items { display: grid; gap: 10px; }
+    .checkout-summary-item { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 9px; align-items: center; padding-bottom: 10px; border-bottom: 1px solid #1010151c; }
+    .checkout-summary-item img { width: 48px; height: 60px; object-fit: cover; }
+    .checkout-summary-item strong { display: block; font-size: 12px; line-height: 1.1; }
+    .checkout-summary-item span { display: block; margin-top: 4px; color: #756d7a; font: 700 9px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .04em; text-transform: uppercase; }
+    .checkout-summary-price { color: var(--store-ink) !important; font-size: 10px !important; white-space: nowrap; }
+    .checkout-summary-total { display: flex; justify-content: space-between; gap: 12px; margin-top: 16px; font: 900 15px/1 ui-monospace, SFMono-Regular, Consolas, monospace; text-transform: uppercase; }
+    .checkout-summary-note { margin: 14px 0 0; color: #69616d; font-size: 12px; line-height: 1.4; }
+    .checkout-success { max-width: 620px; padding: 28px 0 4px; }
+    .checkout-success[hidden] { display: none; }
+    .checkout-success-mark { display: inline-grid; width: 42px; height: 42px; place-items: center; margin-bottom: 16px; border-radius: 50%; background: var(--store-lime); color: var(--store-ink); font-size: 22px; }
+    .checkout-success h3 { margin: 0 0 12px; font: 900 clamp(42px, 6vw, 72px)/.8 Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Black", sans-serif; letter-spacing: -.045em; text-transform: uppercase; }
+    .checkout-success p { max-width: 520px; margin: 0 0 18px; color: #4e4753; font-size: 15px; line-height: 1.5; }
+    .checkout-reference { display: inline-block; margin-bottom: 22px; padding: 10px 12px; background: #1010150b; color: var(--store-ink); font: 900 12px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; }
+    .checkout-success-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .checkout-secondary { padding: 13px 16px; border: 1px solid #10101526; background: transparent; color: var(--store-ink); font: 900 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .checkout-secondary:hover { border-color: var(--store-blue); background: var(--store-blue); }
+    .checkout-copy-status { min-height: 18px; margin: 12px 0 0 !important; color: #69616d !important; font-size: 12px !important; }
     .prototype-note { position: fixed; z-index: 10; right: 16px; bottom: 16px; padding: 9px 11px; border: 1px solid #ffffff2a; border-radius: 99px; background: #101015d9; color: var(--store-lime); font: 800 9px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .09em; text-transform: uppercase; }
     .product-modal { position: fixed; z-index: 30; inset: 0; display: none; place-items: center; padding: 24px; }
     .product-modal.is-open { display: grid; }
@@ -240,6 +286,10 @@
       .size-guide-panel { max-height: calc(100vh - 24px); box-shadow: 10px 10px 0 var(--store-lime); }
       .size-guide-head { gap: 12px; }
       .size-guide-grid { grid-template-columns: 1fr; gap: 10px; }
+      .checkout-modal { padding: 12px; }
+      .checkout-panel { max-height: calc(100vh - 24px); box-shadow: 10px 10px 0 var(--store-blue); }
+      .checkout-layout { grid-template-columns: 1fr; gap: 20px; }
+      .checkout-summary { order: -1; }
     }
     @media (max-width: 480px) {
       .store-product-grid, .store-collection-grid { grid-template-columns: 1fr; }
@@ -379,8 +429,41 @@
   <aside class="cart-drawer" aria-label="Shopping bag" aria-hidden="true" data-cart-drawer>
     <div class="cart-head"><h2>Your bag</h2><button class="cart-close" type="button" aria-label="Close bag" data-cart-close>×</button></div>
     <div class="cart-items" data-cart-items><p class="cart-empty">Your bag is empty.<br>Pick a print and make it yours.</p></div>
-    <div class="cart-footer"><div class="shipping-progress" aria-live="polite"><div class="shipping-progress-head"><span data-shipping-message>Add pieces to unlock free shipping.</span><strong data-shipping-percent>0%</strong></div><div class="shipping-track"><span data-shipping-bar></span></div></div><div class="cart-subtotal"><span>Subtotal</span><span data-cart-subtotal>COP 0</span></div><button class="checkout-button" type="button" data-checkout>Continue to checkout</button></div>
+    <div class="cart-footer"><div class="shipping-progress" aria-live="polite"><div class="shipping-progress-head"><span data-shipping-message>Add pieces to unlock free shipping.</span><strong data-shipping-percent>0%</strong></div><div class="shipping-track"><span data-shipping-bar></span></div></div><div class="cart-subtotal"><span>Subtotal</span><span data-cart-subtotal>COP 0</span></div><button class="checkout-button" type="button" data-checkout disabled>Continue to checkout</button></div>
   </aside>
+
+  <section class="checkout-modal" data-checkout-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+    <div class="checkout-backdrop" data-checkout-close></div>
+    <div class="checkout-panel">
+      <div class="checkout-head"><div><small>Tupitoons / order request / Drop 01</small><h2 id="checkout-title">Make it yours.</h2></div><button class="checkout-close" type="button" aria-label="Close checkout" data-checkout-close>×</button></div>
+      <p class="checkout-intro">Leave your details and we’ll prepare the order request with your selected pieces. Final stock, delivery and payment are confirmed before dispatch.</p>
+      <div class="checkout-success" data-checkout-success hidden>
+        <span class="checkout-success-mark">✓</span>
+        <h3>Request received.</h3>
+        <p>Your order request is saved on this device. Keep the reference handy while we connect the final delivery and payment details.</p>
+        <span class="checkout-reference" data-checkout-reference>TUPI-000000</span>
+        <div class="checkout-success-actions"><button class="checkout-secondary" type="button" data-copy-order>Copy order summary</button><button class="checkout-secondary" type="button" data-checkout-close>Continue shopping</button></div>
+        <p class="checkout-copy-status" data-copy-status aria-live="polite"></p>
+      </div>
+      <div class="checkout-layout" data-checkout-layout>
+        <form class="checkout-form" data-checkout-form>
+          <div class="checkout-form-grid">
+            <div class="checkout-field full"><label for="checkout-name">Full name</label><input id="checkout-name" name="name" type="text" autocomplete="name" placeholder="Your name" required></div>
+            <div class="checkout-field"><label for="checkout-email">Email</label><input id="checkout-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required></div>
+            <div class="checkout-field"><label for="checkout-phone">Phone / WhatsApp</label><input id="checkout-phone" name="phone" type="tel" autocomplete="tel" placeholder="300 000 0000" required></div>
+            <div class="checkout-field"><label for="checkout-city">City</label><input id="checkout-city" name="city" type="text" autocomplete="address-level2" placeholder="Bogotá" required></div>
+            <div class="checkout-field"><label for="checkout-delivery">Delivery preference</label><select id="checkout-delivery" name="delivery" required><option value="">Choose one</option><option>Home delivery</option><option>Pickup point</option></select></div>
+            <div class="checkout-field full"><label for="checkout-address">Address / pickup note</label><input id="checkout-address" name="address" type="text" autocomplete="street-address" placeholder="Where should we send it?" required></div>
+            <div class="checkout-field full"><label for="checkout-note">Anything else?</label><textarea id="checkout-note" name="note" placeholder="Fit notes, delivery timing or a message for the team."></textarea></div>
+          </div>
+          <label class="checkout-consent"><input name="consent" type="checkbox" required> I confirm that these details are correct for this order request.</label>
+          <button class="checkout-submit" type="submit">Create order request</button>
+          <p class="checkout-status" data-checkout-status aria-live="polite"></p>
+        </form>
+        <aside class="checkout-summary" aria-label="Order summary"><h3>Your selection</h3><div class="checkout-summary-items" data-checkout-summary></div><div class="checkout-summary-total"><span>Total</span><strong data-checkout-total>COP 0</strong></div><p class="checkout-summary-note">Shipping and payment are confirmed with the team before the order is finalized.</p></aside>
+      </div>
+    </div>
+  </section>
 
   <section class="product-modal" data-product-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-product-title">
     <div class="product-modal-backdrop" data-product-close></div>
@@ -422,6 +505,7 @@
     (() => {
       const money = value => `COP ${new Intl.NumberFormat('es-CO').format(value)}`;
       const storageKey = 'tupitoons-bag-v1';
+      const orderStorageKey = 'tupitoons-orders-v1';
       const readStoredCart = () => { try { return JSON.parse(localStorage.getItem(storageKey) || '[]'); } catch { return []; } };
       const state = { cart: readStoredCart() };
       const select = selector => [...document.querySelectorAll(selector)];
@@ -430,6 +514,16 @@
       const backdrop = document.querySelector('.cart-backdrop');
       const cartItems = document.querySelector('[data-cart-items]');
       const subtotal = document.querySelector('[data-cart-subtotal]');
+      const checkoutButton = document.querySelector('[data-checkout]');
+      const checkoutModal = document.querySelector('[data-checkout-modal]');
+      const checkoutForm = document.querySelector('[data-checkout-form]');
+      const checkoutLayout = document.querySelector('[data-checkout-layout]');
+      const checkoutSuccess = document.querySelector('[data-checkout-success]');
+      const checkoutSummary = document.querySelector('[data-checkout-summary]');
+      const checkoutTotal = document.querySelector('[data-checkout-total]');
+      const checkoutReference = document.querySelector('[data-checkout-reference]');
+      const checkoutStatus = document.querySelector('[data-checkout-status]');
+      const copyStatus = document.querySelector('[data-copy-status]');
       const productModal = document.querySelector('[data-product-modal]');
       const modalImage = document.querySelector('[data-modal-image]');
       const modalTag = document.querySelector('[data-modal-tag]');
@@ -444,6 +538,7 @@
       const shippingPercent = document.querySelector('[data-shipping-percent]');
       const shippingBar = document.querySelector('[data-shipping-bar]');
       let activeProduct = null;
+      let lastOrderText = '';
       const productDetails = {
         'Bottle Label Wide Leg': { tag: 'Afterhours / wide leg', copy: 'A statement wide-leg silhouette with a soft handfeel and a bottle-label print designed to be seen from across the room.', fit: 'Relaxed wide leg', material: 'Soft cotton blend', care: 'Cold wash / inside out' },
         'Bottle Label Lounge Shorts': { tag: 'Afterhours / shorts', copy: 'The bottle-label print, cut into an easy short for warm nights and off-duty city loops.', fit: 'Relaxed lounge short', material: 'Lightweight cotton', care: 'Cold wash / hang dry' },
@@ -457,11 +552,17 @@
         'Popcorn Sky Lounge Shorts': { tag: 'Cartoon Club / shorts', copy: 'The same popcorn-sky attitude in a lighter short cut for warm nights, slow mornings and quick city escapes.', fit: 'Relaxed lounge short', material: 'Lightweight cotton', care: 'Cold wash / hang dry' }
       };
       const persistCart = () => { try { localStorage.setItem(storageKey, JSON.stringify(state.cart)); } catch { /* Local persistence is optional in preview mode. */ } };
+      const cartTotal = () => state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      const renderCheckoutSummary = () => {
+        const total = cartTotal();
+        checkoutTotal.textContent = money(total);
+        checkoutSummary.innerHTML = state.cart.length ? state.cart.map(item => `<div class="checkout-summary-item"><img src="${item.image}" alt="${item.name}" loading="lazy"><div><strong>${item.name}</strong><span>Size ${item.size} · Qty ${item.quantity}</span></div><span class="checkout-summary-price">${money(item.price * item.quantity)}</span></div>`).join('') : '<p class="checkout-summary-note">Your bag is empty. Add a piece before starting checkout.</p>';
+      };
 
       const renderCart = () => {
         const shippingThreshold = 250000;
         const count = state.cart.reduce((sum, item) => sum + item.quantity, 0);
-        const total = state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        const total = cartTotal();
         const progress = Math.min(100, Math.round((total / shippingThreshold) * 100));
         const remaining = Math.max(0, shippingThreshold - total);
         bagCount.textContent = count;
@@ -469,6 +570,8 @@
         shippingPercent.textContent = `${progress}%`;
         shippingBar.style.width = `${progress}%`;
         shippingMessage.textContent = remaining ? `Add ${money(remaining)} for free shipping.` : 'Free shipping unlocked.';
+        checkoutButton.disabled = !state.cart.length;
+        renderCheckoutSummary();
         if (!state.cart.length) {
           cartItems.innerHTML = '<p class="cart-empty">Your bag is empty.<br>Pick a print and make it yours.</p>';
           return;
@@ -501,6 +604,13 @@
         sizeGuideModal.setAttribute('aria-hidden', String(!open));
         document.body.style.overflow = open ? 'hidden' : '';
       };
+      const setCheckoutOpen = open => {
+        if (open) { setModalOpen(false); setCartOpen(false); setSizeGuideOpen(false); renderCheckoutSummary(); }
+        checkoutModal.classList.toggle('is-open', open);
+        checkoutModal.setAttribute('aria-hidden', String(!open));
+        if (open) { checkoutForm.hidden = false; checkoutLayout.hidden = false; checkoutSuccess.hidden = true; checkoutStatus.textContent = ''; copyStatus.textContent = ''; }
+        document.body.style.overflow = open ? 'hidden' : '';
+      };
       const addProduct = product => {
         const existing = state.cart.find(item => item.name === product.name && item.size === product.size);
         if (existing) existing.quantity += 1;
@@ -508,6 +618,20 @@
         persistCart();
         renderCart();
       };
+      const formatOrderText = order => [
+        `Tupitoons order request ${order.reference}`,
+        '',
+        ...order.items.map(item => `${item.quantity} × ${item.name} / size ${item.size} / ${money(item.price * item.quantity)}`),
+        '',
+        `Total: ${money(order.total)}`,
+        `Name: ${order.customer.name}`,
+        `Email: ${order.customer.email}`,
+        `Phone: ${order.customer.phone}`,
+        `City: ${order.customer.city}`,
+        `Delivery: ${order.customer.delivery}`,
+        `Address: ${order.customer.address}`,
+        order.customer.note ? `Note: ${order.customer.note}` : ''
+      ].filter(Boolean).join('\n');
       const openProduct = card => {
         const product = { name: card.dataset.product, price: Number(card.dataset.price), image: card.dataset.image };
         activeProduct = product;
@@ -547,6 +671,7 @@
       };
       select('[data-cart-open]').forEach(button => button.addEventListener('click', () => setCartOpen(true)));
       select('[data-cart-close]').forEach(button => button.addEventListener('click', () => setCartOpen(false)));
+      select('[data-checkout-close]').forEach(button => button.addEventListener('click', () => setCheckoutOpen(false)));
       select('[data-size]').forEach(button => button.addEventListener('click', () => {
         button.closest('.size-row').querySelectorAll('.size-pill').forEach(pill => pill.classList.remove('is-selected'));
         button.classList.add('is-selected');
@@ -583,8 +708,37 @@
         event.currentTarget.reset();
         document.querySelector('[data-newsletter-status]').textContent = 'You are on the list for Drop 01.';
       });
-      document.querySelector('[data-checkout]')?.addEventListener('click', () => { alert('Checkout connection is the next commerce step.'); });
-      document.addEventListener('keydown', event => { if (event.key === 'Escape') { setSizeGuideOpen(false); setModalOpen(false); setCartOpen(false); } });
+      checkoutButton?.addEventListener('click', () => { if (state.cart.length) setCheckoutOpen(true); });
+      checkoutForm?.addEventListener('submit', event => {
+        event.preventDefault();
+        checkoutStatus.textContent = '';
+        if (!state.cart.length) { checkoutStatus.textContent = 'Add a piece to your bag before creating an order request.'; return; }
+        const formData = new FormData(event.currentTarget);
+        const order = {
+          reference: `TUPI-${Date.now().toString(36).slice(-6).toUpperCase()}`,
+          createdAt: new Date().toISOString(),
+          customer: Object.fromEntries(formData.entries()),
+          items: state.cart.map(item => ({ ...item })),
+          total: cartTotal()
+        };
+        try {
+          const orders = JSON.parse(localStorage.getItem(orderStorageKey) || '[]');
+          localStorage.setItem(orderStorageKey, JSON.stringify([order, ...orders].slice(0, 12)));
+        } catch { /* Local order history is optional in preview mode. */ }
+        lastOrderText = formatOrderText(order);
+        checkoutReference.textContent = order.reference;
+        checkoutSuccess.hidden = false;
+        checkoutLayout.hidden = true;
+        state.cart = [];
+        persistCart();
+        renderCart();
+      });
+      document.querySelector('[data-copy-order]')?.addEventListener('click', async () => {
+        if (!lastOrderText) return;
+        try { await navigator.clipboard.writeText(lastOrderText); copyStatus.textContent = 'Order summary copied.'; }
+        catch { copyStatus.textContent = 'Copy is not available here. Use the reference above.'; }
+      });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') { setCheckoutOpen(false); setSizeGuideOpen(false); setModalOpen(false); setCartOpen(false); } });
       renderCart();
     })();
   </script>
