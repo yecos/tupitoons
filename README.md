@@ -16,6 +16,7 @@ The first static storefront includes:
 - Collection cards that filter the catalog and update its editorial context.
 - Popcorn Sky Wide Leg campaign reference added as TUPI-007.
 - Long and short silhouettes added for the Bottle Label and Popcorn Sky prints.
+- Pink Character Wide Leg editorial look added as TUPI-010.
 - Print library and collection storytelling.
 - Newsletter interaction.
 - Responsive layouts for desktop and mobile.
