@@ -14,11 +14,13 @@ La versión actual es un storefront estático premium, responsive y bilingüe.
 - Selector persistente **ES / EN**.
 - Catálogo visual con 13 referencias.
 - Filtros por pantalón amplio, sets y shorts.
+- Búsqueda visual por estampado, silueta y colección.
+- Wishlist local con filtro de piezas guardadas.
 - Selector de talla S / M / L.
-- Modal de producto con fit, material y cuidado.
+- Detalle de producto premium con galería de imágenes, fit, material y cuidado.
 - Bolsa de compra local con cantidades, eliminación, subtotal y persistencia.
 - Barra de progreso para envío gratis desde **COP 250.000**.
-- Flujo de solicitud de pedido, sin cobro automático todavía.
+- Flujo de solicitud de pedido con preferencia de pago PSE/Bancolombia, tarjeta o Nequi/WhatsApp; sin cobro automático todavía.
 - Resumen de pedido copiable y referencia única.
 - Entrega por domicilio o punto de recogida.
 - Enlace de contacto y envío de solicitud por WhatsApp: **+57 301 243 8980**.
@@ -26,6 +28,7 @@ La versión actual es un storefront estático premium, responsive y bilingüe.
 - Biblioteca de estampados y bloques editoriales de marca.
 - Newsletter visual con confirmación local.
 - Isotipo grande, transparente y sin wordmark en la cabecera.
+- Motion system: entrada editorial, reveal por scroll, parallax, tilt 3D, microinteracciones y soporte para movimiento reducido.
 - Diseño responsive para escritorio y móvil.
 
 ## Catálogo actual
@@ -54,7 +57,7 @@ La tienda funciona actualmente como una solicitud de pedido asistida:
 
 1. La persona selecciona producto, talla y cantidad.
 2. La bolsa calcula subtotal y progreso de envío gratis.
-3. Checkout recoge nombre, correo, teléfono, ciudad, modalidad de entrega, dirección y nota.
+3. Checkout recoge nombre, correo, teléfono, ciudad, modalidad de entrega, medio de pago preferido, dirección y nota.
 4. Se genera una referencia `TUPI-XXXXXX` y se guarda una copia local del pedido.
 5. El resumen puede copiarse o enviarse por WhatsApp para confirmar stock, entrega y pago.
 
@@ -95,6 +98,7 @@ La tienda usa `localStorage` para mantener la experiencia durante el prototipado
 | --- | --- |
 | `tupitoons-language-v1` | Idioma seleccionado: `es` o `en` |
 | `tupitoons-bag-v1` | Productos de la bolsa |
+| `tupitoons-wishlist-v1` | Productos guardados |
 | `tupitoons-orders-v1` | Últimas solicitudes de pedido del dispositivo |
 
 Estos datos no sustituyen una base de datos ni deben considerarse un registro comercial definitivo.

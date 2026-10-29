@@ -43,6 +43,7 @@
     .store-actions { display: flex; justify-content: flex-end; gap: 10px; align-items: center; }
     .store-icon-button { display: inline-flex; align-items: center; gap: 7px; padding: 10px 12px; border: 1px solid var(--store-line); border-radius: 999px; background: transparent; color: var(--store-paper); font: 800 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
     .store-icon-button:hover, .store-icon-button:focus-visible { border-color: var(--store-lime); color: var(--store-lime); }
+    .store-icon-button.is-active { border-color: var(--store-lime); color: var(--store-lime); }
     .language-switch { display: inline-flex; align-items: center; gap: 3px; padding: 3px; border: 1px solid var(--store-line); border-radius: 999px; color: var(--store-muted); font: 800 9px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .06em; }
     .language-switch button { padding: 6px 7px; border: 0; border-radius: 999px; background: transparent; color: inherit; font: inherit; letter-spacing: inherit; }
     .language-switch button.is-active, .language-switch button:hover, .language-switch button:focus-visible { background: var(--store-lime); color: var(--store-ink); }
@@ -82,6 +83,10 @@
     .product-image { position: relative; overflow: hidden; aspect-ratio: 4 / 5; background: #d9d4ca; }
     .product-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
     .product-card:hover .product-image img { transform: scale(1.04); }
+    .wishlist-toggle { position: absolute; top: 10px; right: 10px; z-index: 1; display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid #ffffff72; border-radius: 50%; background: #101015b8; color: var(--store-paper); font: 400 21px/1 Arial, sans-serif; transition: transform .2s ease, background .2s ease, color .2s ease; }
+    .wishlist-toggle:hover, .wishlist-toggle:focus-visible { transform: scale(1.08); background: var(--store-lime); color: var(--store-ink); }
+    .wishlist-toggle.is-saved { background: var(--store-pink); color: var(--store-ink); }
+    .product-card.is-saved { border-color: #c9f36a88; }
     .product-badge { position: absolute; top: 10px; left: 10px; padding: 7px 8px; background: var(--store-coral); color: var(--store-ink); font: 800 9px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .09em; text-transform: uppercase; }
     .product-code { position: absolute; right: 10px; bottom: 10px; padding: 6px 7px; background: #101015c7; color: var(--store-paper); font: 700 9px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; }
     .product-info { padding: 15px; }
@@ -166,6 +171,21 @@
     .cart-subtotal { display: flex; justify-content: space-between; margin-bottom: 14px; font: 900 16px/1 ui-monospace, SFMono-Regular, Consolas, monospace; text-transform: uppercase; }
     .checkout-button { width: 100%; padding: 16px; border: 0; background: var(--store-ink); color: var(--store-paper); font: 900 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; text-transform: uppercase; }
     .checkout-button:disabled { cursor: not-allowed; opacity: .4; }
+    .search-modal { position: fixed; z-index: 33; inset: 0; display: none; place-items: start center; padding: clamp(70px, 12vh, 140px) 24px 24px; }
+    .search-modal.is-open { display: grid; }
+    .search-backdrop { position: absolute; inset: 0; background: #000000b8; backdrop-filter: blur(10px); }
+    .search-panel { position: relative; z-index: 1; width: min(760px, 100%); padding: clamp(26px, 5vw, 52px); border: 1px solid #ffffff30; background: var(--store-paper); color: var(--store-ink); box-shadow: 20px 20px 0 var(--store-lime); }
+    .search-head { display: flex; justify-content: space-between; gap: 18px; align-items: start; }
+    .search-head small { display: block; margin-bottom: 12px; color: #69616d; font: 800 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .13em; text-transform: uppercase; }
+    .search-head h2 { margin: 0; font: 900 clamp(48px, 8vw, 92px)/.78 Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Black", sans-serif; letter-spacing: -.05em; text-transform: uppercase; }
+    .search-close { width: 34px; height: 34px; flex: 0 0 auto; border: 1px solid #10101526; border-radius: 50%; background: transparent; color: var(--store-ink); font-size: 22px; line-height: 1; }
+    .search-close:hover { border-color: var(--store-coral); color: var(--store-coral); }
+    .search-input-wrap { position: relative; margin-top: 26px; }
+    .search-input-wrap input { width: 100%; min-height: 58px; padding: 0 18px; border: 1px solid #10101526; background: #fff; color: var(--store-ink); font-size: 19px; outline: none; }
+    .search-input-wrap input:focus { border-color: var(--store-blue); box-shadow: 0 0 0 3px #17b5ff2b; }
+    .search-hints { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
+    .search-hints button { padding: 9px 11px; border: 1px solid #10101526; border-radius: 999px; background: transparent; color: #69616d; font: 800 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .07em; text-transform: uppercase; }
+    .search-hints button:hover { border-color: var(--store-pink); background: var(--store-pink); color: var(--store-ink); }
     .checkout-modal { position: fixed; z-index: 32; inset: 0; display: none; place-items: center; padding: 24px; }
     .checkout-modal.is-open { display: grid; }
     .checkout-backdrop { position: absolute; inset: 0; background: #000000b8; backdrop-filter: blur(8px); }
@@ -218,12 +238,20 @@
     .product-modal-panel { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); width: min(960px, 100%); max-height: min(720px, calc(100vh - 48px)); overflow: auto; border: 1px solid #ffffff30; background: var(--store-paper); color: var(--store-ink); box-shadow: 20px 20px 0 var(--store-pink); }
     .product-modal-media { min-height: 520px; background: #d8d6d1; }
     .product-modal-media img { display: block; width: 100%; height: 100%; min-height: 520px; object-fit: cover; }
+    .product-modal-gallery { position: relative; min-height: 520px; background: #d8d6d1; }
+    .product-modal-gallery > img { display: block; width: 100%; height: 100%; min-height: 520px; object-fit: cover; }
+    .modal-thumbs { position: absolute; right: 14px; bottom: 14px; left: 14px; display: flex; gap: 7px; }
+    .modal-thumb { width: 52px; height: 62px; padding: 0; overflow: hidden; border: 2px solid transparent; background: #101015b8; }
+    .modal-thumb.is-active { border-color: var(--store-lime); }
+    .modal-thumb img { display: block; width: 100%; height: 100%; min-height: 0 !important; object-fit: cover; }
     .product-modal-content { position: relative; display: flex; flex-direction: column; padding: clamp(24px, 4vw, 46px); }
     .product-modal-close { position: absolute; top: 16px; right: 16px; width: 34px; height: 34px; border: 1px solid #10101526; border-radius: 50%; background: transparent; color: var(--store-ink); font-size: 22px; line-height: 1; }
     .product-modal-close:hover { border-color: var(--store-coral); color: var(--store-coral); }
     .product-modal-tag { color: #69616d; font: 800 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .13em; text-transform: uppercase; }
     .product-modal-content h2 { max-width: 420px; margin: 18px 40px 11px 0; font: 900 clamp(42px, 6vw, 76px)/.8 Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Black", sans-serif; letter-spacing: -.045em; text-transform: uppercase; }
     .product-modal-price { font: 800 16px/1 ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .modal-wishlist { align-self: flex-start; margin-top: 14px; padding: 9px 11px; border: 1px solid #10101526; border-radius: 999px; background: transparent; color: #69616d; font: 800 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .07em; text-transform: uppercase; }
+    .modal-wishlist:hover, .modal-wishlist.is-saved { border-color: var(--store-pink); background: var(--store-pink); color: var(--store-ink); }
     .product-modal-copy { max-width: 470px; margin: 26px 0; color: #4e4753; font-size: 16px; line-height: 1.45; }
     .product-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: auto; }
     .product-fact { padding-top: 11px; border-top: 1px solid #10101526; }
@@ -277,6 +305,9 @@
     .size-guide-table tbody tr:last-child td { border-bottom: 0; }
     .size-guide-card-note { margin: 0; padding: 10px 14px 14px; color: #69616d; font: 700 10px/1.35 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .02em; }
     .size-guide-note { margin: 18px 0 0; padding: 14px 16px; border-left: 4px solid var(--store-coral); background: #1010150b; color: #4e4753; font-size: 13px; line-height: 1.45; }
+    .search-empty { margin: 18px 0 0; padding: 26px; border: 1px dashed var(--store-line); color: var(--store-muted); font-size: 15px; line-height: 1.45; }
+    .search-empty[hidden] { display: none; }
+    .saved-count { display: inline-grid; place-items: center; min-width: 17px; height: 17px; margin-left: 4px; border-radius: 99px; background: var(--store-pink); color: var(--store-ink); font-size: 9px; }
     [data-reveal] { opacity: 0; transform: translate3d(0, 28px, 0); transition: opacity .75s ease var(--reveal-delay, 0ms), transform .75s cubic-bezier(.2,.8,.2,1) var(--reveal-delay, 0ms); }
     [data-reveal].is-visible { opacity: 1; transform: translate3d(0, 0, 0); }
     .product-card[data-reveal] { transform: translate3d(0, calc(28px + var(--card-lift, 0px)), 0) rotateX(var(--card-rotate-x, 0deg)) rotateY(var(--card-rotate-y, 0deg)); }
@@ -323,7 +354,7 @@
       .store-brand { grid-column: 1; grid-row: 1; }
       .store-nav-links { grid-column: 1 / -1; grid-row: 2; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 2px; }
       .store-actions { grid-column: 2; grid-row: 1; }
-      .store-actions .store-icon-button:first-child { display: none; }
+      .store-actions .store-icon-button:first-child { display: inline-flex; padding: 10px 8px; font-size: 8px; }
       .store-hero { grid-template-columns: 1fr; min-height: 0; padding: 54px 0 70px; }
       .store-hero h1 { max-width: 450px; font-size: clamp(66px, 19vw, 125px); }
       .store-hero-art { min-height: 540px; }
@@ -340,7 +371,7 @@
       .store-footer-note { display: grid; gap: 10px; }
       .product-modal { padding: 12px; }
       .product-modal-panel { grid-template-columns: 1fr; max-height: calc(100vh - 24px); box-shadow: 10px 10px 0 var(--store-pink); }
-      .product-modal-media, .product-modal-media img { min-height: 300px; max-height: 390px; }
+      .product-modal-media, .product-modal-media img, .product-modal-gallery, .product-modal-gallery > img { min-height: 300px; max-height: 390px; }
       .product-modal-content { padding: 24px; }
       .product-modal-content h2 { font-size: 54px; }
       .size-guide-modal { padding: 12px; }
@@ -361,6 +392,8 @@
       .checkout-panel { max-height: calc(100vh - 24px); box-shadow: 10px 10px 0 var(--store-blue); }
       .checkout-layout { grid-template-columns: 1fr; gap: 20px; }
       .checkout-summary { order: -1; }
+      .search-modal { padding: 24px 12px; }
+      .search-panel { box-shadow: 10px 10px 0 var(--store-lime); }
     }
     @media (max-width: 480px) {
       .store-product-grid, .store-collection-grid { grid-template-columns: 1fr; }
@@ -381,7 +414,7 @@
           <a href="#shop" data-scroll="#shop" data-i18n="nav.shop">Shop</a><a href="#shop" data-scroll="#shop" data-collection="cartoon-club">Cartoon Club</a><a href="#prints" data-i18n="nav.prints">Print Library</a><a href="#story" data-i18n="nav.world">The World</a><a href="#size-guide" data-size-guide-open data-i18n="nav.size">Size guide</a>
         </div>
         <a class="store-brand" href="#top" aria-label="Tupitoons home" data-i18n-aria="nav.home"><span class="store-brand-mark"><img src="assets/tupitoons-mark.png" alt="Tupitoons cloud mascot logo"></span></a>
-        <div class="store-actions"><button class="store-icon-button" type="button" data-scroll="#shop"><span data-i18n="nav.search">Search</span></button><button class="store-icon-button" type="button" data-cart-open><span data-i18n="nav.bag">Bag</span> <span class="bag-count" data-bag-count>0</span></button><div class="language-switch" aria-label="Language selector" data-i18n-aria="language.selector"><button type="button" data-language="es">ES</button><span>/</span><button type="button" data-language="en">EN</button></div></div>
+        <div class="store-actions"><button class="store-icon-button" type="button" data-search-open><span data-i18n="nav.search">Search</span></button><button class="store-icon-button" type="button" data-cart-open><span data-i18n="nav.bag">Bag</span> <span class="bag-count" data-bag-count>0</span></button><div class="language-switch" aria-label="Language selector" data-i18n-aria="language.selector"><button type="button" data-language="es">ES</button><span>/</span><button type="button" data-language="en">EN</button></div></div>
       </nav>
 
       <main id="top">
@@ -400,7 +433,7 @@
 
         <section class="store-section" id="shop" aria-labelledby="shop-title">
           <div class="store-section-head"><h2 id="shop-title" data-shop-title>Featured drop</h2><p data-shop-description>Limited visual stories for late nights, slow mornings and everything in between.</p></div>
-          <div class="store-filter-row" role="group" aria-label="Product filters" data-i18n-aria="shop.filters"><button class="store-filter is-active" type="button" data-filter="all" data-i18n="filter.all">All pieces</button><button class="store-filter" type="button" data-filter="wide-leg" data-i18n="filter.wide">Wide leg</button><button class="store-filter" type="button" data-filter="sets" data-i18n="filter.sets">Sets</button><button class="store-filter" type="button" data-filter="shorts" data-i18n="filter.shorts">Shorts</button></div>
+          <div class="store-filter-row" role="group" aria-label="Product filters" data-i18n-aria="shop.filters"><button class="store-filter is-active" type="button" data-filter="all" data-i18n="filter.all">All pieces</button><button class="store-filter" type="button" data-filter="wide-leg" data-i18n="filter.wide">Wide leg</button><button class="store-filter" type="button" data-filter="sets" data-i18n="filter.sets">Sets</button><button class="store-filter" type="button" data-filter="shorts" data-i18n="filter.shorts">Shorts</button><button class="store-filter" type="button" data-wishlist-filter><span data-i18n="filter.saved">Saved</span><span class="saved-count" data-wishlist-count>0</span></button></div>
           <div class="store-product-grid">
             <article class="product-card" data-category="wide-leg" data-collection="afterhours" data-product="Bottle Label Wide Leg" data-price="189000" data-image="assets/look-bottle-print-studio.jpeg">
               <div class="product-image"><img src="assets/look-bottle-print-studio.jpeg" alt="Model wearing Tupitoons bottle-label wide-leg pajama pants in a premium grey studio" loading="lazy"><span class="product-badge">New drop</span><span class="product-code">TUPI-001</span></div>
@@ -455,6 +488,7 @@
               <div class="product-info"><div class="product-meta"><span>Shorts</span><span>Cartoon club</span></div><h3>Popcorn Sky Lounge Shorts</h3><div class="product-price">COP 129,000</div><div class="size-row"><button class="size-pill" type="button" data-size="S">S</button><button class="size-pill is-selected" type="button" data-size="M">M</button><button class="size-pill" type="button" data-size="L">L</button></div><div class="product-actions"><button class="detail-button" type="button" data-details>View details</button><button class="add-button" type="button" data-add>Add to bag</button></div></div>
             </article>
           </div>
+          <p class="search-empty" data-search-empty data-i18n="search.empty" hidden>No pieces match that search yet. Try a print, a silhouette or a collection.</p>
         </section>
 
         <section class="store-section" id="collections" aria-labelledby="collections-title">
@@ -515,6 +549,15 @@
     <div class="cart-footer"><div class="shipping-progress" aria-live="polite"><div class="shipping-progress-head"><span data-shipping-message>Add pieces to unlock free shipping.</span><strong data-shipping-percent>0%</strong></div><div class="shipping-track"><span data-shipping-bar></span></div></div><div class="cart-subtotal"><span data-i18n="cart.subtotal">Subtotal</span><span data-cart-subtotal>COP 0</span></div><button class="checkout-button" type="button" data-checkout disabled data-i18n="cart.checkout">Continue to checkout</button></div>
   </aside>
 
+  <section class="search-modal" data-search-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="search-title">
+    <div class="search-backdrop" data-search-close></div>
+    <div class="search-panel">
+      <div class="search-head"><div><small data-i18n="search.kicker">Tupitoons / find your print</small><h2 id="search-title" data-i18n="search.title">Find your lane.</h2></div><button class="search-close" type="button" aria-label="Close search" data-search-close data-i18n-aria="search.close">×</button></div>
+      <div class="search-input-wrap"><input type="search" data-search-input placeholder="Search prints, silhouettes or collections" data-i18n-placeholder="search.placeholder" data-i18n-aria="search.input"></div>
+      <div class="search-hints" aria-label="Search suggestions" data-i18n-aria="search.suggestions"><button type="button" data-search-term="cartoon" data-i18n="search.hint.cartoon">Cartoon Club</button><button type="button" data-search-term="wide leg" data-i18n="search.hint.wide">Wide leg</button><button type="button" data-search-term="pink" data-i18n="search.hint.pink">Pink Signal</button><button type="button" data-search-term="shorts" data-i18n="search.hint.shorts">Shorts</button></div>
+    </div>
+  </section>
+
   <section class="checkout-modal" data-checkout-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
     <div class="checkout-backdrop" data-checkout-close></div>
     <div class="checkout-panel">
@@ -536,6 +579,7 @@
             <div class="checkout-field"><label for="checkout-phone" data-i18n="checkout.phone">Phone / WhatsApp</label><input id="checkout-phone" name="phone" type="tel" autocomplete="tel" placeholder="300 000 0000" required></div>
             <div class="checkout-field"><label for="checkout-city" data-i18n="checkout.city">City</label><input id="checkout-city" name="city" type="text" autocomplete="address-level2" placeholder="Bogotá" data-i18n-placeholder="checkout.city.placeholder" required></div>
             <div class="checkout-field"><label for="checkout-delivery" data-i18n="checkout.delivery">Delivery preference</label><select id="checkout-delivery" name="delivery" required><option value="" data-i18n="checkout.delivery.choose">Choose one</option><option value="home" data-i18n="checkout.delivery.home">Home delivery</option><option value="pickup" data-i18n="checkout.delivery.pickup">Pickup point</option></select></div>
+            <div class="checkout-field"><label for="checkout-payment" data-i18n="checkout.payment">Preferred payment</label><select id="checkout-payment" name="payment" required><option value="" data-i18n="checkout.payment.choose">Choose one</option><option value="pse" data-i18n="checkout.payment.pse">PSE / Bancolombia</option><option value="card" data-i18n="checkout.payment.card">Credit or debit card</option><option value="nequi" data-i18n="checkout.payment.nequi">Nequi / WhatsApp</option></select></div>
             <div class="checkout-field full"><label for="checkout-address" data-i18n="checkout.address">Address / pickup note</label><input id="checkout-address" name="address" type="text" autocomplete="street-address" placeholder="Where should we send it?" data-i18n-placeholder="checkout.address.placeholder" required></div>
             <div class="checkout-field full"><label for="checkout-note" data-i18n="checkout.note">Anything else?</label><textarea id="checkout-note" name="note" placeholder="Fit notes, delivery timing or a message for the team." data-i18n-placeholder="checkout.note.placeholder"></textarea></div>
           </div>
@@ -551,12 +595,13 @@
   <section class="product-modal" data-product-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-product-title">
     <div class="product-modal-backdrop" data-product-close></div>
     <div class="product-modal-panel">
-      <div class="product-modal-media"><img data-modal-image src="assets/texture-bottle-print.jpeg" alt="Product preview"></div>
+      <div class="product-modal-gallery"><img data-modal-image src="assets/texture-bottle-print.jpeg" alt="Product preview"><div class="modal-thumbs" data-modal-thumbs></div></div>
       <div class="product-modal-content">
         <button class="product-modal-close" type="button" aria-label="Close product details" data-product-close data-i18n-aria="modal.close">×</button>
         <span class="product-modal-tag" data-modal-tag>Drop 01 / product details</span>
         <h2 id="modal-product-title" data-modal-title>Bottle Label Wide Leg</h2>
         <span class="product-modal-price" data-modal-price>COP 189,000</span>
+        <button class="modal-wishlist" type="button" data-modal-wishlist aria-pressed="false">♡ <span data-modal-wishlist-label>Save to wishlist</span></button>
         <p class="product-modal-copy" data-modal-copy>A statement wide-leg silhouette with a soft handfeel and a print designed to be seen from across the room.</p>
         <div class="product-facts">
           <div class="product-fact"><strong>Fit</strong><span data-modal-fit>Relaxed wide leg</span></div>
@@ -594,35 +639,39 @@
       const languageStorageKey = 'tupitoons-language-v1';
       const storageKey = 'tupitoons-bag-v1';
       const orderStorageKey = 'tupitoons-orders-v1';
+      const wishlistStorageKey = 'tupitoons-wishlist-v1';
       const readStoredCart = () => { try { return JSON.parse(localStorage.getItem(storageKey) || '[]'); } catch { return []; } };
+      const readStoredWishlist = () => { try { const value = JSON.parse(localStorage.getItem(wishlistStorageKey) || '[]'); return Array.isArray(value) ? value : []; } catch { return []; } };
       const readStoredLanguage = () => { try { return localStorage.getItem(languageStorageKey) === 'en' ? 'en' : 'es'; } catch { return 'es'; } };
-      const state = { cart: readStoredCart(), language: readStoredLanguage(), catalog: { category: 'all', collection: null } };
+      const state = { cart: readStoredCart(), wishlist: readStoredWishlist(), language: readStoredLanguage(), catalog: { category: 'all', collection: null, wishlistOnly: false, search: '' } };
       const translations = {
         es: {
           "top.shipping": "Envío gratis desde COP 250.000", "top.drop": "Drop 01 / duerme a tu manera", "nav.main": "Navegación principal", "nav.home": "Inicio de Tupitoons", "nav.shop": "Tienda", "nav.prints": "Biblioteca de estampados", "nav.world": "El universo", "nav.size": "Guía de tallas", "nav.search": "Buscar", "nav.bag": "Bolsa", "language.selector": "Selector de idioma",
+          "search.kicker": "Tupitoons / encuentra tu estampado", "search.title": "Encuentra tu carril.", "search.close": "Cerrar búsqueda", "search.placeholder": "Busca estampados, siluetas o colecciones", "search.input": "Buscar en Tupitoons", "search.suggestions": "Sugerencias de búsqueda", "search.hint.cartoon": "Cartoon Club", "search.hint.wide": "Pantalón amplio", "search.hint.pink": "Pink Signal", "search.hint.shorts": "Shorts", "search.empty": "Todavía no hay piezas con esa búsqueda. Prueba un estampado, una silueta o una colección.", "search.results": "Resultados", "search.resultsCopy": "Piezas que coinciden con tu búsqueda. Elige una favorita y llévala a tu próxima noche.", "wishlist.description": "Tus piezas guardadas para volver cuando el mood esté listo.", "wishlist.add": "Guardar", "wishlist.remove": "Quitar",
           "hero.kicker": "Pijamas urbanas / drop 01", "hero.title": "De la cama<br>al <em>barrio.</em>", "hero.lede": "Pijamas con energía de cartoon, comodidad premium y actitud suficiente para salir del dormitorio.", "hero.shop": "Ver el drop", "hero.world": "Entrar al universo", "hero.sticker": "Poder<br>suave<br>siempre", "hero.code": "TUPI / 01 — PRODUCTO HERO",
-          "shop.filters": "Filtros de producto", "filter.all": "Todas las piezas", "filter.wide": "Pantalón amplio", "filter.sets": "Sets", "filter.shorts": "Shorts", "collections.title": "Elige tu universo", "collections.copy": "Una marca. Diferentes personajes nocturnos. Encuentra el estampado que va contigo.", "collection.loud": "01 / Intenso", "collection.soft": "02 / Suave", "collection.local": "03 / Local", "collection.easy": "04 / Fácil",
+          "shop.filters": "Filtros de producto", "filter.all": "Todas las piezas", "filter.wide": "Pantalón amplio", "filter.sets": "Sets", "filter.shorts": "Shorts", "filter.saved": "Guardados", "collections.title": "Elige tu universo", "collections.copy": "Una marca. Diferentes personajes nocturnos. Encuentra el estampado que va contigo.", "collection.loud": "01 / Intenso", "collection.soft": "02 / Suave", "collection.local": "03 / Local", "collection.easy": "04 / Fácil",
           "story.kicker": "Tupitoons / el universo", "story.title": "Duerme en tu propio carril.", "story.copy": "La comodidad no es un detalle. Es el uniforme para las ideas de madrugada, las mañanas lentas y la decisión pequeña de presentarte como eres.", "prints.title": "Biblioteca de estampados", "prints.copy": "La textura es el producto. Explora las señales que forman el Drop 01.", "print.blue": "Exceso azul", "print.red": "Cómic rojo", "print.egg": "Huevo frito", "print.bottle": "Etiqueta de botella", "print.pink": "Cast rosa",
           "service.title": "Utilidad suave", "service.copy": "Todo lo que hace que una buena tienda sea fácil, clara y un lugar al que quieras volver.", "service.fit.title": "Primero el fit", "service.fit.copy": "Guía de tallas, siluetas relajadas y notas de producto antes de pagar.", "service.fit.link": "Abrir guía de tallas ↗", "service.nights.title": "Hecho para la noche", "service.nights.copy": "Comodidad, tela y cuidado sin la niebla técnica.", "service.exchange.title": "Cambio fácil", "service.exchange.copy": "Cambios, devoluciones y entregas claras en un solo lugar.", "service.human.title": "Habla con alguien", "service.human.copy": "Soporte por WhatsApp para la última pregunta antes de hacerlo tuyo.", "service.human.link": "Escribir por WhatsApp ↗",
           "footer.brand": "Suave por dentro.<br>Fuerte por fuera.", "footer.brand.copy": "Tupitoons es pijama urbana con energía de cartoon y una mirada de calle.", "footer.news.title": "Recibe el drop", "footer.news.copy": "Nuevos estampados, lanzamientos limitados y cosas por las que vale la pena desvelarse.", "footer.news.placeholder": "Tu correo", "footer.news.button": "Unirme", "footer.explore": "Explora", "footer.shop": "Ver el drop", "footer.collections": "Colecciones", "footer.prints": "Biblioteca de estampados", "footer.world": "El universo", "footer.whatsapp": "Soporte por WhatsApp ↗", "footer.top": "Volver arriba ↑", "footer.note": "Tupitoons / Prototipo de tienda / Drop 01", "footer.tagline": "Creado para la comodidad con intención", "prototype.note": "Prototipo / precios por confirmar",
           "cart.label": "Bolsa de compras", "cart.close": "Cerrar bolsa", "cart.title": "Tu bolsa", "cart.empty": "Tu bolsa está vacía.<br>Elige un estampado y hazlo tuyo.", "cart.shipping": "Agrega {amount} para desbloquear el envío gratis.", "cart.freeShipping": "Envío gratis desbloqueado.", "cart.subtotal": "Subtotal", "cart.checkout": "Continuar al pago", "cart.size": "Talla", "cart.qty": "Cantidad", "cart.decrease": "Disminuir cantidad", "cart.increase": "Aumentar cantidad", "cart.remove": "Eliminar {name}",
-          "modal.close": "Cerrar detalles del producto", "modal.size": "Elige tu talla", "modal.guide": "¿No estás seguro? Abre la guía de tallas ↗", "modal.add": "Añadir talla seleccionada a la bolsa",
+          "modal.close": "Cerrar detalles del producto", "modal.size": "Elige tu talla", "modal.guide": "¿No estás seguro? Abre la guía de tallas ↗", "modal.add": "Añadir talla seleccionada a la bolsa", "modal.wishlistSave": "Guardar en favoritos", "modal.wishlistSaved": "Guardado en favoritos", "modal.viewImage": "Ver imagen",
           "size.kicker": "Tupitoons / guía de talla / centímetros", "size.close": "Cerrar guía de tallas", "size.title": "Encuentra tu talla.", "size.intro": "Mide una prenda que ya te quede bien y compárala con nuestro sistema de fit Tupitoons. Estas referencias están pensadas para siluetas relajadas, movimiento diario y un poco más de espacio.", "size.compare.title": "Compara. Elige. Muévete.", "size.compare.copy": "Extiende tu prenda favorita, toma las mismas medidas y elige la fila más cercana. Si estás entre dos tallas, sube una para un fit urbano más relajado.", "size.unit": "Todas las medidas en cm", "size.legend.title": "Referencia de medición", "size.legend.a": "Cintura / ancho", "size.legend.b": "Cadera / pecho", "size.legend.c": "Tiro / cuerpo", "size.legend.d": "Largo", "size.table.size": "Talla", "size.pants.title": "Pantalón amplio unisex", "size.pants.copy": "La silueta Tupitoons de todos los días: amplia, relajada y hecha para moverse de la cama al barrio.", "size.pants.aria": "Medidas del pantalón unisex", "size.pants.note": "Pretina elástica · fit relajado · las medidas pueden variar ±0,5 cm.", "size.bermuda.title": "Pantaloneta de hombre", "size.bermuda.copy": "Una silueta corta y fácil con la misma actitud urbana y suave.", "size.bermuda.aria": "Medidas de la pantaloneta de hombre", "size.bermuda.note": "Pretina elástica · medida frontal · referencia aproximada.", "size.shorts.title": "Short lounge de mujer", "size.shorts.copy": "Para noches cálidas, mañanas lentas y días en los que te niegas a vestirte aburrido.", "size.shorts.aria": "Medidas del short lounge de mujer", "size.shorts.note": "Pretina elástica · pierna relajada · referencia aproximada.", "size.womenTop.title": "Camiseta de mujer", "size.womenTop.copy": "Una base ajustada para equilibrar el volumen de tus pantalones Tupitoons favoritos.", "size.womenTop.aria": "Medidas de la camiseta de mujer", "size.womenTop.note": "Jersey de algodón suave · silueta ajustada · referencia aproximada.", "size.menTop.title": "Camiseta de hombre", "size.menTop.copy": "Una camiseta relajada para llevar debajo de los estampados intensos y las siluetas amplias.", "size.menTop.aria": "Medidas de la camiseta de hombre", "size.menTop.note": "Jersey de algodón suave · silueta relajada · referencia aproximada.", "size.note.title": "Verificación de producción:", "size.note.copy": "Estas son las referencias actuales de producción y deben confirmarse con la muestra final antes de publicar el catálogo.",
-          "checkout.close": "Cerrar pago", "checkout.kicker": "Tupitoons / solicitud de pedido / Drop 01", "checkout.title": "Hazlo tuyo.", "checkout.intro": "Déjanos tus datos y prepararemos la solicitud con las piezas que elegiste. Stock, entrega y pago final se confirman antes del despacho.", "checkout.success.title": "Solicitud recibida.", "checkout.success.copy": "Tu solicitud quedó guardada en este dispositivo. Guarda la referencia mientras conectamos los detalles finales de entrega y pago.", "checkout.success.copyButton": "Copiar resumen", "checkout.success.whatsapp": "Enviar por WhatsApp", "checkout.success.continue": "Seguir comprando", "checkout.name": "Nombre completo", "checkout.name.placeholder": "Tu nombre", "checkout.email": "Correo", "checkout.email.placeholder": "tu@correo.com", "checkout.phone": "Teléfono / WhatsApp", "checkout.city": "Ciudad", "checkout.city.placeholder": "Bogotá", "checkout.delivery": "Preferencia de entrega", "checkout.delivery.choose": "Elige una opción", "checkout.delivery.home": "Entrega a domicilio", "checkout.delivery.pickup": "Punto de recogida", "checkout.address": "Dirección / nota de recogida", "checkout.address.placeholder": "¿Dónde debemos enviarlo?", "checkout.note": "¿Algo más?", "checkout.note.placeholder": "Notas de fit, horario de entrega o un mensaje para el equipo.", "checkout.consent": "Confirmo que estos datos son correctos para esta solicitud.", "checkout.submit": "Crear solicitud de pedido", "checkout.summary.label": "Resumen del pedido", "checkout.summary.title": "Tu selección", "checkout.summary.total": "Total", "checkout.summary.note": "El envío y el pago se confirman con el equipo antes de finalizar el pedido.", "checkout.empty": "Tu bolsa está vacía. Añade una pieza antes de iniciar el pago.",
-          "newsletter.success": "Ya estás en la lista del Drop 01.", "product.details": "Ver detalles", "product.add": "Añadir a la bolsa", "product.sizeAria": "Elegir talla", "product.short": "Short", "product.wide": "Pantalón amplio", "product.set": "Set", "product.new": "Nuevo drop", "product.shortCut": "Corte short", "product.graphic": "Estampado gráfico", "product.soft": "Señal suave", "product.everyday": "Para todos los días", "product.street": "Actitud de calle", "product.print": "Nuevo estampado", "product.silhouette": "Nueva silueta", "product.newTag": "Nuevo", "product.cartoon": "Cartoon Club", "product.afterhours": "Afterhours", "product.pinkSignal": "Pink Signal", "product.softUtility": "Soft Utility", "product.streetSleep": "Street Sleep", "product.comic": "Comic Club", "collection.featured": "Drop destacado", "collection.description": "Historias visuales limitadas para noches largas, mañanas lentas y todo lo que hay entre ellas.", "order.request": "Solicitud de pedido Tupitoons", "order.size": "talla", "order.total": "Total", "order.name": "Nombre", "order.email": "Correo", "order.phone": "Teléfono", "order.city": "Ciudad", "order.delivery": "Entrega", "order.address": "Dirección", "order.note": "Nota", "copy.success": "Resumen copiado.", "copy.unavailable": "No se puede copiar aquí. Usa la referencia de arriba."
+          "checkout.close": "Cerrar pago", "checkout.kicker": "Tupitoons / solicitud de pedido / Drop 01", "checkout.title": "Hazlo tuyo.", "checkout.intro": "Déjanos tus datos y prepararemos la solicitud con las piezas que elegiste. Stock, entrega y pago final se confirman antes del despacho.", "checkout.success.title": "Solicitud recibida.", "checkout.success.copy": "Tu solicitud quedó guardada en este dispositivo. Guarda la referencia mientras conectamos los detalles finales de entrega y pago.", "checkout.success.copyButton": "Copiar resumen", "checkout.success.whatsapp": "Enviar por WhatsApp", "checkout.success.continue": "Seguir comprando", "checkout.name": "Nombre completo", "checkout.name.placeholder": "Tu nombre", "checkout.email": "Correo", "checkout.email.placeholder": "tu@correo.com", "checkout.phone": "Teléfono / WhatsApp", "checkout.city": "Ciudad", "checkout.city.placeholder": "Bogotá", "checkout.delivery": "Preferencia de entrega", "checkout.delivery.choose": "Elige una opción", "checkout.delivery.home": "Entrega a domicilio", "checkout.delivery.pickup": "Punto de recogida", "checkout.payment": "Medio de pago preferido", "checkout.payment.choose": "Elige una opción", "checkout.payment.pse": "PSE / Bancolombia", "checkout.payment.card": "Tarjeta débito o crédito", "checkout.payment.nequi": "Nequi / WhatsApp", "checkout.address": "Dirección / nota de recogida", "checkout.address.placeholder": "¿Dónde debemos enviarlo?", "checkout.note": "¿Algo más?", "checkout.note.placeholder": "Notas de fit, horario de entrega o un mensaje para el equipo.", "checkout.consent": "Confirmo que estos datos son correctos para esta solicitud.", "checkout.submit": "Crear solicitud de pedido", "checkout.summary.label": "Resumen del pedido", "checkout.summary.title": "Tu selección", "checkout.summary.total": "Total", "checkout.summary.note": "El envío, el medio de pago y el stock se confirman con el equipo antes de finalizar el pedido.", "checkout.empty": "Tu bolsa está vacía. Añade una pieza antes de iniciar el pago.",
+          "newsletter.success": "Ya estás en la lista del Drop 01.", "product.details": "Ver detalles", "product.add": "Añadir a la bolsa", "product.sizeAria": "Elegir talla", "product.short": "Short", "product.wide": "Pantalón amplio", "product.set": "Set", "product.new": "Nuevo drop", "product.shortCut": "Corte short", "product.graphic": "Estampado gráfico", "product.soft": "Señal suave", "product.everyday": "Para todos los días", "product.street": "Actitud de calle", "product.print": "Nuevo estampado", "product.silhouette": "Nueva silueta", "product.newTag": "Nuevo", "product.cartoon": "Cartoon Club", "product.afterhours": "Afterhours", "product.pinkSignal": "Pink Signal", "product.softUtility": "Soft Utility", "product.streetSleep": "Street Sleep", "product.comic": "Comic Club", "collection.featured": "Drop destacado", "collection.description": "Historias visuales limitadas para noches largas, mañanas lentas y todo lo que hay entre ellas.", "order.request": "Solicitud de pedido Tupitoons", "order.size": "talla", "order.total": "Total", "order.name": "Nombre", "order.email": "Correo", "order.phone": "Teléfono", "order.city": "Ciudad", "order.delivery": "Entrega", "order.payment": "Pago", "order.address": "Dirección", "order.note": "Nota", "copy.success": "Resumen copiado.", "copy.unavailable": "No se puede copiar aquí. Usa la referencia de arriba."
         },
         en: {
           "top.shipping": "Free shipping over COP 250,000", "top.drop": "Drop 01 / sleep in your own lane", "nav.main": "Main navigation", "nav.home": "Tupitoons home", "nav.shop": "Shop", "nav.prints": "Print Library", "nav.world": "The World", "nav.size": "Size guide", "nav.search": "Search", "nav.bag": "Bag", "language.selector": "Language selector",
+          "search.kicker": "Tupitoons / find your print", "search.title": "Find your lane.", "search.close": "Close search", "search.placeholder": "Search prints, silhouettes or collections", "search.input": "Search Tupitoons", "search.suggestions": "Search suggestions", "search.hint.cartoon": "Cartoon Club", "search.hint.wide": "Wide leg", "search.hint.pink": "Pink Signal", "search.hint.shorts": "Shorts", "search.empty": "No pieces match that search yet. Try a print, a silhouette or a collection.", "search.results": "Results", "search.resultsCopy": "Pieces that match your search. Pick a favorite and take it into your next night.", "wishlist.description": "Your saved pieces, waiting for the right mood.", "wishlist.add": "Save", "wishlist.remove": "Remove",
           "hero.kicker": "Urban sleepwear / drop 01", "hero.title": "From the bed<br>to the <em>block.</em>", "hero.lede": "Pajamas with cartoon energy, premium comfort and enough attitude to leave the bedroom.", "hero.shop": "Shop the drop", "hero.world": "Enter the world", "hero.sticker": "Soft<br>power<br>only", "hero.code": "TUPI / 01 — PRODUCT HERO",
-          "shop.filters": "Product filters", "filter.all": "All pieces", "filter.wide": "Wide leg", "filter.sets": "Sets", "filter.shorts": "Shorts", "collections.title": "Choose your world", "collections.copy": "One brand. Different night characters. Find the print that matches your lane.", "collection.loud": "01 / Loud", "collection.soft": "02 / Soft", "collection.local": "03 / Local", "collection.easy": "04 / Easy",
+          "shop.filters": "Product filters", "filter.all": "All pieces", "filter.wide": "Wide leg", "filter.sets": "Sets", "filter.shorts": "Shorts", "filter.saved": "Saved", "collections.title": "Choose your world", "collections.copy": "One brand. Different night characters. Find the print that matches your lane.", "collection.loud": "01 / Loud", "collection.soft": "02 / Soft", "collection.local": "03 / Local", "collection.easy": "04 / Easy",
           "story.kicker": "Tupitoons / the world", "story.title": "Sleep in your own lane.", "story.copy": "Comfort is not an afterthought. It is the uniform for late-night ideas, slow mornings and the small decision to show up as yourself.", "prints.title": "Print library", "prints.copy": "Texture is the product. Browse the signals that shape Drop 01.", "print.blue": "Blue overload", "print.red": "Red comic", "print.egg": "Fried egg", "print.bottle": "Bottle label", "print.pink": "Pink cast",
           "service.title": "Soft utility", "service.copy": "Everything that makes a good store feel easy, clear and worth coming back to.", "service.fit.title": "Fit first", "service.fit.copy": "Size guide, relaxed silhouettes and product notes before checkout.", "service.fit.link": "Open size guide ↗", "service.nights.title": "Made for nights", "service.nights.copy": "Comfort, fabric and care information without the technical fog.", "service.exchange.title": "Easy exchange", "service.exchange.copy": "Clear changes, returns and delivery details in one place.", "service.human.title": "Talk to a human", "service.human.copy": "WhatsApp support for the last question before you make it yours.", "service.human.link": "Write on WhatsApp ↗",
           "footer.brand": "Stay soft.<br>Move loud.", "footer.brand.copy": "Tupitoons is urban sleepwear with cartoon energy and a street-level point of view.", "footer.news.title": "Get the drop", "footer.news.copy": "New prints, limited releases and things worth staying up for.", "footer.news.placeholder": "Your email", "footer.news.button": "Join", "footer.explore": "Explore", "footer.shop": "Shop the drop", "footer.collections": "Collections", "footer.prints": "Print library", "footer.world": "The world", "footer.whatsapp": "WhatsApp support ↗", "footer.top": "Back to top ↑", "footer.note": "Tupitoons / Store prototype / Drop 01", "footer.tagline": "Built for comfort with intent", "prototype.note": "Prototype / prices to confirm",
           "cart.label": "Shopping bag", "cart.close": "Close bag", "cart.title": "Your bag", "cart.empty": "Your bag is empty.<br>Pick a print and make it yours.", "cart.shipping": "Add {amount} for free shipping.", "cart.freeShipping": "Free shipping unlocked.", "cart.subtotal": "Subtotal", "cart.checkout": "Continue to checkout", "cart.size": "Size", "cart.qty": "Qty", "cart.decrease": "Decrease quantity", "cart.increase": "Increase quantity", "cart.remove": "Remove {name}",
-          "modal.close": "Close product details", "modal.size": "Choose your size", "modal.guide": "Not sure? Open size guide ↗", "modal.add": "Add selected size to bag",
+          "modal.close": "Close product details", "modal.size": "Choose your size", "modal.guide": "Not sure? Open size guide ↗", "modal.add": "Add selected size to bag", "modal.wishlistSave": "Save to wishlist", "modal.wishlistSaved": "Saved to wishlist", "modal.viewImage": "View image",
           "size.kicker": "Tupitoons / fit guide / centimeters", "size.close": "Close size guide", "size.title": "Find your size.", "size.intro": "Measure a garment that already fits you well and compare it with our Tupitoons fit system. These references are made for relaxed silhouettes, everyday movement and a little extra room.", "size.compare.title": "Compare. Choose. Move.", "size.compare.copy": "Lay your favorite garment flat, take the same measurements and choose the closest row. If you are between two sizes, go up for a looser street fit.", "size.unit": "All measurements in cm", "size.legend.title": "Measurement key", "size.legend.a": "Waist / width", "size.legend.b": "Hip / chest", "size.legend.c": "Rise / body", "size.legend.d": "Length", "size.table.size": "Size", "size.pants.title": "Unisex wide-leg pant", "size.pants.copy": "The everyday Tupitoons silhouette: wide, relaxed and made to move from bed to block.", "size.pants.aria": "Unisex pants measurements", "size.pants.note": "Elastic waistband · relaxed fit · measurements may vary ±0.5 cm.", "size.bermuda.title": "Men’s bermuda", "size.bermuda.copy": "A shorter, easy silhouette with the same soft street attitude.", "size.bermuda.aria": "Men’s bermuda measurements", "size.bermuda.note": "Elastic waistband · front measurement · approximate reference.", "size.shorts.title": "Women’s lounge short", "size.shorts.copy": "For warm nights, slow mornings and the days you refuse to dress boring.", "size.shorts.aria": "Women’s lounge short measurements", "size.shorts.note": "Elastic waistband · relaxed leg · approximate reference.", "size.womenTop.title": "Women’s tee", "size.womenTop.copy": "A fitted base layer to balance the volume of your favorite Tupitoons bottoms.", "size.womenTop.aria": "Women’s t-shirt measurements", "size.womenTop.note": "Soft cotton jersey · fitted silhouette · approximate reference.", "size.menTop.title": "Men’s tee", "size.menTop.copy": "A relaxed tee built to layer under the louder prints and bigger silhouettes.", "size.menTop.aria": "Men’s t-shirt measurements", "size.menTop.note": "Soft cotton jersey · relaxed silhouette · approximate reference.", "size.note.title": "Production check:", "size.note.copy": "These are the current production references and should be confirmed against the final sample before publishing the live catalog.",
-          "checkout.close": "Close checkout", "checkout.kicker": "Tupitoons / order request / Drop 01", "checkout.title": "Make it yours.", "checkout.intro": "Leave your details and we’ll prepare the order request with your selected pieces. Final stock, delivery and payment are confirmed before dispatch.", "checkout.success.title": "Request received.", "checkout.success.copy": "Your order request is saved on this device. Keep the reference handy while we connect the final delivery and payment details.", "checkout.success.copyButton": "Copy order summary", "checkout.success.whatsapp": "Send on WhatsApp", "checkout.success.continue": "Continue shopping", "checkout.name": "Full name", "checkout.name.placeholder": "Your name", "checkout.email": "Email", "checkout.email.placeholder": "you@email.com", "checkout.phone": "Phone / WhatsApp", "checkout.city": "City", "checkout.city.placeholder": "Bogotá", "checkout.delivery": "Delivery preference", "checkout.delivery.choose": "Choose one", "checkout.delivery.home": "Home delivery", "checkout.delivery.pickup": "Pickup point", "checkout.address": "Address / pickup note", "checkout.address.placeholder": "Where should we send it?", "checkout.note": "Anything else?", "checkout.note.placeholder": "Fit notes, delivery timing or a message for the team.", "checkout.consent": "I confirm that these details are correct for this order request.", "checkout.submit": "Create order request", "checkout.summary.label": "Order summary", "checkout.summary.title": "Your selection", "checkout.summary.total": "Total", "checkout.summary.note": "Shipping and payment are confirmed with the team before the order is finalized.", "checkout.empty": "Your bag is empty. Add a piece before starting checkout.",
-          "newsletter.success": "You are on the list for Drop 01.", "product.details": "View details", "product.add": "Add to bag", "product.sizeAria": "Select size", "product.short": "Shorts", "product.wide": "Wide leg", "product.set": "Set", "product.new": "New drop", "product.shortCut": "Short cut", "product.graphic": "Graphic hit", "product.soft": "Soft signal", "product.everyday": "Everyday", "product.street": "Street proof", "product.print": "New print", "product.silhouette": "New silhouette", "product.newTag": "New", "product.cartoon": "Cartoon Club", "product.afterhours": "Afterhours", "product.pinkSignal": "Pink Signal", "product.softUtility": "Soft Utility", "product.streetSleep": "Street Sleep", "product.comic": "Comic Club", "collection.featured": "Featured drop", "collection.description": "Limited visual stories for late nights, slow mornings and everything in between.", "order.request": "Tupitoons order request", "order.size": "size", "order.total": "Total", "order.name": "Name", "order.email": "Email", "order.phone": "Phone", "order.city": "City", "order.delivery": "Delivery", "order.address": "Address", "order.note": "Note", "copy.success": "Order summary copied.", "copy.unavailable": "Copy is not available here. Use the reference above."
+          "checkout.close": "Close checkout", "checkout.kicker": "Tupitoons / order request / Drop 01", "checkout.title": "Make it yours.", "checkout.intro": "Leave your details and we’ll prepare the order request with your selected pieces. Final stock, delivery and payment are confirmed before dispatch.", "checkout.success.title": "Request received.", "checkout.success.copy": "Your order request is saved on this device. Keep the reference handy while we connect the final delivery and payment details.", "checkout.success.copyButton": "Copy order summary", "checkout.success.whatsapp": "Send on WhatsApp", "checkout.success.continue": "Continue shopping", "checkout.name": "Full name", "checkout.name.placeholder": "Your name", "checkout.email": "Email", "checkout.email.placeholder": "you@email.com", "checkout.phone": "Phone / WhatsApp", "checkout.city": "City", "checkout.city.placeholder": "Bogotá", "checkout.delivery": "Delivery preference", "checkout.delivery.choose": "Choose one", "checkout.delivery.home": "Home delivery", "checkout.delivery.pickup": "Pickup point", "checkout.payment": "Preferred payment", "checkout.payment.choose": "Choose one", "checkout.payment.pse": "PSE / Bancolombia", "checkout.payment.card": "Credit or debit card", "checkout.payment.nequi": "Nequi / WhatsApp", "checkout.address": "Address / pickup note", "checkout.address.placeholder": "Where should we send it?", "checkout.note": "Anything else?", "checkout.note.placeholder": "Fit notes, delivery timing or a message for the team.", "checkout.consent": "I confirm that these details are correct for this order request.", "checkout.submit": "Create order request", "checkout.summary.label": "Order summary", "checkout.summary.title": "Your selection", "checkout.summary.total": "Total", "checkout.summary.note": "Shipping, payment preference and stock are confirmed with the team before the order is finalized.", "checkout.empty": "Your bag is empty. Add a piece before starting checkout.",
+          "newsletter.success": "You are on the list for Drop 01.", "product.details": "View details", "product.add": "Add to bag", "product.sizeAria": "Select size", "product.short": "Shorts", "product.wide": "Wide leg", "product.set": "Set", "product.new": "New drop", "product.shortCut": "Short cut", "product.graphic": "Graphic hit", "product.soft": "Soft signal", "product.everyday": "Everyday", "product.street": "Street proof", "product.print": "New print", "product.silhouette": "New silhouette", "product.newTag": "New", "product.cartoon": "Cartoon Club", "product.afterhours": "Afterhours", "product.pinkSignal": "Pink Signal", "product.softUtility": "Soft Utility", "product.streetSleep": "Street Sleep", "product.comic": "Comic Club", "collection.featured": "Featured drop", "collection.description": "Limited visual stories for late nights, slow mornings and everything in between.", "order.request": "Tupitoons order request", "order.size": "size", "order.total": "Total", "order.name": "Name", "order.email": "Email", "order.phone": "Phone", "order.city": "City", "order.delivery": "Delivery", "order.payment": "Payment", "order.address": "Address", "order.note": "Note", "copy.success": "Order summary copied.", "copy.unavailable": "Copy is not available here. Use the reference above."
         }
       };
       const t = (key, vars = {}) => Object.entries(vars).reduce((text, [name, value]) => text.replace(`{${name}}`, value), translations[state.language][key] || translations.en[key] || key);
@@ -657,6 +706,14 @@
       const shippingMessage = document.querySelector('[data-shipping-message]');
       const shippingPercent = document.querySelector('[data-shipping-percent]');
       const shippingBar = document.querySelector('[data-shipping-bar]');
+      const searchModal = document.querySelector('[data-search-modal]');
+      const searchInput = document.querySelector('[data-search-input]');
+      const searchEmpty = document.querySelector('[data-search-empty]');
+      const wishlistFilter = document.querySelector('[data-wishlist-filter]');
+      const wishlistCount = document.querySelector('[data-wishlist-count]');
+      const modalThumbs = document.querySelector('[data-modal-thumbs]');
+      const modalWishlist = document.querySelector('[data-modal-wishlist]');
+      const modalWishlistLabel = document.querySelector('[data-modal-wishlist-label]');
       let activeProduct = null;
       let lastOrderText = '';
       const productDetails = {
@@ -692,8 +749,57 @@
       const productUi = {
         'Bottle Label Wide Leg': { badge: 'product.new', meta: ['product.wide', 'product.afterhours'] }, 'Bottle Label Lounge Shorts': { badge: 'product.shortCut', meta: ['product.short', 'product.afterhours'] }, 'Blue Donut Club': { badge: 'product.graphic', meta: ['product.wide', 'product.cartoon'] }, 'Pink Character Sleep Set': { badge: 'product.soft', meta: ['product.set', 'product.pinkSignal'] }, 'Pink Character Wide Leg': { badge: 'product.silhouette', meta: ['product.wide', 'product.pinkSignal'] }, 'Fried Egg All-Day Set': { badge: 'product.everyday', meta: ['product.set', 'product.softUtility'] }, 'Red Comic Wide Leg': { badge: 'product.print', meta: ['product.wide', 'product.comic'] }, 'Red Comic Lounge Shorts': { badge: 'product.newTag', meta: ['product.short', 'product.comic'] }, 'Stitch Island Wide Leg': { badge: 'product.print', meta: ['product.wide', 'product.cartoon'] }, 'Stitch Island Lounge Shorts': { badge: 'product.shortCut', meta: ['product.short', 'product.cartoon'] }, 'Green Street Pant': { badge: 'product.street', meta: ['product.wide', 'product.streetSleep'] }, 'Popcorn Sky Wide Leg': { badge: 'product.print', meta: ['product.wide', 'product.cartoon'] }, 'Popcorn Sky Lounge Shorts': { badge: 'product.shortCut', meta: ['product.short', 'product.cartoon'] }
       };
+      const productGallery = {
+        'Bottle Label Wide Leg': ['assets/look-bottle-print-studio.jpeg', 'assets/look-bottle-short.jpeg'],
+        'Bottle Label Lounge Shorts': ['assets/look-bottle-short.jpeg', 'assets/look-bottle-print-studio.jpeg'],
+        'Pink Character Sleep Set': ['assets/texture-pink-character-cast.jpeg', 'assets/look-pink-character-studio.jpeg'],
+        'Pink Character Wide Leg': ['assets/look-pink-character-studio.jpeg', 'assets/texture-pink-character-cast.jpeg'],
+        'Fried Egg All-Day Set': ['assets/look-fried-egg-studio.jpeg', 'assets/texture-fried-egg-repeat.jpeg'],
+        'Red Comic Wide Leg': ['assets/look-red-comic-wide-studio.jpeg', 'assets/look-red-comic-shorts-studio.jpeg'],
+        'Red Comic Lounge Shorts': ['assets/look-red-comic-shorts-studio.jpeg', 'assets/look-red-comic-wide-studio.jpeg'],
+        'Stitch Island Wide Leg': ['assets/look-stitch-wide-studio.jpeg', 'assets/look-stitch-shorts-studio.jpeg'],
+        'Stitch Island Lounge Shorts': ['assets/look-stitch-shorts-studio.jpeg', 'assets/look-stitch-wide-studio.jpeg'],
+        'Popcorn Sky Wide Leg': ['assets/look-popcorn-sky.jpeg', 'assets/look-popcorn-short.jpeg'],
+        'Popcorn Sky Lounge Shorts': ['assets/look-popcorn-short.jpeg', 'assets/look-popcorn-sky.jpeg']
+      };
       const getProductDetails = name => state.language === 'es' ? (productDetailsEs[name] || productDetails[name]) : productDetails[name];
       const persistCart = () => { try { localStorage.setItem(storageKey, JSON.stringify(state.cart)); } catch { /* Local persistence is optional in preview mode. */ } };
+      const persistWishlist = () => { try { localStorage.setItem(wishlistStorageKey, JSON.stringify(state.wishlist)); } catch { /* Wishlist persistence is optional in preview mode. */ } };
+      const isWishlisted = name => state.wishlist.includes(name);
+      const toggleWishlist = name => {
+        if (isWishlisted(name)) state.wishlist = state.wishlist.filter(item => item !== name);
+        else state.wishlist = [...state.wishlist, name];
+        persistWishlist();
+        renderWishlist();
+        if (activeProduct?.name === name) updateModalWishlist();
+        if (state.catalog.wishlistOnly) applyCatalogFilter(state.catalog.category, state.catalog.collection);
+      };
+      const updateModalWishlist = () => {
+        if (!modalWishlist || !activeProduct) return;
+        const saved = isWishlisted(activeProduct.name);
+        modalWishlist.classList.toggle('is-saved', saved);
+        modalWishlist.setAttribute('aria-pressed', String(saved));
+        if (modalWishlistLabel) modalWishlistLabel.textContent = t(saved ? 'modal.wishlistSaved' : 'modal.wishlistSave');
+      };
+      const renderWishlist = () => {
+        select('.product-card').forEach(card => {
+          const button = card.querySelector('[data-wishlist]');
+          if (!button) return;
+          const saved = isWishlisted(card.dataset.product);
+          button.classList.toggle('is-saved', saved);
+          button.setAttribute('aria-pressed', String(saved));
+          button.setAttribute('aria-label', saved ? `${t('wishlist.remove')} ${card.dataset.product}` : `${t('wishlist.add')} ${card.dataset.product}`);
+          button.textContent = saved ? '♥' : '♡';
+          card.classList.toggle('is-saved', saved);
+        });
+        if (wishlistCount) wishlistCount.textContent = state.wishlist.length;
+        if (wishlistFilter) wishlistFilter.classList.toggle('is-active', state.catalog.wishlistOnly);
+      };
+      const setModalGallery = (images, activeImage = images[0]) => {
+        modalImage.src = activeImage;
+        modalThumbs.innerHTML = images.map((image, index) => `<button class="modal-thumb${image === activeImage ? ' is-active' : ''}" type="button" data-modal-thumb="${image}" aria-label="${t('modal.viewImage')} ${index + 1}"><img src="${image}" alt="${activeProduct?.name || 'Tupitoons'} view ${index + 1}"></button>`).join('');
+        select('[data-modal-thumb]').forEach(button => button.addEventListener('click', () => setModalGallery(images, button.dataset.modalThumb)));
+      };
       const cartTotal = () => state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
       const renderCheckoutSummary = () => {
         const total = cartTotal();
@@ -735,6 +841,12 @@
         drawer.setAttribute('aria-hidden', String(!open));
         document.body.style.overflow = open ? 'hidden' : '';
       };
+      const setSearchOpen = open => {
+        searchModal.classList.toggle('is-open', open);
+        searchModal.setAttribute('aria-hidden', String(!open));
+        document.body.style.overflow = open ? 'hidden' : '';
+        if (open) requestAnimationFrame(() => searchInput?.focus());
+      };
       const setModalOpen = open => {
         productModal.classList.toggle('is-open', open);
         productModal.setAttribute('aria-hidden', String(!open));
@@ -773,6 +885,7 @@
         `${t('order.phone')}: ${order.customer.phone}`,
         `${t('order.city')}: ${order.customer.city}`,
         `${t('order.delivery')}: ${order.customer.delivery === 'home' ? t('checkout.delivery.home') : t('checkout.delivery.pickup')}`,
+        `${t('order.payment')}: ${order.customer.payment === 'pse' ? t('checkout.payment.pse') : order.customer.payment === 'card' ? t('checkout.payment.card') : t('checkout.payment.nequi')}`,
         `${t('order.address')}: ${order.customer.address}`,
         order.customer.note ? `${t('order.note')}: ${order.customer.note}` : ''
       ].filter(Boolean).join('\n');
@@ -780,7 +893,7 @@
         const product = { name: card.dataset.product, price: Number(card.dataset.price), image: card.dataset.image };
         activeProduct = product;
         const details = getProductDetails(product.name) || getProductDetails('Bottle Label Wide Leg');
-        modalImage.src = product.image;
+        setModalGallery(productGallery[product.name] || [product.image]);
         modalImage.alt = product.name;
         modalTag.textContent = details.tag;
         modalTitle.textContent = product.name;
@@ -790,6 +903,7 @@
         modalMaterial.textContent = details.material;
         modalCare.textContent = details.care;
         select('[data-modal-size]').forEach(button => button.classList.toggle('is-selected', button.dataset.modalSize === 'M'));
+        updateModalWishlist();
         setModalOpen(true);
       };
       const shopTitle = document.querySelector('[data-shop-title]');
@@ -802,17 +916,26 @@
         'street-sleep': { en: { title: 'Street Sleep', copy: 'Urban attitude, relaxed fit and a graphic that refuses to stay indoors.' }, es: { title: 'Street Sleep', copy: 'Actitud urbana, fit relajado y un gráfico que se niega a quedarse en casa.' } }
       };
       const applyCatalogFilter = (category = 'all', collection = null) => {
-        state.catalog = { category, collection };
+        state.catalog = { category, collection, wishlistOnly: state.catalog.wishlistOnly, search: state.catalog.search };
         const details = collection ? collectionDetails[collection]?.[state.language] : null;
         const categoryNames = { 'all': t('collection.featured'), 'wide-leg': t('product.wide'), sets: t('filter.sets'), shorts: t('filter.shorts') };
-        shopTitle.textContent = details?.title || categoryNames[category] || 'Featured drop';
-        shopDescription.textContent = details?.copy || t('collection.description');
-        select('[data-filter]').forEach(item => item.classList.toggle('is-active', !collection && item.dataset.filter === category));
+        const query = state.catalog.search.trim().toLowerCase();
+        shopTitle.textContent = query ? `${t('search.results')} / ${state.catalog.search}` : state.catalog.wishlistOnly ? t('filter.saved') : details?.title || categoryNames[category] || 'Featured drop';
+        shopDescription.textContent = query ? t('search.resultsCopy') : state.catalog.wishlistOnly ? t('wishlist.description') : details?.copy || t('collection.description');
+        select('[data-filter]').forEach(item => item.classList.toggle('is-active', !collection && !state.catalog.wishlistOnly && item.dataset.filter === category));
+        let visibleCount = 0;
         select('.product-card').forEach(card => {
           const matchesCategory = category === 'all' || card.dataset.category === category;
           const matchesCollection = !collection || card.dataset.collection === collection;
-          card.classList.toggle('is-hidden', !(matchesCategory && matchesCollection));
+          const searchable = `${card.dataset.product} ${card.dataset.collection} ${card.dataset.category} ${card.textContent}`.toLowerCase();
+          const matchesSearch = !query || searchable.includes(query);
+          const matchesWishlist = !state.catalog.wishlistOnly || isWishlisted(card.dataset.product);
+          const visible = matchesCategory && matchesCollection && matchesSearch && matchesWishlist;
+          card.classList.toggle('is-hidden', !visible);
+          if (visible) visibleCount += 1;
         });
+        if (searchEmpty) searchEmpty.hidden = visibleCount > 0;
+        renderWishlist();
       };
       const applyLanguage = language => {
         state.language = language === 'en' ? 'en' : 'es';
@@ -841,9 +964,21 @@
           modalFit.textContent = details.fit;
           modalMaterial.textContent = details.material;
           modalCare.textContent = details.care;
-        }
+          updateModalWishlist();
+        } else if (modalWishlistLabel) modalWishlistLabel.textContent = t('modal.wishlistSave');
         renderCart();
+        renderWishlist();
       };
+      select('.product-card').forEach(card => {
+        const image = card.querySelector('.product-image');
+        if (!image || image.querySelector('[data-wishlist]')) return;
+        const button = document.createElement('button');
+        button.className = 'wishlist-toggle';
+        button.type = 'button';
+        button.dataset.wishlist = '';
+        image.append(button);
+        button.addEventListener('click', event => { event.stopPropagation(); toggleWishlist(card.dataset.product); });
+      });
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const revealNodes = select('.store-section-head, .product-card, .collection-card, .store-story-copy, .store-story-image, .print-swatch, .service-card, .store-footer');
       revealNodes.forEach((element, index) => {
@@ -899,6 +1034,22 @@
         });
       }
       document.documentElement.classList.add('site-ready');
+      select('[data-search-open]').forEach(button => button.addEventListener('click', () => setSearchOpen(true)));
+      select('[data-search-close]').forEach(button => button.addEventListener('click', () => setSearchOpen(false)));
+      searchInput?.addEventListener('input', event => {
+        state.catalog.search = event.target.value;
+        state.catalog.collection = null;
+        state.catalog.category = 'all';
+        state.catalog.wishlistOnly = false;
+        applyCatalogFilter();
+        document.querySelector('#shop')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      select('[data-search-term]').forEach(button => button.addEventListener('click', () => {
+        if (!searchInput) return;
+        searchInput.value = button.dataset.searchTerm;
+        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+        setSearchOpen(false);
+      }));
       select('[data-cart-open]').forEach(button => button.addEventListener('click', () => setCartOpen(true)));
       select('[data-cart-close]').forEach(button => button.addEventListener('click', () => setCartOpen(false)));
       select('[data-checkout-close]').forEach(button => button.addEventListener('click', () => setCheckoutOpen(false)));
@@ -926,13 +1077,23 @@
         setModalOpen(false);
         setCartOpen(true);
       });
+      document.querySelector('[data-modal-wishlist]')?.addEventListener('click', () => { if (activeProduct) toggleWishlist(activeProduct.name); });
       select('[data-filter]').forEach(button => button.addEventListener('click', () => {
+        state.catalog.wishlistOnly = false;
+        state.catalog.search = '';
+        if (searchInput) searchInput.value = '';
         applyCatalogFilter(button.dataset.filter);
       }));
+      wishlistFilter?.addEventListener('click', () => {
+        state.catalog.wishlistOnly = !state.catalog.wishlistOnly;
+        state.catalog.collection = null;
+        state.catalog.category = 'all';
+        applyCatalogFilter();
+      });
       select('[data-language]').forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.language)));
       select('[data-scroll]').forEach(link => link.addEventListener('click', event => {
         const target = document.querySelector(link.dataset.scroll);
-        if (target) { event.preventDefault(); if (link.dataset.collection) applyCatalogFilter('all', link.dataset.collection); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        if (target) { event.preventDefault(); if (link.dataset.collection) { state.catalog.wishlistOnly = false; state.catalog.search = ''; if (searchInput) searchInput.value = ''; applyCatalogFilter('all', link.dataset.collection); } target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       }));
       document.querySelector('[data-newsletter]')?.addEventListener('submit', event => {
         event.preventDefault();
@@ -973,7 +1134,7 @@
         if (!lastOrderText) return;
         window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(lastOrderText)}`, '_blank', 'noopener,noreferrer');
       });
-      document.addEventListener('keydown', event => { if (event.key === 'Escape') { setCheckoutOpen(false); setSizeGuideOpen(false); setModalOpen(false); setCartOpen(false); } });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') { setCheckoutOpen(false); setSizeGuideOpen(false); setModalOpen(false); setCartOpen(false); setSearchOpen(false); } });
       applyLanguage(state.language);
     })();
   </script>
