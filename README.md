@@ -26,7 +26,7 @@ La versión actual es un storefront estático premium, responsive y bilingüe.
 - Enlace de contacto y envío de solicitud por WhatsApp: **+57 301 243 8980**.
 - Guía de tallas propia con tablas de pantalones, pantalonetas, shorts y camisetas.
 - Biblioteca de estampados y bloques editoriales de marca.
-- Newsletter visual con confirmación local.
+- Newsletter de demostración con aviso explícito de que no hay suscripción activa.
 - Centro bilingüe de políticas para envíos, cambios, privacidad y términos.
 - Metadatos SEO iniciales: canonical, Open Graph, Twitter Card y datos estructurados de tienda.
 - Isotipo grande, transparente y sin wordmark en la cabecera.
@@ -64,7 +64,7 @@ La tienda funciona actualmente como una solicitud de pedido asistida:
 1. La persona selecciona producto, talla y cantidad.
 2. La bolsa calcula subtotal y progreso de envío gratis.
 3. Checkout recoge nombre, correo, teléfono, ciudad, modalidad de entrega, medio de pago preferido, dirección y nota.
-4. Se genera una referencia `TUPI-XXXXXX` y se guarda una copia local del pedido.
+4. Se genera una referencia `TUPI-XXXXXX` y se prepara un resumen temporal en memoria.
 5. El resumen puede copiarse o enviarse por WhatsApp para confirmar stock, entrega y pago.
 
 No hay pasarela de pagos, inventario remoto ni base de datos conectados todavía. El siguiente paso comercial es integrar un proveedor colombiano y reemplazar las referencias de prototipo por el catálogo aprobado.
@@ -105,7 +105,7 @@ La tienda usa `localStorage` para mantener la experiencia durante el prototipado
 | `tupitoons-language-v1` | Idioma seleccionado: `es` o `en` |
 | `tupitoons-bag-v1` | Productos de la bolsa |
 | `tupitoons-wishlist-v1` | Productos guardados |
-| `tupitoons-orders-v1` | Últimas solicitudes de pedido del dispositivo |
+| `tupitoons-orders-v1` | Clave antigua: se elimina al abrir la tienda para retirar datos personales persistidos |
 
 Estos datos no sustituyen una base de datos ni deben considerarse un registro comercial definitivo.
 
@@ -165,3 +165,7 @@ https://tupitoons.vercel.app/
 
 - Commit anterior de producción: `32bd92b`
 - Estado: producción activa y verificada.
+
+## Auditoría y verificaciones
+
+Ver [auditoría priorizada](docs/AUDIT-2026-10-28.md). Ejecuta `node --test tests/*.test.cjs`. Si editas un script inline, actualiza su SHA-256 en `vercel.json`; la prueba falla si la CSP queda desactualizada. Los headers deben verificarse en el preview de Vercel antes de fusionar.

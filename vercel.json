@@ -1,0 +1,25 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'sha256-zvfr9lTCnFWaoEmlk3F0CsdfqzFWLiHFpjKWnvUn9Ys=' 'sha256-N+eVzqo3lWBSLt+IM/5t/iWMRpXeDKYwnJ7Ydf3HO/U='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"
+        }
+      ]
+    }
+  ]
+}
