@@ -169,3 +169,14 @@ https://tupitoons.vercel.app/
 ## Auditoría y verificaciones
 
 Ver [auditoría priorizada](docs/AUDIT-2026-10-28.md). Ejecuta `node --test tests/*.test.cjs`. Si editas un script inline, ejecuta `node scripts/update-csp.cjs` para actualizar su SHA-256 en `vercel.json`; la prueba falla si la CSP queda desactualizada. Los headers deben verificarse en el preview de Vercel antes de fusionar.
+
+
+## Google Analytics 4
+
+ID de medición: `G-C94DMDNF0V`. `scripts/analytics.js` prepara la cola antes de cargar `gtag.js` asíncronamente en el `<head>`. Hay una única configuración: GA4 envía el `page_view` inicial automáticamente, sin un segundo evento manual.
+
+El sitio no tiene router: los enlaces `#shop`, `#story`, etc. son secciones del mismo documento. Sus clics (incluidos guía de tallas y políticas) envían `section_navigation` con `section_id` de una lista fija; no generan pageviews virtuales. También se detectan enlaces con scroll gestionado por JavaScript. No se envían campos del checkout ni búsquedas como parámetros propios. Google Signals y personalización publicitaria están desactivados.
+
+La CSP permite los orígenes de GA4 sin añadir `unsafe-inline` a scripts. `scripts/update-csp.cjs` conserva el permiso del cargador al regenerar hashes. Referencias: [pageviews](https://developers.google.com/analytics/devguides/collection/ga4/views) y [CSP sin funciones publicitarias](https://developers.google.com/tag-platform/security/guides/csp).
+
+Verificación: `node --test tests/*.test.cjs`. Tras desplegar, comprobar en DevTools que `gtag/js` carga, que las peticiones `g/collect` usan `tid=G-C94DMDNF0V`, que hay un solo `en=page_view` por carga y que los clics generan `en=section_navigation`. Confirmar recepción en Tiempo real o DebugView (activar depuración solo durante la prueba). No instalar además el mismo tag mediante GTM. La recepción real y los ajustes remotos de medición mejorada requieren acceso a la propiedad GA4 y no están cubiertos por las pruebas locales.
